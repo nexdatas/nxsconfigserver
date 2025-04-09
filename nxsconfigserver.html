@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>nxsconfigserver package &#8212; NXSConfigServer 2.15.0 documentation</title>
+    <title>nxsconfigserver package &#8212; NXSConfigServer 2.16.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -39,7 +39,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           NXSConfigServer</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.15</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.16</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -480,7 +480,7 @@
 <dd class="field-odd"><p>It creates the MYSQLDataBase instance</p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>streams</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">StreamSet</span></code> or <a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/device.html#tango.LatestDeviceImpl" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.LatestDeviceImpl</span></code></a>) – tango-like steamset class</p>
+<dd class="field-even"><p><strong>streams</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">StreamSet</span></code> or <a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/device.html#tango.LatestDeviceImpl" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.LatestDeviceImpl</span></code></a>) – tango-like steamset class</p>
 </dd>
 </dl>
 <dl class="py method">
@@ -817,7 +817,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nxsconfigserver.Merger.Merger.tocut">
 <span class="sig-name descname"><span class="pre">tocut</span></span><a class="headerlink" href="#nxsconfigserver.Merger.Merger.tocut" title="Permalink to this definition">¶</a></dt>
-<dd><p>(<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> &lt;<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>&gt; ) tags which cannot have the same siblings</p>
+<dd><p>(<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> &lt;<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>&gt; ) tags removed when are empty</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -835,7 +835,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nxsconfigserver.NXSConfigServer.NXSConfigServer">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NXSConfigServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxsconfigserver/NXSConfigServer.html#NXSConfigServer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxsconfigserver.NXSConfigServer.NXSConfigServer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/device.html#tango.LatestDeviceImpl" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LatestDeviceImpl</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/device.html#tango.LatestDeviceImpl" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LatestDeviceImpl</span></code></a></p>
 <p>NXSConfigServer Class Description:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Brief<span class="colon">:</span></dt>
@@ -1774,7 +1774,7 @@ from the mandatory components</p>
 <dd><p>Read CanFailDataSources attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/attribute.html#tango.Attribute" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – step datasources attribute</p>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/attribute.html#tango.Attribute" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – step datasources attribute</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1785,7 +1785,7 @@ from the mandatory components</p>
 <dd><p>Read JSONSettings attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/attribute.html#tango.Attribute" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – jsonsettings attribute</p>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/attribute.html#tango.Attribute" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – jsonsettings attribute</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1796,7 +1796,7 @@ from the mandatory components</p>
 <dd><p>Read LinkDataSources attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/attribute.html#tango.Attribute" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – link datasources attribute</p>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/attribute.html#tango.Attribute" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – link datasources attribute</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1807,7 +1807,7 @@ from the mandatory components</p>
 <dd><p>Read STEPDataSources attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/attribute.html#tango.Attribute" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – step datasources attribute</p>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/attribute.html#tango.Attribute" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – step datasources attribute</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1818,7 +1818,7 @@ from the mandatory components</p>
 <dd><p>Read Selection attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/attribute.html#tango.Attribute" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – selection attribute</p>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/attribute.html#tango.Attribute" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – selection attribute</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1829,7 +1829,7 @@ from the mandatory components</p>
 <dd><p>Read Variables attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/attribute.html#tango.Attribute" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – variables attribute</p>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/attribute.html#tango.Attribute" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – variables attribute</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1840,7 +1840,7 @@ from the mandatory components</p>
 <dd><p>Read Version attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/attribute.html#tango.Attribute" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – version attribute</p>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/attribute.html#tango.Attribute" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – version attribute</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1851,7 +1851,7 @@ from the mandatory components</p>
 <dd><p>Read XMLString attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/attribute.html#tango.Attribute" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – xml string attribute</p>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/attribute.html#tango.Attribute" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – xml string attribute</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1868,7 +1868,7 @@ from the mandatory components</p>
 <dd><p>Write CanFailDataSources attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/attribute.html#tango.Attribute" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – step datasources attribute</p>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/attribute.html#tango.Attribute" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – step datasources attribute</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1879,7 +1879,7 @@ from the mandatory components</p>
 <dd><p>Read JSONSettings attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/attribute.html#tango.Attribute" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – jsonsettings attribute</p>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/attribute.html#tango.Attribute" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – jsonsettings attribute</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1890,7 +1890,7 @@ from the mandatory components</p>
 <dd><p>Write LinkDataSources attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/attribute.html#tango.Attribute" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – link datasources attribute</p>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/attribute.html#tango.Attribute" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – link datasources attribute</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1901,7 +1901,7 @@ from the mandatory components</p>
 <dd><p>Write STEPDataSources attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/attribute.html#tango.Attribute" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – step datasources attribute</p>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/attribute.html#tango.Attribute" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – step datasources attribute</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1912,7 +1912,7 @@ from the mandatory components</p>
 <dd><p>Write Selection attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/attribute.html#tango.Attribute" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – selection attribute</p>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/attribute.html#tango.Attribute" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – selection attribute</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1923,7 +1923,7 @@ from the mandatory components</p>
 <dd><p>Write Variables attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/attribute.html#tango.Attribute" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – variables attribute</p>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/attribute.html#tango.Attribute" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – variables attribute</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1934,7 +1934,7 @@ from the mandatory components</p>
 <dd><p>Write XMLString attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/attribute.html#tango.Attribute" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – xml string attribute</p>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/attribute.html#tango.Attribute" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.Attribute</span></code></a>) – xml string attribute</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1961,20 +1961,20 @@ from the mandatory components</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nxsconfigserver.NXSConfigServer.NXSConfigServerClass.class_property_list">
 <span class="sig-name descname"><span class="pre">class_property_list</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#nxsconfigserver.NXSConfigServer.NXSConfigServerClass.class_property_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>(<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#dict" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> &lt;<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, [ <a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/other.html#tango.CmdArgType" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.CmdArgType</span></code></a>, [ <a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> &lt;<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>&gt; ] ] &gt; ) Class Properties</p>
+<dd><p>(<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#dict" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> &lt;<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, [ <a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/client_api/other.html#tango.CmdArgType" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.CmdArgType</span></code></a>, [ <a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> &lt;<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>&gt; ] ] &gt; ) Class Properties</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nxsconfigserver.NXSConfigServer.NXSConfigServerClass.cmd_list">
 <span class="sig-name descname"><span class="pre">cmd_list</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'AvailableComponents':</span> <span class="pre">[[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">''],</span> <span class="pre">[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">available</span> <span class="pre">component</span> <span class="pre">names']],</span> <span class="pre">'AvailableDataSources':</span> <span class="pre">[[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">''],</span> <span class="pre">[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">available</span> <span class="pre">DataSource</span> <span class="pre">names']],</span> <span class="pre">'AvailableSelections':</span> <span class="pre">[[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">''],</span> <span class="pre">[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">available</span> <span class="pre">selection</span> <span class="pre">names']],</span> <span class="pre">'Close':</span> <span class="pre">[[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">''],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'ComponentDataSources':</span> <span class="pre">[[tango._tango.CmdArgType.DevString,</span> <span class="pre">'component</span> <span class="pre">name'],</span> <span class="pre">[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">datasource</span> <span class="pre">names']],</span> <span class="pre">'ComponentVariables':</span> <span class="pre">[[tango._tango.CmdArgType.DevString,</span> <span class="pre">'component</span> <span class="pre">name'],</span> <span class="pre">[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">variable</span> <span class="pre">names']],</span> <span class="pre">'Components':</span> <span class="pre">[[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">component</span> <span class="pre">names'],</span> <span class="pre">[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">required</span> <span class="pre">components']],</span> <span class="pre">'ComponentsDataSources':</span> <span class="pre">[[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'component</span> <span class="pre">names'],</span> <span class="pre">[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">datasource</span> <span class="pre">names']],</span> <span class="pre">'ComponentsVariables':</span> <span class="pre">[[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'component</span> <span class="pre">names'],</span> <span class="pre">[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">variable</span> <span class="pre">names']],</span> <span class="pre">'CreateConfiguration':</span> <span class="pre">[[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">component</span> <span class="pre">names'],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'DataSources':</span> <span class="pre">[[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">DataSource</span> <span class="pre">names'],</span> <span class="pre">[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">required</span> <span class="pre">DataSources']],</span> <span class="pre">'DeleteComponent':</span> <span class="pre">[[tango._tango.CmdArgType.DevString,</span> <span class="pre">'component</span> <span class="pre">name'],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'DeleteDataSource':</span> <span class="pre">[[tango._tango.CmdArgType.DevString,</span> <span class="pre">'datasource</span> <span class="pre">name'],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'DeleteSelection':</span> <span class="pre">[[tango._tango.CmdArgType.DevString,</span> <span class="pre">'selection</span> <span class="pre">name'],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'DependentComponents':</span> <span class="pre">[[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'component</span> <span class="pre">names'],</span> <span class="pre">[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">component</span> <span class="pre">names']],</span> <span class="pre">'InstantiatedComponents':</span> <span class="pre">[[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">component</span> <span class="pre">names'],</span> <span class="pre">[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">instantiated</span> <span class="pre">components']],</span> <span class="pre">'MandatoryComponents':</span> <span class="pre">[[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">''],</span> <span class="pre">[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'component</span> <span class="pre">names']],</span> <span class="pre">'Merge':</span> <span class="pre">[[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">component</span> <span class="pre">names'],</span> <span class="pre">[tango._tango.CmdArgType.DevString,</span> <span class="pre">'merged</span> <span class="pre">components']],</span> <span class="pre">'Open':</span> <span class="pre">[[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">''],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'Selections':</span> <span class="pre">[[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">selection</span> <span class="pre">names'],</span> <span class="pre">[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">required</span> <span class="pre">selections']],</span> <span class="pre">'SetComponentDataSources':</span> <span class="pre">[[tango._tango.CmdArgType.DevString,</span> <span class="pre">'JSON</span> <span class="pre">dict</span> <span class="pre">{comp1:</span> <span class="pre">{tds1:</span> <span class="pre">ds1,</span> <span class="pre">...},</span> <span class="pre">...}'],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'SetMandatoryComponents':</span> <span class="pre">[[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'component</span> <span class="pre">names'],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'StoreComponent':</span> <span class="pre">[[tango._tango.CmdArgType.DevString,</span> <span class="pre">'component</span> <span class="pre">name'],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'StoreDataSource':</span> <span class="pre">[[tango._tango.CmdArgType.DevString,</span> <span class="pre">'datasource</span> <span class="pre">name'],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'StoreSelection':</span> <span class="pre">[[tango._tango.CmdArgType.DevString,</span> <span class="pre">'selection</span> <span class="pre">name'],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'UnsetMandatoryComponents':</span> <span class="pre">[[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'list</span> <span class="pre">of</span> <span class="pre">component</span> <span class="pre">names'],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']]}</span></em><a class="headerlink" href="#nxsconfigserver.NXSConfigServer.NXSConfigServerClass.cmd_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>(<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#dict" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> &lt;<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, [[ <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/other.html#tango.CmdArgType" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.CmdArgType</span></code></a>, <a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>]] &gt;)
+<dd><p>(<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#dict" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> &lt;<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, [[ <a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/client_api/other.html#tango.CmdArgType" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.CmdArgType</span></code></a>, <a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>]] &gt;)
 Command definitions</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nxsconfigserver.NXSConfigServer.NXSConfigServerClass.device_property_list">
 <span class="sig-name descname"><span class="pre">device_property_list</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'VersionLabel':</span> <span class="pre">[tango._tango.CmdArgType.DevString,</span> <span class="pre">'version</span> <span class="pre">label',</span> <span class="pre">['XCS']]}</span></em><a class="headerlink" href="#nxsconfigserver.NXSConfigServer.NXSConfigServerClass.device_property_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>(<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#dict" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> &lt;<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, [ <a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/other.html#tango.CmdArgType" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.CmdArgType</span></code></a>, [ <a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> &lt;<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>&gt; ] ] &gt; ) Device Properties</p>
+<dd><p>(<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#dict" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> &lt;<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, [ <a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/client_api/other.html#tango.CmdArgType" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.CmdArgType</span></code></a>, [ <a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> &lt;<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>&gt; ] ] &gt; ) Device Properties</p>
 </dd></dl>
 
 </dd></dl>
@@ -1990,7 +1990,7 @@ Command definitions</p>
 <p>streamset constractor</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>streams</strong> (<a class="reference internal" href="#nxsconfigserver.StreamSet.StreamSet" title="nxsconfigserver.StreamSet.StreamSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamSet</span></code></a> or <a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/device.html#tango.LatestDeviceImpl" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.LatestDeviceImpl</span></code></a>) – tango-like steamset class</p>
+<dd class="field-odd"><p><strong>streams</strong> (<a class="reference internal" href="#nxsconfigserver.StreamSet.StreamSet" title="nxsconfigserver.StreamSet.StreamSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamSet</span></code></a> or <a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/device.html#tango.LatestDeviceImpl" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.LatestDeviceImpl</span></code></a>) – tango-like steamset class</p>
 </dd>
 </dl>
 <dl class="py method">
@@ -2112,7 +2112,7 @@ when log stream does not exist</p></li>
 <p>constructor</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>server</strong> (<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/device.html#tango.LatestDeviceImpl" title="(in PyTango v9.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.LatestDeviceImpl</span></code></a>) – NXSConfigServer instance</p>
+<dd class="field-odd"><p><strong>server</strong> (<a class="reference external" href="https://tango-controls.readthedocs.io/projects/pytango/en/stable/api/server_api/device.html#tango.LatestDeviceImpl" title="(in PyTango v10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tango.LatestDeviceImpl</span></code></a>) – NXSConfigServer instance</p>
 </dd>
 <dt class="field-even">Brief<span class="colon">:</span></dt>
 <dd class="field-even"><p>It allows to construct XML configurer object</p>

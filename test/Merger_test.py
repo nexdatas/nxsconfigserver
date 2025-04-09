@@ -83,20 +83,29 @@ class MergerTest(unittest.TestCase):
         self.assertEqual(
             el.singles,
             ['strategy', 'dimensions', 'definition', 'record', 'device',
-             'query', 'database'])
+             'query', 'database', 'selection', 'sourceview'])
         self.assertEqual(
             el.children,
             {'definition': ('group', 'field', 'attribute', 'link', 'component',
                             'doc', 'symbols'),
              'group': ('group', 'field', 'attribute', 'link', 'component',
-                       'doc'),
+                       'doc', 'vds'),
              'dim': ('datasource', 'strategy', 'doc'),
              'dimensions': ('dim', 'doc'),
              'attribute': ('datasource', 'strategy', 'enumeration', 'doc',
                            'dimensions'),
              'field': ('attribute', 'datasource', 'doc', 'dimensions',
                        'enumeration', 'strategy'),
-             'link': ('datasource', 'strategy', 'doc')})
+             'link': ('datasource', 'strategy', 'doc'),
+             'vds': ('attribute', 'datasource', 'doc', 'dimensions',
+                     'enumeration', 'strategy', 'map'),
+             'map': ('dimensions', 'selection', 'sourceview',
+                     'datasource', 'doc', 'strategy'),
+             'selection': ('slice', 'slab', 'doc'),
+             'slab': ('datasource', 'strategy', 'doc'),
+             'slice': ('datasource', 'strategy', 'doc'),
+             'sourceview': ('dimensions', 'selection', 'doc'),
+             })
         self.assertEqual(
             el.uniqueText,
             ['field', 'attribute', 'query', 'strategy', 'result'])
@@ -1697,7 +1706,7 @@ class MergerTest(unittest.TestCase):
 
         el = Merger()
         self.assertEqual(el.linkdatasources, [])
-        self.assertEqual(el.linkable, ["field"])
+        self.assertEqual(el.linkable, ["field", "vds"])
 
         self.assertEqual(
             el.collect(
@@ -1725,7 +1734,7 @@ class MergerTest(unittest.TestCase):
 
         el = Merger()
         el.linkdatasources = ["ds1"]
-        self.assertEqual(el.linkable, ["field"])
+        self.assertEqual(el.linkable, ["field", "vds"])
 
         self.assertEqual(
             el.collect(
@@ -1753,7 +1762,7 @@ class MergerTest(unittest.TestCase):
 
         el = Merger()
         el.linkdatasources = ["ds1"]
-        self.assertEqual(el.linkable, ["field"])
+        self.assertEqual(el.linkable, ["field", "vds"])
 
         self.assertEqual(
             el.collect(
@@ -1784,7 +1793,7 @@ class MergerTest(unittest.TestCase):
 
         el = Merger()
         el.linkdatasources = ["ds1"]
-        self.assertEqual(el.linkable, ["field"])
+        self.assertEqual(el.linkable, ["field", "vds"])
 
         self.assertEqual(
             el.collect(
@@ -1817,7 +1826,7 @@ class MergerTest(unittest.TestCase):
 
         el = Merger()
         el.linkdatasources = ["ds1"]
-        self.assertEqual(el.linkable, ["field"])
+        self.assertEqual(el.linkable, ["field", "vds"])
 
         self.assertEqual(
             el.collect(
@@ -1854,7 +1863,7 @@ class MergerTest(unittest.TestCase):
 
         el = Merger()
         el.linkdatasources = ["ds1", "ds2"]
-        self.assertEqual(el.linkable, ["field"])
+        self.assertEqual(el.linkable, ["field", "vds"])
 
         self.assertEqual(
             el.collect(
@@ -1893,7 +1902,7 @@ class MergerTest(unittest.TestCase):
 
         el = Merger()
         el.linkdatasources = ["ds1"]
-        self.assertEqual(el.linkable, ["field"])
+        self.assertEqual(el.linkable, ["field", "vds"])
 
         self.assertEqual(
             el.collect(
@@ -1946,7 +1955,7 @@ class MergerTest(unittest.TestCase):
 
         el = Merger()
         el.linkdatasources = ["ds1", "ds2"]
-        self.assertEqual(el.linkable, ["field"])
+        self.assertEqual(el.linkable, ["field", "vds"])
 
         self.assertEqual(
             el.collect(

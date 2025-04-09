@@ -79,9 +79,10 @@ class Merger(object):
         self.__root = None
         #: (:obj:`list` <:obj:`str`> ) tags which cannot have the same siblings
         self.singles = ['strategy', 'dimensions', 'definition',
-                        'record', 'device', 'query', 'database']
+                        'record', 'device', 'query', 'database',
+                        'selection', 'sourceview']
 
-        #: (:obj:`list` <:obj:`str`> ) tags which cannot have the same siblings
+        #: (:obj:`list` <:obj:`str`> ) tags removed when are empty
         self.tocut = ['NXtransformations', 'NXcollection']
 
         #: (:obj:`dict` <:obj:`str` , :obj:`tuple` <:obj:`str`>> ) \
@@ -95,9 +96,17 @@ class Merger(object):
             "field": ("attribute", "datasource", "doc", "dimensions",
                       "enumeration", "strategy"),
             "group": ("group", "field", "attribute", "link", "component",
-                      "doc"),
+                      "doc", "vds"),
             "link": ("datasource", "strategy", "doc"),
             "dim": ("datasource", "strategy", "doc"),
+            "vds": ("attribute", "datasource", "doc", "dimensions",
+                    "enumeration", "strategy", "map"),
+            "map": ("dimensions", "selection", "sourceview",
+                    "datasource", "doc", "strategy"),
+            "selection": ("slice", "slab", "doc"),
+            "slab": ("datasource", "strategy", "doc"),
+            "slice": ("datasource", "strategy", "doc"),
+            "sourceview": ("dimensions", "selection", "doc"),
         }
 
         #: (:obj:`list` <:obj:`str`> ) with unique text
@@ -107,7 +116,7 @@ class Merger(object):
         self.switchable = ["field", "attribute"]
 
         #: (:obj:`list` <:obj:`str`> ) node which can have links
-        self.linkable = ["field"]
+        self.linkable = ["field", "vds"]
 
         #: (:obj:`dict` <:obj:`str` , :obj:`str`> ) \
         #:     strategy modes to switch

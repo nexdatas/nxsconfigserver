@@ -1,3 +1,7 @@
+2025-04-09 Jan Kotanski <jankotan@gmail.com>
+	* add support for vds tags (#65)
+	* tagged as v2.16.0
+
 2023-11-09 Jan Kotanski <jankotan@gmail.com>
 	* change tango.Device_4Impl to tango.LatestDeviceImpl (#57)
 	* tagged as v2.15.0

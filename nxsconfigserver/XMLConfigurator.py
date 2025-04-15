@@ -127,6 +127,9 @@ class XMLConfigurator(object):
         #: (:obj:`str`) version label
         self.versionLabel = "XCS"
 
+        #: (:obj:`str`) extra link path
+        self.extraLinkPath = "instrument:NXinstrument/collection:NXcollection"
+
         #: (:class:`tango.LatestDeviceImpl`) Tango server
         self.__server = server
 

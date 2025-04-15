@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nxsconfigserver.NXSConfigServer &#8212; NXSConfigServer 2.15.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <title>nxsconfigserver.NXSConfigServer &#8212; NXSConfigServer 2.17.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
-<script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
 
   </head><body>
@@ -35,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           NXSConfigServer</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.15</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.17</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -156,7 +158,7 @@
 
 <div class="viewcode-block" id="NXSConfigServer"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer">[docs]</a><span class="k">class</span> <span class="nc">NXSConfigServer</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">LatestDeviceImpl</span><span class="p">):</span>
 
-    <span class="sd">&quot;&quot;&quot;   NXSConfigServer Class Description:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;   NXSConfigServer Class Description:</span>
 
 <span class="sd">    :brief: Configuration Server based on MySQL database.</span>
 <span class="sd">            Device States Description:</span>
@@ -166,7 +168,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cl</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Device constructor</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Device constructor</span>
 
 <span class="sd">        :param cl: class name</span>
 <span class="sd">        :type cl: :obj:`str`</span>
@@ -181,7 +183,7 @@
         <span class="n">NXSConfigServer</span><span class="o">.</span><span class="n">init_device</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 <div class="viewcode-block" id="NXSConfigServer.delete_device"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.delete_device">[docs]</a>    <span class="k">def</span> <span class="nf">delete_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Device destructor</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Device destructor</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug_stream</span><span class="p">(</span><span class="s2">&quot;In delete_device()&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;xmlc&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="p">:</span>
@@ -192,16 +194,17 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">OFF</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.init_device"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.init_device">[docs]</a>    <span class="k">def</span> <span class="nf">init_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Device initialization</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Device initialization</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug_stream</span><span class="p">(</span><span class="s2">&quot;In init_device()&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span> <span class="o">=</span> <span class="n">XMLC</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">ON</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_device_properties</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_device_class</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">versionLabel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">VersionLabel</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">versionLabel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">VersionLabel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">extraLinkPath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ExtraLinkPath</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.always_executed_hook"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.always_executed_hook">[docs]</a>    <span class="k">def</span> <span class="nf">always_executed_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Always excuted hook method</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Always excuted hook method</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug_stream</span><span class="p">(</span><span class="s2">&quot;In always_excuted_hook()&quot;</span><span class="p">)</span></div>
 
@@ -211,12 +214,12 @@
     <span class="c1">#</span>
     <span class="c1"># ==================================================================</span>
 <div class="viewcode-block" id="NXSConfigServer.read_attr_hardware"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_attr_hardware">[docs]</a>    <span class="k">def</span> <span class="nf">read_attr_hardware</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Read Attribute Hardware</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Attribute Hardware</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug_stream</span><span class="p">(</span><span class="s2">&quot;In read_attr_hardware()&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.read_XMLString"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_XMLString">[docs]</a>    <span class="k">def</span> <span class="nf">read_XMLString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Read XMLString attribute</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read XMLString attribute</span>
 
 <span class="sd">        :param attr: xml string attribute</span>
 <span class="sd">        :type attr: :class:`tango.Attribute`</span>
@@ -225,7 +228,7 @@
         <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">xmlstring</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.write_XMLString"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.write_XMLString">[docs]</a>    <span class="k">def</span> <span class="nf">write_XMLString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Write XMLString attribute</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write XMLString attribute</span>
 
 <span class="sd">        :param attr: xml string attribute</span>
 <span class="sd">        :type attr: :class:`tango.Attribute`</span>
@@ -234,7 +237,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">xmlstring</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">get_write_value</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_XMLString_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_XMLString_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_XMLString_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; XMLString attribute State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; XMLString attribute State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -245,7 +248,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.read_Selection"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_Selection">[docs]</a>    <span class="k">def</span> <span class="nf">read_Selection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Read Selection attribute</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Selection attribute</span>
 
 <span class="sd">        :param attr: selection attribute</span>
 <span class="sd">        :type attr: :class:`tango.Attribute`</span>
@@ -254,7 +257,7 @@
         <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">selection</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.write_Selection"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.write_Selection">[docs]</a>    <span class="k">def</span> <span class="nf">write_Selection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Write Selection attribute</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Selection attribute</span>
 
 <span class="sd">        :param attr: selection attribute</span>
 <span class="sd">        :type attr: :class:`tango.Attribute`</span>
@@ -263,7 +266,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">selection</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">get_write_value</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_Selection_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_Selection_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_Selection_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Selection attribute State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Selection attribute State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -274,7 +277,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.read_JSONSettings"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_JSONSettings">[docs]</a>    <span class="k">def</span> <span class="nf">read_JSONSettings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Read JSONSettings attribute</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read JSONSettings attribute</span>
 
 <span class="sd">        :param attr: jsonsettings attribute</span>
 <span class="sd">        :type attr: :class:`tango.Attribute`</span>
@@ -283,7 +286,7 @@
         <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">jsonsettings</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.write_JSONSettings"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.write_JSONSettings">[docs]</a>    <span class="k">def</span> <span class="nf">write_JSONSettings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Read JSONSettings attribute</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read JSONSettings attribute</span>
 
 <span class="sd">        :param attr: jsonsettings attribute</span>
 <span class="sd">        :type attr: :class:`tango.Attribute`</span>
@@ -297,7 +300,7 @@
                 <span class="s2">&quot;To change the settings please close the server.&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_JSONSettings_write_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_JSONSettings_write_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_JSONSettings_write_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; JSONSettings attribute Write State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; JSONSettings attribute Write State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -308,7 +311,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.read_STEPDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_STEPDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">read_STEPDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Read STEPDataSources attribute</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read STEPDataSources attribute</span>
 
 <span class="sd">        :param attr: step datasources attribute</span>
 <span class="sd">        :type attr: :class:`tango.Attribute`</span>
@@ -317,7 +320,7 @@
         <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">stepdatasources</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.write_STEPDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.write_STEPDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">write_STEPDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Write STEPDataSources attribute</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write STEPDataSources attribute</span>
 
 <span class="sd">        :param attr: step datasources attribute</span>
 <span class="sd">        :type attr: :class:`tango.Attribute`</span>
@@ -331,7 +334,7 @@
                 <span class="s2">&quot;To change the settings please close the server.&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_STEPDataSources_write_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_STEPDataSources_write_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_STEPDataSources_write_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; STEPDataSources attribute Write State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; STEPDataSources attribute Write State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -341,7 +344,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.read_LinkDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_LinkDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">read_LinkDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Read LinkDataSources attribute</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read LinkDataSources attribute</span>
 
 <span class="sd">        :param attr: link datasources attribute</span>
 <span class="sd">        :type attr: :class:`tango.Attribute`</span>
@@ -350,7 +353,7 @@
         <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">linkdatasources</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.write_LinkDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.write_LinkDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">write_LinkDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Write LinkDataSources attribute</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write LinkDataSources attribute</span>
 
 <span class="sd">        :param attr: link datasources attribute</span>
 <span class="sd">        :type attr: :class:`tango.Attribute`</span>
@@ -364,7 +367,40 @@
                 <span class="s2">&quot;To change the settings please close the server.&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_LinkDataSources_write_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_LinkDataSources_write_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_LinkDataSources_write_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; LinkDataSources attribute Write State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; LinkDataSources attribute Write State Machine</span>
+
+<span class="sd">        :returns: True if the operation allowed</span>
+<span class="sd">        :rtype: :obj:`bool`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">RUNNING</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="NXSConfigServer.read_ExtraLinkDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_ExtraLinkDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">read_ExtraLinkDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read ExtraLinkDataSources attribute</span>
+
+<span class="sd">        :param attr: extra link datasources attribute</span>
+<span class="sd">        :type attr: :class:`tango.Attribute`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">debug_stream</span><span class="p">(</span><span class="s2">&quot;In read_ExtraLinkDataSources()&quot;</span><span class="p">)</span>
+        <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">extralinkdatasources</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NXSConfigServer.write_ExtraLinkDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.write_ExtraLinkDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">write_ExtraLinkDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write ExtraLinkDataSources attribute</span>
+
+<span class="sd">        :param attr: extra link datasources attribute</span>
+<span class="sd">        :type attr: :class:`tango.Attribute`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">debug_stream</span><span class="p">(</span><span class="s2">&quot;In write_ExtraLinkDataSources()&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_ExtraLinkDataSources_write_allowed</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">extralinkdatasources</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">get_write_value</span><span class="p">()</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warn_stream</span><span class="p">(</span><span class="s2">&quot;To change the settings please close the server.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s2">&quot;To change the settings please close the server.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NXSConfigServer.is_ExtraLinkDataSources_write_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_ExtraLinkDataSources_write_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_ExtraLinkDataSources_write_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; ExtraLinkDataSources attribute Write State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -374,7 +410,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.read_CanFailDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_CanFailDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">read_CanFailDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Read CanFailDataSources attribute</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read CanFailDataSources attribute</span>
 
 <span class="sd">        :param attr: step datasources attribute</span>
 <span class="sd">        :type attr: :class:`tango.Attribute`</span>
@@ -383,7 +419,7 @@
         <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">canfaildatasources</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.write_CanFailDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.write_CanFailDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">write_CanFailDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Write CanFailDataSources attribute</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write CanFailDataSources attribute</span>
 
 <span class="sd">        :param attr: step datasources attribute</span>
 <span class="sd">        :type attr: :class:`tango.Attribute`</span>
@@ -397,7 +433,7 @@
                 <span class="s2">&quot;To change the settings please close the server.&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_CanFailDataSources_write_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_CanFailDataSources_write_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_CanFailDataSources_write_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; CanFailDataSources attribute Write State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; CanFailDataSources attribute Write State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -407,7 +443,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.read_Version"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_Version">[docs]</a>    <span class="k">def</span> <span class="nf">read_Version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Read Version attribute</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Version attribute</span>
 
 <span class="sd">        :param attr: version attribute</span>
 <span class="sd">        :type attr: :class:`tango.Attribute`</span>
@@ -419,7 +455,7 @@
         <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">version</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.read_Variables"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_Variables">[docs]</a>    <span class="k">def</span> <span class="nf">read_Variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Read Variables attribute</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Variables attribute</span>
 
 <span class="sd">        :param attr: variables attribute</span>
 <span class="sd">        :type attr: :class:`tango.Attribute`</span>
@@ -428,7 +464,7 @@
         <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">variables</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.write_Variables"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.write_Variables">[docs]</a>    <span class="k">def</span> <span class="nf">write_Variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Write Variables attribute</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Variables attribute</span>
 
 <span class="sd">        :param attr: variables attribute</span>
 <span class="sd">        :type attr: :class:`tango.Attribute`</span>
@@ -437,7 +473,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">variables</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">get_write_value</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_Variables_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_Variables_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_Variables_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Variables attribute State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Variables attribute State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -453,7 +489,7 @@
     <span class="c1"># ==================================================================</span>
 
 <div class="viewcode-block" id="NXSConfigServer.Open"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.Open">[docs]</a>    <span class="k">def</span> <span class="nf">Open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Open command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Open command</span>
 
 <span class="sd">        :brief: Opens connection to the database</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -467,7 +503,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">ON</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_Open_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_Open_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_Open_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Open command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Open command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -477,7 +513,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.Close"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.Close">[docs]</a>    <span class="k">def</span> <span class="nf">Close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Close command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Close command</span>
 
 <span class="sd">        :brief: Closes connection into the database</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -492,7 +528,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">ON</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_Close_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_Close_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_Close_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Close command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Close command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -503,7 +539,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.Components"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.Components">[docs]</a>    <span class="k">def</span> <span class="nf">Components</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Components command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Components command</span>
 
 <span class="sd">        :brief: Returns a list of required components</span>
 
@@ -524,7 +560,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_Components_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_Components_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_Components_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Components command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Components command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -535,7 +571,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.Selections"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.Selections">[docs]</a>    <span class="k">def</span> <span class="nf">Selections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Selections command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Selections command</span>
 
 <span class="sd">        :brief: Returns a list of required selections</span>
 
@@ -556,7 +592,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_Selections_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_Selections_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_Selections_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Selections command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Selections command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -567,7 +603,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.InstantiatedComponents"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.InstantiatedComponents">[docs]</a>    <span class="k">def</span> <span class="nf">InstantiatedComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; InstantiatedComponents command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; InstantiatedComponents command</span>
 
 <span class="sd">        :brief: Returns a list of required components</span>
 
@@ -588,7 +624,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_InstantiatedComponents_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_InstantiatedComponents_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_InstantiatedComponents_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Components command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Components command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -599,7 +635,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.DataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.DataSources">[docs]</a>    <span class="k">def</span> <span class="nf">DataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; DataSources command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; DataSources command</span>
 
 <span class="sd">        :brief: Returns a list of required DataSources</span>
 
@@ -620,7 +656,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_DataSources_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_DataSources_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_DataSources_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; DataSources command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; DataSources command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -631,7 +667,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.AvailableComponents"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.AvailableComponents">[docs]</a>    <span class="k">def</span> <span class="nf">AvailableComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; AvailableComponents command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; AvailableComponents command</span>
 
 <span class="sd">        :brief: Returns a list of available component names</span>
 
@@ -650,7 +686,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_AvailableComponents_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_AvailableComponents_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_AvailableComponents_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; AvailableComponents command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; AvailableComponents command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -661,7 +697,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.AvailableSelections"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.AvailableSelections">[docs]</a>    <span class="k">def</span> <span class="nf">AvailableSelections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; AvailableSelections command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; AvailableSelections command</span>
 
 <span class="sd">        :brief: Returns a list of available selection names</span>
 
@@ -680,7 +716,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_AvailableSelections_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_AvailableSelections_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_AvailableSelections_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; AvailableSelections command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; AvailableSelections command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -691,7 +727,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.AvailableDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.AvailableDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">AvailableDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; AvailableDataSources command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; AvailableDataSources command</span>
 
 <span class="sd">        :brief: Returns a list of available DataSource names</span>
 
@@ -710,7 +746,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_AvailableDataSources_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_AvailableDataSources_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_AvailableDataSources_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; AvailableDataSources command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; AvailableDataSources command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -721,7 +757,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.StoreComponent"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.StoreComponent">[docs]</a>    <span class="k">def</span> <span class="nf">StoreComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; StoreComponent command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; StoreComponent command</span>
 
 <span class="sd">        :brief: Stores the component from XMLString</span>
 
@@ -738,7 +774,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_StoreComponent_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_StoreComponent_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_StoreComponent_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; StoreComponent command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; StoreComponent command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -749,7 +785,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.StoreSelection"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.StoreSelection">[docs]</a>    <span class="k">def</span> <span class="nf">StoreSelection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; StoreSelection command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; StoreSelection command</span>
 
 <span class="sd">        :brief: Stores the selection from XMLString</span>
 
@@ -766,7 +802,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_StoreSelection_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_StoreSelection_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_StoreSelection_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; StoreSelection command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; StoreSelection command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -777,7 +813,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.StoreDataSource"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.StoreDataSource">[docs]</a>    <span class="k">def</span> <span class="nf">StoreDataSource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; StoreDataSource command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; StoreDataSource command</span>
 
 <span class="sd">        :brief: Stores the DataSource from XMLString</span>
 
@@ -794,7 +830,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_StoreDataSource_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_StoreDataSource_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_StoreDataSource_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; StoreDataSource command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; StoreDataSource command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -805,7 +841,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.CreateConfiguration"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.CreateConfiguration">[docs]</a>    <span class="k">def</span> <span class="nf">CreateConfiguration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; CreateConfiguration command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; CreateConfiguration command</span>
 
 <span class="sd">        :brief: Creates the NDTS configuration script from the</span>
 <span class="sd">                given components. The result is strored in XMLString</span>
@@ -823,7 +859,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_CreateConfiguration_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_CreateConfiguration_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_CreateConfiguration_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; CreateConfiguration command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; CreateConfiguration command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -834,7 +870,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.DeleteComponent"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.DeleteComponent">[docs]</a>    <span class="k">def</span> <span class="nf">DeleteComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; DeleteComponent command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; DeleteComponent command</span>
 
 <span class="sd">        :brief: Deletes the given component</span>
 
@@ -851,7 +887,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_DeleteComponent_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_DeleteComponent_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_DeleteComponent_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; DeleteComponent command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; DeleteComponent command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -862,7 +898,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.DeleteSelection"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.DeleteSelection">[docs]</a>    <span class="k">def</span> <span class="nf">DeleteSelection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; DeleteSelection command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; DeleteSelection command</span>
 
 <span class="sd">        :brief: Deletes the given selection</span>
 
@@ -879,7 +915,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_DeleteSelection_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_DeleteSelection_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_DeleteSelection_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; DeleteSelection command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; DeleteSelection command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -890,7 +926,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.DeleteDataSource"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.DeleteDataSource">[docs]</a>    <span class="k">def</span> <span class="nf">DeleteDataSource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; DeleteDataSource command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; DeleteDataSource command</span>
 
 <span class="sd">        :brief: Deletes the given datasource</span>
 
@@ -908,7 +944,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_DeleteDataSource_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_DeleteDataSource_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_DeleteDataSource_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; DeleteDataSource command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; DeleteDataSource command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -919,7 +955,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.SetComponentDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.SetComponentDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">SetComponentDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; SetComponentDataSources command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; SetComponentDataSources command</span>
 
 <span class="sd">        :brief: Sets component datasources according to given dictionary</span>
 
@@ -936,7 +972,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_SetComponentDataSources_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_SetComponentDataSources_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_SetComponentDataSources_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; SetComponentDataSources command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; SetComponentDataSources command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -947,7 +983,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.SetMandatoryComponents"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.SetMandatoryComponents">[docs]</a>    <span class="k">def</span> <span class="nf">SetMandatoryComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; SetMandatoryComponents command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; SetMandatoryComponents command</span>
 
 <span class="sd">        :brief: Sets the mandatory components</span>
 
@@ -964,7 +1000,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_SetMandatoryComponents_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_SetMandatoryComponents_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_SetMandatoryComponents_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; SetMandatoryComponents command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; SetMandatoryComponents command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -975,7 +1011,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.MandatoryComponents"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.MandatoryComponents">[docs]</a>    <span class="k">def</span> <span class="nf">MandatoryComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; MandatoryComponents command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; MandatoryComponents command</span>
 
 <span class="sd">        :brief: Returns the mandatory components</span>
 
@@ -994,7 +1030,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_MandatoryComponents_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_MandatoryComponents_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_MandatoryComponents_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; MandatoryComponents command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; MandatoryComponents command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -1005,7 +1041,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.UnsetMandatoryComponents"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.UnsetMandatoryComponents">[docs]</a>    <span class="k">def</span> <span class="nf">UnsetMandatoryComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; UnsetMandatoryComponents command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; UnsetMandatoryComponents command</span>
 
 <span class="sd">        :brief: Removes the given components</span>
 <span class="sd">                from the mandatory components</span>
@@ -1023,7 +1059,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_UnsetMandatoryComponents_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_UnsetMandatoryComponents_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_UnsetMandatoryComponents_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; UnsetMandatoryComponents command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; UnsetMandatoryComponents command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -1034,7 +1070,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.ComponentDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.ComponentDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">ComponentDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; ComponentDataSources command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; ComponentDataSources command</span>
 
 <span class="sd">        :brief: Returns a list of datasource names for a given component</span>
 
@@ -1055,7 +1091,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_ComponentDataSources_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_ComponentDataSources_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_ComponentDataSources_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; ComponentDataSources command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; ComponentDataSources command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -1066,7 +1102,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.ComponentsDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.ComponentsDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">ComponentsDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; ComponentsDataSources command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; ComponentsDataSources command</span>
 
 <span class="sd">        :brief: Returns a list of datasource names for a given components</span>
 
@@ -1087,7 +1123,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_ComponentsDataSources_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_ComponentsDataSources_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_ComponentsDataSources_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;ComponentsDataSources command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;ComponentsDataSources command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -1098,7 +1134,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.ComponentsVariables"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.ComponentsVariables">[docs]</a>    <span class="k">def</span> <span class="nf">ComponentsVariables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; ComponentsVariables command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; ComponentsVariables command</span>
 
 <span class="sd">        :brief: Returns a list of variable names for a given components</span>
 
@@ -1119,7 +1155,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_ComponentsVariables_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_ComponentsVariables_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_ComponentsVariables_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; ComponentsVariables command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; ComponentsVariables command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -1130,7 +1166,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.ComponentVariables"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.ComponentVariables">[docs]</a>    <span class="k">def</span> <span class="nf">ComponentVariables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; ComponentVariables command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; ComponentVariables command</span>
 
 <span class="sd">        :brief: Returns a list of variable names for a given component</span>
 
@@ -1151,7 +1187,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_ComponentVariables_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_ComponentVariables_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_ComponentVariables_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; ComponentVariables command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; ComponentVariables command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -1162,7 +1198,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.Merge"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.Merge">[docs]</a>    <span class="k">def</span> <span class="nf">Merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Merge command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Merge command</span>
 
 <span class="sd">        :brief: Merges give components</span>
 
@@ -1182,7 +1218,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_Merge_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_Merge_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_Merge_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Merge command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Merge command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -1193,7 +1229,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.DependentComponents"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.DependentComponents">[docs]</a>    <span class="k">def</span> <span class="nf">DependentComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; DependentComponents command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; DependentComponents command</span>
 
 <span class="sd">        :brief: returns a list of dependent component names</span>
 <span class="sd">            for a given components</span>
@@ -1215,7 +1251,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="NXSConfigServer.is_DependentComponents_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_DependentComponents_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_DependentComponents_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; DependentComponents command State Machine</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; DependentComponents command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -1228,7 +1264,7 @@
 
 <div class="viewcode-block" id="NXSConfigServerClass"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServerClass">[docs]</a><span class="k">class</span> <span class="nc">NXSConfigServerClass</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DeviceClass</span><span class="p">):</span>
 
-    <span class="sd">&quot;&quot;&quot; NXSConfigServerClass class definition</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; NXSConfigServerClass class definition</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1">#: (:obj:`dict` &lt;:obj:`str`, \</span>
@@ -1245,6 +1281,11 @@
         <span class="p">[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevString</span><span class="p">,</span>
          <span class="s2">&quot;version label&quot;</span><span class="p">,</span>
          <span class="p">[</span><span class="s2">&quot;XCS&quot;</span><span class="p">]],</span>
+        <span class="s1">&#39;ExtraLinkPath&#39;</span><span class="p">:</span>
+        <span class="p">[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevString</span><span class="p">,</span>
+         <span class="s2">&quot;extra link NeXus path below NXentry. &quot;</span>
+         <span class="s2">&quot;Default: instrument:NXinstrument/collection:NXcollection&quot;</span><span class="p">,</span>
+         <span class="p">[</span><span class="s2">&quot;instrument:NXinstrument/collection:NXcollection&quot;</span><span class="p">]],</span>
     <span class="p">}</span>
 
     <span class="c1">#: (:obj:`dict` &lt;:obj:`str`, \</span>
@@ -1409,6 +1450,15 @@
              <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s2">&quot;JSON list of datasources&quot;</span>
              <span class="s2">&quot;to which links will be added&quot;</span><span class="p">,</span>
         <span class="p">}],</span>
+        <span class="s1">&#39;ExtraLinkDataSources&#39;</span><span class="p">:</span>
+        <span class="p">[[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevString</span><span class="p">,</span>
+          <span class="n">tango</span><span class="o">.</span><span class="n">SCALAR</span><span class="p">,</span>
+          <span class="n">tango</span><span class="o">.</span><span class="n">READ_WRITE</span><span class="p">],</span>
+         <span class="p">{</span>
+             <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s2">&quot;Datasources to which extra links will be added&quot;</span><span class="p">,</span>
+             <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s2">&quot;JSON list of datasources&quot;</span>
+             <span class="s2">&quot;to which extra links will be added&quot;</span><span class="p">,</span>
+        <span class="p">}],</span>
         <span class="s1">&#39;CanFailDataSources&#39;</span><span class="p">:</span>
         <span class="p">[[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevString</span><span class="p">,</span>
           <span class="n">tango</span><span class="o">.</span><span class="n">SCALAR</span><span class="p">,</span>
@@ -1421,7 +1471,7 @@
     <span class="p">}</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; NXSConfigServerClass Constructor</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; NXSConfigServerClass Constructor</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tango</span><span class="o">.</span><span class="n">DeviceClass</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
@@ -1447,7 +1497,7 @@
         &copy; Copyright 2012-2017 DESY, Jan Kotanski &lt;jkotan@mail.desy.de&gt;
 
 GNU GENERAL PUBLIC LICENSE, version 3.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
     </p>
   </div>
 </footer>

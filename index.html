@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Welcome to NeXuS Configuration Server’s documentation! &#8212; NXSConfigServer 2.16.0 documentation</title>
+    <title>Welcome to NeXuS Configuration Server&#39;s documentation! &#8212; NXSConfigServer 2.17.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -39,7 +39,7 @@
         </button>
         <a class="navbar-brand" href="#">
           NXSConfigServer</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.16</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.17</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -80,7 +80,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Welcome to NeXuS Configuration Server’s documentation!</a><ul>
+<li><a class="reference internal" href="#">Welcome to NeXuS Configuration Server's documentation!</a><ul>
 <li><a class="reference internal" href="#installation">Installation</a><ul>
 <li><a class="reference internal" href="#from-sources">From sources</a></li>
 <li><a class="reference internal" href="#debian-packages">Debian packages</a><ul>
@@ -135,7 +135,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="welcome-to-nexus-configuration-server-s-documentation">
-<h1>Welcome to NeXuS Configuration Server’s documentation!<a class="headerlink" href="#welcome-to-nexus-configuration-server-s-documentation" title="Permalink to this heading">¶</a></h1>
+<h1>Welcome to NeXuS Configuration Server's documentation!<a class="headerlink" href="#welcome-to-nexus-configuration-server-s-documentation" title="Permalink to this heading">¶</a></h1>
 <p><a class="reference external" href="https://github.com/nexdatas/nxsconfigserver/actions"><img alt="" src="https://github.com/nexdatas/nxsconfigserver/actions/workflows/tests.yml/badge.svg" /></a>
 <a class="reference external" href="https://nexdatas.github.io/nxsconfigserver/index.html"><img alt="" src="https://img.shields.io/badge/Documentation-webpages-ADD8E6.svg" /></a>
 <a class="reference external" href="https://pypi.python.org/pypi/nxsconfigserver"><img alt="" src="https://img.shields.io/pypi/v/nxsconfigserver.svg" /></a>
@@ -433,7 +433,7 @@ attribute.</p>
 <section id="configuration-variables">
 <h1>Configuration Variables<a class="headerlink" href="#configuration-variables" title="Permalink to this heading">¶</a></h1>
 <p>Values of configuration variables can be also define inside the component xmls.
-Let’s consider two following components:</p>
+Let's consider two following components:</p>
 <p><em>mydetector</em> with a general detector transformation group</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;definition&gt;</span>
 <span class="w">  </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">type=</span><span class="s">&#39;NXentry&#39;</span><span class="w"> </span><span class="na">name=</span><span class="s">&#39;entry&#39;</span><span class="nt">&gt;</span>
@@ -570,8 +570,11 @@ Let’s consider two following components:</p>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.Merger.Merger.canfaildatasources"><code class="docutils literal notranslate"><span class="pre">Merger.canfaildatasources</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.Merger.Merger.children"><code class="docutils literal notranslate"><span class="pre">Merger.children</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.Merger.Merger.collect"><code class="docutils literal notranslate"><span class="pre">Merger.collect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.Merger.Merger.extralinkdatasources"><code class="docutils literal notranslate"><span class="pre">Merger.extralinkdatasources</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.Merger.Merger.extralinkpath"><code class="docutils literal notranslate"><span class="pre">Merger.extralinkpath</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.Merger.Merger.linkable"><code class="docutils literal notranslate"><span class="pre">Merger.linkable</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.Merger.Merger.linkdatasources"><code class="docutils literal notranslate"><span class="pre">Merger.linkdatasources</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.Merger.Merger.linkpath"><code class="docutils literal notranslate"><span class="pre">Merger.linkpath</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.Merger.Merger.merge"><code class="docutils literal notranslate"><span class="pre">Merger.merge()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.Merger.Merger.modesToSwitch"><code class="docutils literal notranslate"><span class="pre">Merger.modesToSwitch</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.Merger.Merger.singles"><code class="docutils literal notranslate"><span class="pre">Merger.singles</span></code></a></li>
@@ -631,6 +634,7 @@ Let’s consider two following components:</p>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_DeleteDataSource_allowed"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.is_DeleteDataSource_allowed()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_DeleteSelection_allowed"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.is_DeleteSelection_allowed()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_DependentComponents_allowed"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.is_DependentComponents_allowed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_ExtraLinkDataSources_write_allowed"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.is_ExtraLinkDataSources_write_allowed()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_InstantiatedComponents_allowed"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.is_InstantiatedComponents_allowed()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_JSONSettings_write_allowed"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.is_JSONSettings_write_allowed()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_LinkDataSources_write_allowed"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.is_LinkDataSources_write_allowed()</span></code></a></li>
@@ -649,6 +653,7 @@ Let’s consider two following components:</p>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_Variables_allowed"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.is_Variables_allowed()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_XMLString_allowed"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.is_XMLString_allowed()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_CanFailDataSources"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.read_CanFailDataSources()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_ExtraLinkDataSources"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.read_ExtraLinkDataSources()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_JSONSettings"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.read_JSONSettings()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_LinkDataSources"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.read_LinkDataSources()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_STEPDataSources"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.read_STEPDataSources()</span></code></a></li>
@@ -658,6 +663,7 @@ Let’s consider two following components:</p>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_XMLString"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.read_XMLString()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_attr_hardware"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.read_attr_hardware()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.write_CanFailDataSources"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.write_CanFailDataSources()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.write_ExtraLinkDataSources"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.write_ExtraLinkDataSources()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.write_JSONSettings"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.write_JSONSettings()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.write_LinkDataSources"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.write_LinkDataSources()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.write_STEPDataSources"><code class="docutils literal notranslate"><span class="pre">NXSConfigServer.write_STEPDataSources()</span></code></a></li>
@@ -710,6 +716,8 @@ Let’s consider two following components:</p>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.deleteDataSource"><code class="docutils literal notranslate"><span class="pre">XMLConfigurator.deleteDataSource()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.deleteSelection"><code class="docutils literal notranslate"><span class="pre">XMLConfigurator.deleteSelection()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.dependentComponents"><code class="docutils literal notranslate"><span class="pre">XMLConfigurator.dependentComponents()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.extraLinkPath"><code class="docutils literal notranslate"><span class="pre">XMLConfigurator.extraLinkPath</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.extralinkdatasources"><code class="docutils literal notranslate"><span class="pre">XMLConfigurator.extralinkdatasources</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.instantiatedComponents"><code class="docutils literal notranslate"><span class="pre">XMLConfigurator.instantiatedComponents()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.jsonsettings"><code class="docutils literal notranslate"><span class="pre">XMLConfigurator.jsonsettings</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.linkdatasources"><code class="docutils literal notranslate"><span class="pre">XMLConfigurator.linkdatasources</span></code></a></li>

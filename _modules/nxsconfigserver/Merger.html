@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nxsconfigserver.Merger &#8212; NXSConfigServer 2.16.0 documentation</title>
+    <title>nxsconfigserver.Merger &#8212; NXSConfigServer 2.17.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           NXSConfigServer</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.16</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.17</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -243,8 +243,17 @@
         <span class="c1">#: (:obj:`list` &lt;:obj:`str`&gt; ) aliased to add links</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">linkdatasources</span> <span class="o">=</span> <span class="p">[]</span>
 
+        <span class="c1">#: (:obj:`list` &lt;:obj:`str`&gt; ) aliased to add extralinks</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extralinkdatasources</span> <span class="o">=</span> <span class="p">[]</span>
+
         <span class="c1">#: (:obj:`list` &lt;:obj:`str`&gt; ) aliased to switch to CanFial mode</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">canfaildatasources</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1">#: (:obj:`list` &lt;:obj:`str`&gt; ) extra link path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extralinkpath</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1">#: (:obj:`list` &lt;:obj:`str`&gt; ) data link path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linkpath</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;NXdata&quot;</span><span class="p">)]</span>
 
         <span class="c1">#: (:obj:`str`) datasource label</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__dsvars</span> <span class="o">=</span> <span class="s2">&quot;$datasources.&quot;</span>
@@ -267,6 +276,8 @@
 
 <span class="sd">        :param node: dom node</span>
 <span class="sd">        :type node: :obj:`xml.etree.ElementTree.Element`</span>
+<span class="sd">        :param ancestors: list with NeXus path nodes (tag, name, type)</span>
+<span class="sd">        :type ancestors: :obj:`list`&lt; (:obj:`str`,:obj:`str`,:obj:`str`) &gt;</span>
 <span class="sd">        :returns: xml path</span>
 <span class="sd">        :rtype: :obj:`str`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -290,6 +301,8 @@
 <span class="sd">        :type elem1: :obj:`xml.etree.ElementTree.Element`</span>
 <span class="sd">        :param elem2: second element</span>
 <span class="sd">        :type elem2: :obj:`xml.etree.ElementTree.Element`</span>
+<span class="sd">        :param ancestors: list with NeXus path nodes (tag, name, type)</span>
+<span class="sd">        :type ancestors: :obj:`list`&lt; (:obj:`str`,:obj:`str`,:obj:`str`) &gt;</span>
 <span class="sd">        :returns: bool varaible if two elements are mergeable</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -356,6 +369,8 @@
 <span class="sd">        :type elem1: :obj:`xml.etree.ElementTree.Element`</span>
 <span class="sd">        :param elem2: second element</span>
 <span class="sd">        :type elem2: :obj:`xml.etree.ElementTree.Element`</span>
+<span class="sd">        :param parent: the given parent node</span>
+<span class="sd">        :type parent: :obj:`xml.etree.ElementTree.Element`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">attr2</span> <span class="o">=</span> <span class="n">elem2</span><span class="o">.</span><span class="n">attrib</span>
         <span class="n">texts</span> <span class="o">=</span> <span class="p">[]</span>
@@ -395,11 +410,20 @@
 
         <span class="n">parent</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">elem2</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__mergeChildren</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">ancestors</span><span class="p">,</span> <span class="n">entrynode</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__mergeChildren</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">ancestors</span><span class="p">,</span> <span class="n">entrynode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">datanode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">linknode</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; merge the given node</span>
 
 <span class="sd">        :param node: the given node</span>
 <span class="sd">        :type node: :obj:`xml.etree.ElementTree.Element`</span>
+<span class="sd">        :param ancestors: list with NeXus path nodes (tag, name, type)</span>
+<span class="sd">        :type ancestors: :obj:`list`&lt; (:obj:`str`,:obj:`str`,:obj:`str`) &gt;</span>
+<span class="sd">        :param entrynode: entry node</span>
+<span class="sd">        :type entrynode: :class:`xml.etree.ElementTree.Element`</span>
+<span class="sd">        :param datanode: data node</span>
+<span class="sd">        :type datanode: :class:`xml.etree.ElementTree.Element`</span>
+<span class="sd">        :param linknode: link node</span>
+<span class="sd">        :type linknode: :class:`xml.etree.ElementTree.Element`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">tag</span> <span class="o">!=</span> <span class="s2">&quot;definition&quot;</span><span class="p">:</span>
             <span class="n">newancestors</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span>
@@ -440,11 +464,18 @@
                                <span class="bp">self</span><span class="o">.</span><span class="n">__getAncestors</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">newancestors</span><span class="p">)),</span>
                             <span class="p">[</span><span class="n">child</span><span class="p">])</span>
 
-                <span class="bp">self</span><span class="o">.</span><span class="n">__mergeChildren</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">newancestors</span><span class="p">,</span> <span class="n">entrynode</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__mergeChildren</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">newancestors</span><span class="p">,</span> <span class="n">entrynode</span><span class="p">,</span>
+                                     <span class="n">datanode</span><span class="p">,</span> <span class="n">linknode</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">cName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">switchable</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">switchdatasources</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">__switch</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">cName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">linkable</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">linkdatasources</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">__addlink</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">newancestors</span><span class="p">,</span> <span class="n">entrynode</span><span class="p">)</span>
+                    <span class="n">datanode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__addlink</span><span class="p">(</span>
+                        <span class="n">child</span><span class="p">,</span> <span class="n">newancestors</span><span class="p">,</span> <span class="n">entrynode</span><span class="p">,</span> <span class="n">datanode</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">linkdatasources</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">linkpath</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">cName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">linkable</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">extralinkdatasources</span><span class="p">:</span>
+                    <span class="n">linknode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__addlink</span><span class="p">(</span>
+                        <span class="n">child</span><span class="p">,</span> <span class="n">newancestors</span><span class="p">,</span> <span class="n">entrynode</span><span class="p">,</span> <span class="n">linknode</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">extralinkdatasources</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">extralinkpath</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">cName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">switchable</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">canfaildatasources</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">__canfail</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
 
@@ -577,27 +608,38 @@
             <span class="k">if</span> <span class="n">stnode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">dsnode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">stnode</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&quot;canfail&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;true&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__addlink</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">ancestors</span><span class="p">,</span> <span class="n">entrynode</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__addlink</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">ancestors</span><span class="p">,</span> <span class="n">entrynode</span><span class="p">,</span> <span class="n">linknode</span><span class="p">,</span> <span class="n">linkdatasources</span><span class="p">,</span>
+                  <span class="n">linkpath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; add link in NXdata group</span>
 
 <span class="sd">        :param node: the given node</span>
 <span class="sd">        :type node: :obj:`xml.etree.ElementTree.Element`</span>
+<span class="sd">        :param ancestors: list with NeXus path nodes (tag, name, type)</span>
+<span class="sd">        :type ancestors: :obj:`list`&lt; (:obj:`str`,:obj:`str`,:obj:`str`) &gt;</span>
+<span class="sd">        :param entrynode: root node</span>
+<span class="sd">        :type entrynode: :class:`xml.etree.ElementTree.Element`</span>
+<span class="sd">        :param linknode: the given link node</span>
+<span class="sd">        :type linknode: :obj:`xml.etree.ElementTree.Element`</span>
+<span class="sd">        :param linkpath: list with NeXus path (name, type)</span>
+<span class="sd">        :type linkpath: :obj:`list` &lt; (:obj:`str`,:obj:`str`) &gt;</span>
+<span class="sd">        :returns: the current link node</span>
+<span class="sd">        :rtype: :obj:`xml.etree.ElementTree.Element`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">dsname</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">dsnode</span> <span class="o">=</span> <span class="kc">None</span>
 
             <span class="n">dsname</span><span class="p">,</span> <span class="n">dsnode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__getTextDataSource</span><span class="p">(</span>
-                <span class="n">node</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">linkdatasources</span><span class="p">)</span>
+                <span class="n">node</span><span class="p">,</span> <span class="n">linkdatasources</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="p">:</span>
                 <span class="n">cName</span> <span class="o">=</span> <span class="n">unicode</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">cName</span> <span class="o">==</span> <span class="s1">&#39;datasource&#39;</span><span class="p">:</span>
                     <span class="n">dsname</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">dsname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">linkdatasources</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">dsname</span> <span class="ow">in</span> <span class="n">linkdatasources</span><span class="p">:</span>
                         <span class="n">dsnode</span> <span class="o">=</span> <span class="n">child</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">dsname</span><span class="p">,</span> <span class="n">dsnode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__getTextDataSource</span><span class="p">(</span>
-                            <span class="n">child</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">linkdatasources</span><span class="p">)</span>
+                            <span class="n">child</span><span class="p">,</span> <span class="n">linkdatasources</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">dsnode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="k">break</span>
             <span class="k">if</span> <span class="n">dsnode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -606,46 +648,76 @@
                 <span class="k">for</span> <span class="n">anc</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">ancestors</span><span class="p">):</span>
                     <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">anc</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">anc</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
                 <span class="n">linkfound</span> <span class="o">=</span> <span class="kc">False</span>
-                <span class="n">datanode</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="k">if</span> <span class="n">entrynode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="k">for</span> <span class="n">gchild</span> <span class="ow">in</span> <span class="n">entrynode</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="n">gchild</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;data&#39;</span> \
-                           <span class="ow">and</span> <span class="n">gchild</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;NXdata&#39;</span><span class="p">:</span>
-                            <span class="n">datanode</span> <span class="o">=</span> <span class="n">gchild</span>
-                            <span class="k">for</span> <span class="n">dchild</span> <span class="ow">in</span> <span class="n">datanode</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="n">dchild</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">dsname</span><span class="p">:</span>
-                                    <span class="n">linkfound</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">if</span> <span class="n">linknode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="c1"># found linknode</span>
+                        <span class="n">parent</span> <span class="o">=</span> <span class="n">entrynode</span>
+                        <span class="k">for</span> <span class="n">nm</span><span class="p">,</span> <span class="n">tp</span> <span class="ow">in</span> <span class="n">linkpath</span><span class="p">:</span>
+                            <span class="n">node</span> <span class="o">=</span> <span class="kc">None</span>
+                            <span class="k">for</span> <span class="n">gchild</span> <span class="ow">in</span> <span class="n">parent</span><span class="p">:</span>
+                                <span class="k">if</span> <span class="n">gchild</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">nm</span> \
+                                   <span class="ow">and</span> <span class="n">gchild</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">tp</span><span class="p">:</span>
+                                    <span class="n">node</span> <span class="o">=</span> <span class="n">gchild</span>
                                     <span class="k">break</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="n">linkfound</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">__createLink</span><span class="p">(</span><span class="n">entrynode</span><span class="p">,</span> <span class="n">datanode</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                                <span class="k">break</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="n">parent</span> <span class="o">=</span> <span class="n">node</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">linknode</span> <span class="o">=</span> <span class="n">parent</span>
 
-    <span class="k">def</span> <span class="nf">__createLink</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">linknode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">dchild</span> <span class="ow">in</span> <span class="n">linknode</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">dchild</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">dsname</span><span class="p">:</span>
+                                <span class="n">linkfound</span> <span class="o">=</span> <span class="kc">True</span>
+                                <span class="k">break</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">linkfound</span><span class="p">:</span>
+                        <span class="n">linknode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__createLink</span><span class="p">(</span>
+                            <span class="n">entrynode</span><span class="p">,</span> <span class="n">linknode</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">linkpath</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">linknode</span>
+
+    <span class="k">def</span> <span class="nf">__createLink</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entrynode</span><span class="p">,</span> <span class="n">linknode</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">linkpath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; create link on given node</span>
 
-<span class="sd">        :param root: root node</span>
-<span class="sd">        :type root: :class:`xml.etree.ElementTree.Element`</span>
-<span class="sd">        :param node: the given node</span>
-<span class="sd">        :type node: :obj:`xml.etree.ElementTree.Element`</span>
+<span class="sd">        :param entrynode: root node</span>
+<span class="sd">        :type entrynode: :class:`xml.etree.ElementTree.Element`</span>
+<span class="sd">        :param linknode: the given link node</span>
+<span class="sd">        :type linknode: :obj:`xml.etree.ElementTree.Element`</span>
 <span class="sd">        :param path: list with NeXus path (name, type)</span>
-<span class="sd">        :type node: :obj:`list` &lt; (:obj:`str`,:obj:`str`) &gt;</span>
+<span class="sd">        :type path: :obj:`list` &lt; (:obj:`str`,:obj:`str`) &gt;</span>
+<span class="sd">        :param linkpath: list with NeXus path (name, type)</span>
+<span class="sd">        :type linkpath: :obj:`list` &lt; (:obj:`str`,:obj:`str`) &gt;</span>
+<span class="sd">        :returns: the current link node</span>
+<span class="sd">        :rtype: :obj:`xml.etree.ElementTree.Element`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
             <span class="n">target</span><span class="p">,</span> <span class="n">dsname</span> <span class="o">=</span> <span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">target</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">data</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;group&quot;</span><span class="p">)</span>
-                    <span class="n">entry</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-                    <span class="n">data</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;NXdata&quot;</span>
-                    <span class="n">data</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span>
+                <span class="k">if</span> <span class="n">linknode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">linknode</span> <span class="o">=</span> <span class="n">entrynode</span>
+                    <span class="k">if</span> <span class="n">linkpath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">linkpath</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;NXdata&quot;</span><span class="p">)]</span>
+                    <span class="k">for</span> <span class="n">nm</span><span class="p">,</span> <span class="n">tp</span> <span class="ow">in</span> <span class="n">linkpath</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">gchild</span> <span class="ow">in</span> <span class="n">linknode</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">gchild</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">nm</span> \
+                                  <span class="ow">and</span> <span class="n">gchild</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">tp</span><span class="p">:</span>
+                                <span class="n">linknode</span> <span class="o">=</span> <span class="n">gchild</span>
+                                <span class="k">break</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">node</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;group&quot;</span><span class="p">)</span>
+                            <span class="n">linknode</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+                            <span class="n">linknode</span> <span class="o">=</span> <span class="n">node</span>
+                            <span class="n">linknode</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tp</span>
+                            <span class="n">linknode</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nm</span>
                 <span class="k">for</span> <span class="n">gname</span><span class="p">,</span> <span class="n">gtype</span> <span class="ow">in</span> <span class="n">path</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
                     <span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2">/&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">gname</span><span class="p">,</span> <span class="n">gtype</span><span class="p">)</span> <span class="o">+</span> <span class="n">target</span>
                 <span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">target</span>
                 <span class="k">if</span> <span class="n">dsname</span><span class="p">:</span>
                     <span class="n">link</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">)</span>
-                    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+                    <span class="n">linknode</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
                     <span class="n">link</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">target</span>
                     <span class="n">link</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dsname</span>
+        <span class="k">return</span> <span class="n">linknode</span>
 
 <div class="viewcode-block" id="Merger.collect"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.Merger.Merger.collect">[docs]</a>    <span class="k">def</span> <span class="nf">collect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; collects the given components in one DOM tree</span>

@@ -983,8 +983,8 @@ class XMLConfigurator(object):
         :rtype: :obj:`list` <[:obj:`str`, :obj:`str`]>
         """
         epath = []
-        if self.extrapath:
-            path = self.extrapath.split("/")
+        if extrapath:
+            path = extrapath.split("/")
             for nd in path:
                 if ":" in nd:
                     snd = nd.split(":")

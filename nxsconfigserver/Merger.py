@@ -140,6 +140,9 @@ class Merger(object):
         #: (:obj:`list` <:obj:`str`> ) extra link path
         self.extralinkpath = []
 
+        #: (:obj:`list` <:obj:`str`> ) data link path
+        self.linkpath = [("data", "NXdata")]
+
         #: (:obj:`str`) datasource label
         self.__dsvars = "$datasources."
 
@@ -587,12 +590,13 @@ class Merger(object):
                             if gchild.get("name") == nm \
                                   and gchild.get("type") == tp:
                                 linknode = gchild
-                            else:
-                                node = etree.Element("group")
-                                linknode.append(node)
-                                linknode = node
-                                linknode.attrib["type"] = tp
-                                linknode.attrib["name"] = nm
+                                break
+                        else:
+                            node = etree.Element("group")
+                            linknode.append(node)
+                            linknode = node
+                            linknode.attrib["type"] = tp
+                            linknode.attrib["name"] = nm
                 for gname, gtype in path[1:]:
                     target = "%s:%s/" % (gname, gtype) + target
                 target = "/" + target

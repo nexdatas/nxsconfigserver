@@ -1989,6 +1989,314 @@ class MergerTest(unittest.TestCase):
 
     # test collect
     # \brief It tests default settings
+    def test_elinkdatasources_none(self):
+        fun = sys._getframe().f_code.co_name
+        print("Run: %s.%s() " % (self.__class__.__name__, fun))
+
+        el = Merger()
+        self.assertEqual(el.extralinkdatasources, [])
+        self.assertEqual(el.linkable, ["field", "vds"])
+
+        self.assertEqual(
+            el.collect(
+                ["<definition><group  name='entry' type='NXentry'>"
+                 "<field type='field'><datasource name='ds1'/>"
+                 "<strategy mode='INIT' /></field></group></definition>",
+                 "<definition><group name='entry' type='NXentry'>"
+                 "<attribute type='field2'><datasource name='ds1'/>"
+                 "<strategy mode='INIT'/></attribute></group>"
+                 "</definition>"]), None)
+        self.assertEqual(el.merge(), None)
+        self.assertEqual(
+            el.toString().replace("?>\n<", "?><"),
+            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<group name="entry" type="NXentry"><field type="field">'
+            '<datasource name="ds1" /><strategy mode="INIT" /></field>'
+            '<attribute type="field2"><datasource name="ds1" />'
+            '<strategy mode="INIT" /></attribute></group></definition>')
+
+    # test collect
+    # \brief It tests default settings
+    def test_elinkdatasources_ds1_nofieldname(self):
+        fun = sys._getframe().f_code.co_name
+        print("Run: %s.%s() " % (self.__class__.__name__, fun))
+
+        el = Merger()
+        el.extralinkdatasources = ["ds1"]
+        self.assertEqual(el.linkable, ["field", "vds"])
+
+        self.assertEqual(
+            el.collect(
+                ["<definition><group  name='entry' type='NXentry'>"
+                 "<field type='field'><datasource name='ds1'/>"
+                 "<strategy mode='INIT' /></field></group></definition>",
+                 "<definition><group name='entry' type='NXentry'>"
+                 "<attribute type='field2'><datasource name='ds1'/>"
+                 "<strategy mode='INIT'/></attribute></group></definition>"]),
+            None)
+        self.assertEqual(el.merge(), None)
+        self.assertEqual(
+            el.toString().replace("?>\n<", "?><"),
+            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<group name="entry" type="NXentry"><field type="field">'
+            '<datasource name="ds1" /><strategy mode="INIT" /></field>'
+            '<attribute type="field2"><datasource name="ds1" />'
+            '<strategy mode="INIT" /></attribute></group></definition>')
+
+    # test collect
+    # \brief It tests default settings
+    def test_elinkdatasources_ds1(self):
+        fun = sys._getframe().f_code.co_name
+        print("Run: %s.%s() " % (self.__class__.__name__, fun))
+
+        el = Merger()
+        el.extralinkdatasources = ["ds1"]
+        el.extralinkpath = [("instrument", "NXinstrument"),
+                            ("collection", "NXcollection")]
+        self.assertEqual(el.linkable, ["field", "vds"])
+
+        self.assertEqual(
+            el.collect(
+                ["<definition><group  name='entry' type='NXentry'>"
+                 "<field name='myfield' type='field'><datasource name='ds1'/>"
+                 "<strategy mode='INIT' /></field></group></definition>",
+                 "<definition><group name='entry' type='NXentry'>"
+                 "<attribute type='field2'><datasource name='ds1'/>"
+                 "<strategy mode='INIT'/></attribute></group>"
+                 "</definition>"]), None)
+        self.assertEqual(el.merge(), None)
+        checkxmls(
+            self, el.toString(),
+            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<group name="entry" type="NXentry">'
+            '<field name="myfield" type="field"><datasource name="ds1" />'
+            '<strategy mode="INIT" /></field><attribute type="field2">'
+            '<datasource name="ds1" /><strategy mode="INIT" /></attribute>'
+            '<group name="instrument" type="NXinstrument">'
+            '<group name="collection" type="NXcollection">'
+            '<link name="ds1" target="/entry:NXentry/myfield" />'
+            '</group></group></group></definition>')
+
+    # test collect
+    # \brief It tests default settings
+    def test_elinkdatasources_ds1_withdata(self):
+        fun = sys._getframe().f_code.co_name
+        print("Run: %s.%s() " % (self.__class__.__name__, fun))
+
+        el = Merger()
+        el.extralinkdatasources = ["ds1"]
+        el.extralinkpath = [("instrument", "NXinstrument"),
+                            ("collection", "NXcollection")]
+        self.assertEqual(el.linkable, ["field", "vds"])
+
+        self.assertEqual(
+            el.collect(
+                ["<definition><group  name='entry' type='NXentry'>"
+                 "<field name='myfield' type='field'><datasource name='ds1'/>"
+                 "<strategy mode='STEP' /></field></group></definition>",
+                 "<definition><group name='entry' type='NXentry'>"
+                 "<attribute type='field2'><datasource name='ds1'/>"
+                 "<strategy mode='INIT'/></attribute>"
+                 "<group name='instrument' type='NXinstrument'>"
+                 "<group name='collection' type='NXcollection' />"
+                 "</group></group></definition>"]), None)
+        self.assertEqual(el.merge(), None)
+        checkxmls(
+            self,
+            el.toString(),
+            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<group name="entry" type="NXentry">'
+            '<field name="myfield" type="field"><datasource name="ds1" />'
+            '<strategy mode="STEP" /></field><attribute type="field2">'
+            '<datasource name="ds1" /><strategy mode="INIT" /></attribute>'
+            '<group name="instrument" type="NXinstrument">'
+            '<group name="collection" type="NXcollection">'
+            '<link name="ds1" target="/entry:NXentry/myfield" />'
+            '</group></group></group></definition>')
+
+    # test collect
+    # \brief It tests default settings
+    def test_elinkdatasources_ds1_twofields(self):
+        fun = sys._getframe().f_code.co_name
+        print("Run: %s.%s() " % (self.__class__.__name__, fun))
+
+        el = Merger()
+        el.extralinkdatasources = ["ds1"]
+        el.extralinkpath = [("instrument", "NXinstrument"),
+                            ("collection", "NXcollection")]
+        self.assertEqual(el.linkable, ["field", "vds"])
+
+        self.assertEqual(
+            el.collect(
+                ["<definition><group  name='entry' type='NXentry'>"
+                 "<group  name='instrument' type='NXinstrument'>"
+                 "<field name='myfield' type='field'><datasource name='ds2'/>"
+                 "<strategy mode='STEP' /></field></group></group>"
+                 "</definition>",
+                 "<definition><group name='entry' type='NXentry'>"
+                 "<field name='mf' type='field2'><datasource name='ds1'/>"
+                 "<strategy mode='INIT'/></field>"
+                 "<group name='instrument' type='NXinstrument' />"
+                 "</group></definition>"]),
+            None)
+        self.assertEqual(el.merge(), None)
+        checkxmls(
+            self,
+            el.toString(),
+            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<group name="entry" type="NXentry">'
+            '<group name="instrument" type="NXinstrument">'
+            '<field name="myfield" type="field"><datasource name="ds2" />'
+            '<strategy mode="STEP" /></field>'
+            '<group name="collection" type="NXcollection">'
+            '<link name="ds1" target="/entry:NXentry/mf" />'
+            '</group></group>'
+            '<field name="mf" type="field2"><datasource name="ds1" />'
+            '<strategy mode="INIT" /></field>'
+            '</group></definition>')
+
+    # test collect
+    # \brief It tests default settings
+    def test_elinkdatasources_ds1_twolinks(self):
+        fun = sys._getframe().f_code.co_name
+        print("Run: %s.%s() " % (self.__class__.__name__, fun))
+
+        el = Merger()
+        el.extralinkdatasources = ["ds1", "ds2"]
+        el.extralinkpath = [("instrument", "NXinstrument")]
+        self.assertEqual(el.linkable, ["field", "vds"])
+
+        self.assertEqual(
+            el.collect(
+                ["<definition><group  name='entry' type='NXentry'>"
+                 "<group  name='instrument' type='NXinstrument'>"
+                 "<field name='myfield' type='field'>"
+                 "<datasource name='ds2'/><strategy mode='STEP' />"
+                 "</field></group></group></definition>",
+                 "<definition><group name='entry' type='NXentry'>"
+                 "<field name='mf' type='field2'><datasource name='ds1'/>"
+                 "<strategy mode='INIT'/></field>"
+                 "</group></definition>"]),
+            None)
+        self.assertEqual(el.merge(), None)
+        checkxmls(
+            self,
+            el.toString(),
+            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<group name="entry" type="NXentry">'
+            '<group name="instrument" type="NXinstrument">'
+            '<field name="myfield" type="field"><datasource name="ds2" />'
+            '<strategy mode="STEP" /></field>'
+            '<link name="ds2" '
+            'target="/entry:NXentry/instrument:NXinstrument/myfield" />'
+            '<link name="ds1" target="/entry:NXentry/mf" />'
+            '</group>'
+            '<field name="mf" type="field2"><datasource name="ds1" />'
+            '<strategy mode="INIT" /></field></group></definition>')
+
+    # test collect
+    # \brief It tests default settings
+    def test_elinkdatasources_ds1_twoduplinks(self):
+        fun = sys._getframe().f_code.co_name
+        print("Run: %s.%s() " % (self.__class__.__name__, fun))
+
+        el = Merger()
+        el.extralinkdatasources = ["ds1"]
+        el.extralinkpath = [("instrument", "NXinstrument"),
+                            ("collection", "NXcollection")]
+        self.assertEqual(el.linkable, ["field", "vds"])
+
+        self.assertEqual(
+            el.collect(
+                ["<definition><group  name='entry' type='NXentry'>"
+                 "<group  name='instrument' type='NXinstrument'>"
+                 "<field name='myfield' type='field'><datasource name='ds1'/>"
+                 "<strategy mode='STEP' /></field></group></group>"
+                 "</definition>",
+                 "<definition><group name='entry' type='NXentry'>"
+                 "<field name='mf' type='field2'><datasource name='ds1'/>"
+                 "<strategy mode='INIT'/></field>"
+                 "<group name='data' type='NXdata' /></group>"
+                 "</definition>"]), None)
+        self.assertEqual(el.merge(), None)
+        checknxmls(
+            self,
+            el.toString(),
+            [
+                '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+                '<group name="entry" type="NXentry">'
+                '<group name="instrument" type="NXinstrument">'
+                '<field name="myfield" type="field"><datasource name="ds1" />'
+                '<strategy mode="STEP" /></field></group>'
+                '<field name="mf" type="field2"><datasource name="ds1" />'
+                '<strategy mode="INIT" /></field>'
+                '<group name="data" type="NXdata">'
+                '<link name="ds1" '
+                'target="/entry:NXentry/mf" /></group>'
+                '</group></definition>',
+                '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+                '<group name="entry" type="NXentry">'
+                '<group name="instrument" type="NXinstrument">'
+                '<group name="collection" type="NXcollection">'
+                '<link name="ds1" '
+                'target="/entry:NXentry/instrument:NXinstrument/myfield" />'
+                '</group>'
+                '<field name="myfield" type="field"><datasource name="ds1" />'
+                '<strategy mode="STEP" /></field></group>'
+                '<field name="mf" type="field2"><datasource name="ds1" />'
+                '<strategy mode="INIT" /></field>'
+                '<group name="data" type="NXdata">'
+                '</group>'
+                '</group></definition>'
+            ]
+            )
+
+    # test collect
+    # \brief It tests default settings
+    def test_elinkdatasources_ds1_twolinks_oneexists(self):
+        fun = sys._getframe().f_code.co_name
+        print("Run: %s.%s() " % (self.__class__.__name__, fun))
+
+        el = Merger()
+        el.extralinkdatasources = ["ds1", "ds2"]
+        el.extralinkpath = [("instrument", "NXinstrument"),
+                            ("collection", "NXcollection")]
+        self.assertEqual(el.linkable, ["field", "vds"])
+
+        self.assertEqual(
+            el.collect(
+                ["<definition><group name='entry' type='NXentry'>"
+                 "<group  name='instrument' type='NXinstrument'>"
+                 "<field name='myfield' type='field'><datasource name='ds2'/>"
+                 "<strategy mode='STEP' /></field></group></group>"
+                 "</definition>",
+                 "<definition><group name='entry' type='NXentry'>"
+                 "<field name='mf' type='field2'><datasource name='ds1'/>"
+                 "<strategy mode='INIT'/></field>"
+                 "<group  name='instrument' type='NXinstrument'>"
+                 '<group name="collection" type="NXcollection">'
+                 "<link name='ds1' target='/entry:NXentry'/>"
+                 "</group></group></group></definition>"]), None)
+        self.assertEqual(el.merge(), None)
+        checkxmls(
+            self,
+            el.toString(),
+            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<group name="entry" type="NXentry">'
+            '<group name="instrument" type="NXinstrument">'
+            '<group name="collection" type="NXcollection">'
+            '<link name="ds1" target="/entry:NXentry" />'
+            '<link name="ds2" '
+            'target="/entry:NXentry/instrument:NXinstrument/myfield" />'
+            '</group>'
+            '<field name="myfield" type="field"><datasource name="ds2" />'
+            '<strategy mode="STEP" /></field></group>'
+            '<field name="mf" type="field2"><datasource name="ds1" />'
+            '<strategy mode="INIT" /></field>'
+            '</group></definition>')
+
+    # test collect
+    # \brief It tests default settings
     def test_switch_canfaildatasources_none(self):
         fun = sys._getframe().f_code.co_name
         print("Run: %s.%s() " % (self.__class__.__name__, fun))

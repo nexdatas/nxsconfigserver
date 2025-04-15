@@ -11492,6 +11492,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         css = [name[0], name[2]]
 
         el.linkdatasources = '["%s"]' % dsname[0]
+        el.extralinkdatasources = '["%s"]' % dsname[0]
         self.assertEqual(el.createConfiguration(css), None)
         gxml = self.getXML(el)
         checkxmls(

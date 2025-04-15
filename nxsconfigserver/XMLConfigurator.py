@@ -219,7 +219,7 @@ class XMLConfigurator(object):
         :rtype: :obj:`str`
         """
         try:
-            lad = json.loads(self.__linkextradatasources)
+            lad = json.loads(self.__extralinkdatasources)
             assert isinstance(lad, list)
             return self.__extralinkdatasources
         except Exception:

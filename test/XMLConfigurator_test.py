@@ -11508,8 +11508,11 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
             '<record name="r1"/></datasource><strategy mode="INIT"/>'
             '</field><group name="data" type="NXdata">'
             '<link name="%s" target="/entry:NXentry/field1"/>'
-            '</group></group></definition>'
-            % (dsname[2], dsname[3], dsname[0], dsname[0]))
+            '</group><group name="instrument" type="NXinstrument">'
+            '<group name="collection" type="NXcollection">'
+            '<link name="%s" target="/entry:NXentry/field1"/>'
+            '</group></group></group></definition>'
+            % (dsname[2], dsname[3], dsname[0], dsname[0], dsname[0]))
         self.assertEqual(long(el.version.split('.')[-1]), revision + 7)
         el.setMandatoryComponents(man)
         el.close()

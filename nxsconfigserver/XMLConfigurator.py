@@ -94,6 +94,8 @@ class XMLConfigurator(object):
         self.__stepdatasources = "[]"
         #: (:obj:`str`) datasources to which links will be added
         self.__linkdatasources = "[]"
+        #: (:obj:`str`) datasources to which extra links will be added
+        self.__extralinkdatasources = "[]"
         #: (:obj:`str`) datasources to be switched into CanFail mode
         self.__canfaildatasources = "[]"
 
@@ -206,6 +208,35 @@ class XMLConfigurator(object):
         __getLinkDatSources,
         __setLinkDatSources,
         doc='link datasource list')
+
+    def __getExtraLinkDatSources(self):
+        """ get method for dataSourceGroup attribute
+
+        :returns: names of EXTRA LINK dataSources
+        :rtype: :obj:`str`
+        """
+        try:
+            lad = json.loads(self.__linkextradatasources)
+            assert isinstance(lad, list)
+            return self.__extralinkdatasources
+        except Exception:
+            return '[]'
+
+    def __setExtraLinkDatSources(self, names):
+        """ set method for dataSourceGroup attribute
+
+        :param names: of EXTRA LINK dataSources
+        :type names: :obj:`str`
+        """
+        jnames = self.__stringToListJson(names)
+        #: administator data
+        self.__extralinkdatasources = jnames
+
+    #: (:obj:`str`) the json data string
+    extralinkdatasources = property(
+        __getExtraLinkDatSources,
+        __setExtraLinkDatSources,
+        doc='extra link datasource list')
 
     def __getCanFailDatSources(self):
         """ get method for dataSourceGroup attribute
@@ -933,10 +964,39 @@ class XMLConfigurator(object):
         mgr = Merger()
         mgr.switchdatasources = json.loads(self.stepdatasources)
         mgr.linkdatasources = json.loads(self.linkdatasources)
+        mgr.extralinkdatasources = json.loads(self.extralinkdatasources)
         mgr.canfaildatasources = json.loads(self.canfaildatasources)
+        mgr.extralinkpath = self.__splitExtraPath(self.extraLinkPath)
         mgr.collect(xmls)
         mgr.merge()
         return mgr.toString()
+
+    def __splitExtraPath(self, extrapath):
+        """ split extra path to names and types
+
+        :param extrapath: extra link path
+        :type extrapath: :obj:`str`
+        :returns: list of name an type of extra link path groups
+        :rtype: :obj:`list` <[:obj:`str`, :obj:`str`]>
+        """
+        epath = []
+        if self.extrapath:
+            path = self.extrapath.split("/")
+            for nd in path:
+                if ":" in nd:
+                    snd = nd.split(":")
+                    if snd[0] and snd[1]:
+                        epath.append([snd[0], snd[1]])
+                    elif snd[1] and len(snd[1]) > 2:
+                        epath.append([snd[0][2:], snd[1]])
+                    else:
+                        epath.append([snd[0], "NX" + snd[0]])
+
+                elif nd.startswith("NX") and len(nd) > 2:
+                    epath.append([nd[0][2:], nd[1]])
+                else:
+                    epath.append([nd[0], "NX" + nd[0]])
+        return epath
 
     def createConfiguration(self, names):
         """ creates the final configuration string in the xmlstring attribute

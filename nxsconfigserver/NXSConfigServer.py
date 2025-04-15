@@ -89,6 +89,7 @@ class NXSConfigServer(tango.LatestDeviceImpl):
         self.set_state(tango.DevState.ON)
         self.get_device_properties(self.get_device_class())
         self.xmlc.versionLabel = self.VersionLabel
+        self.xmlc.extraLinkPath = self.ExtraLinkPath
 
     def always_executed_hook(self):
         """ Always excuted hook method
@@ -255,6 +256,39 @@ class NXSConfigServer(tango.LatestDeviceImpl):
 
     def is_LinkDataSources_write_allowed(self):
         """ LinkDataSources attribute Write State Machine
+
+        :returns: True if the operation allowed
+        :rtype: :obj:`bool`
+        """
+        if self.get_state() in [tango.DevState.RUNNING]:
+            return False
+        return True
+
+    def read_ExtraLinkDataSources(self, attr):
+        """ Read ExtraLinkDataSources attribute
+
+        :param attr: extra link datasources attribute
+        :type attr: :class:`tango.Attribute`
+        """
+        self.debug_stream("In read_ExtraLinkDataSources()")
+        attr.set_value(self.xmlc.extralinkdatasources or "")
+
+    def write_ExtraLinkDataSources(self, attr):
+        """ Write ExtraLinkDataSources attribute
+
+        :param attr: extra link datasources attribute
+        :type attr: :class:`tango.Attribute`
+        """
+        self.debug_stream("In write_ExtraLinkDataSources()")
+        if self.is_ExtraLinkDataSources_write_allowed():
+            self.xmlc.extralinkdatasources = attr.get_write_value() or ""
+        else:
+            self.warn_stream("To change the settings please close the server.")
+            raise Exception(
+                "To change the settings please close the server.")
+
+    def is_ExtraLinkDataSources_write_allowed(self):
+        """ ExtraLinkDataSources attribute Write State Machine
 
         :returns: True if the operation allowed
         :rtype: :obj:`bool`
@@ -1135,6 +1169,11 @@ class NXSConfigServerClass(tango.DeviceClass):
         [tango.DevString,
          "version label",
          ["XCS"]],
+        'ExtraLinkPath':
+        [tango.DevString,
+         "extra link NeXus path below NXentry. "
+         "Default: instrument:NXinstrument/collection:NXcollection",
+         ["instrument:NXinstrument/collection:NXcollection"]],
     }
 
     #: (:obj:`dict` <:obj:`str`, \
@@ -1298,6 +1337,15 @@ class NXSConfigServerClass(tango.DeviceClass):
              'label': "Datasources to which links will be added",
              'description': "JSON list of datasources"
              "to which links will be added",
+        }],
+        'ExtraLinkDataSources':
+        [[tango.DevString,
+          tango.SCALAR,
+          tango.READ_WRITE],
+         {
+             'label': "Datasources to which extra links will be added",
+             'description': "JSON list of datasources"
+             "to which extra links will be added",
         }],
         'CanFailDataSources':
         [[tango.DevString,

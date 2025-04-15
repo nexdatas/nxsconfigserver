@@ -131,8 +131,14 @@ class Merger(object):
         #: (:obj:`list` <:obj:`str`> ) aliased to add links
         self.linkdatasources = []
 
+        #: (:obj:`list` <:obj:`str`> ) aliased to add extralinks
+        self.extralinkdatasources = []
+
         #: (:obj:`list` <:obj:`str`> ) aliased to switch to CanFial mode
         self.canfaildatasources = []
+
+        #: (:obj:`list` <:obj:`str`> ) extra link path
+        self.extralinkpath = []
 
         #: (:obj:`str`) datasource label
         self.__dsvars = "$datasources."
@@ -155,6 +161,8 @@ class Merger(object):
 
         :param node: dom node
         :type node: :obj:`xml.etree.ElementTree.Element`
+        :param ancestors: list with NeXus path nodes (tag, name, type)
+        :type ancestors: :obj:`list`< (:obj:`str`,:obj:`str`,:obj:`str`) >
         :returns: xml path
         :rtype: :obj:`str`
         """
@@ -178,6 +186,8 @@ class Merger(object):
         :type elem1: :obj:`xml.etree.ElementTree.Element`
         :param elem2: second element
         :type elem2: :obj:`xml.etree.ElementTree.Element`
+        :param ancestors: list with NeXus path nodes (tag, name, type)
+        :type ancestors: :obj:`list`< (:obj:`str`,:obj:`str`,:obj:`str`) >
         :returns: bool varaible if two elements are mergeable
         :rtype: :obj:`bool`
         """
@@ -244,6 +254,8 @@ class Merger(object):
         :type elem1: :obj:`xml.etree.ElementTree.Element`
         :param elem2: second element
         :type elem2: :obj:`xml.etree.ElementTree.Element`
+        :param parent: the given parent node
+        :type parent: :obj:`xml.etree.ElementTree.Element`
         """
         attr2 = elem2.attrib
         texts = []
@@ -283,11 +295,20 @@ class Merger(object):
 
         parent.remove(elem2)
 
-    def __mergeChildren(self, node, ancestors, entrynode=None):
+    def __mergeChildren(self, node, ancestors, entrynode=None,
+                        datanode=None, linknode=None):
         """ merge the given node
 
         :param node: the given node
         :type node: :obj:`xml.etree.ElementTree.Element`
+        :param ancestors: list with NeXus path nodes (tag, name, type)
+        :type ancestors: :obj:`list`< (:obj:`str`,:obj:`str`,:obj:`str`) >
+        :param entrynode: entry node
+        :type entrynode: :class:`xml.etree.ElementTree.Element`
+        :param datanode: data node
+        :type datanode: :class:`xml.etree.ElementTree.Element`
+        :param linknode: link node
+        :type linknode: :class:`xml.etree.ElementTree.Element`
         """
         if node is not None and node.tag != "definition":
             newancestors = tuple(
@@ -328,11 +349,18 @@ class Merger(object):
                                self.__getAncestors(child, newancestors)),
                             [child])
 
-                self.__mergeChildren(child, newancestors, entrynode)
+                self.__mergeChildren(child, newancestors, entrynode,
+                                     datanode, linknode)
                 if cName in self.switchable and self.switchdatasources:
                     self.__switch(child)
                 if cName in self.linkable and self.linkdatasources:
-                    self.__addlink(child, newancestors, entrynode)
+                    datanode = self.__addlink(
+                        child, newancestors, entrynode, datanode,
+                        self.linkdatasources, self.linkpath)
+                if cName in self.linkable and self.extralinkdatasources:
+                    linknode = self.__addlink(
+                        child, newancestors, entrynode, linknode,
+                        self.extralinkdatasources, self.extralinkpath)
                 if cName in self.switchable and self.canfaildatasources:
                     self.__canfail(child)
 
@@ -465,27 +493,38 @@ class Merger(object):
             if stnode is not None and dsnode is not None:
                 stnode.attrib["canfail"] = "true"
 
-    def __addlink(self, node, ancestors, entrynode):
+    def __addlink(self, node, ancestors, entrynode, linknode, linkdatasources,
+                  linkpath=None):
         """ add link in NXdata group
 
         :param node: the given node
         :type node: :obj:`xml.etree.ElementTree.Element`
+        :param ancestors: list with NeXus path nodes (tag, name, type)
+        :type ancestors: :obj:`list`< (:obj:`str`,:obj:`str`,:obj:`str`) >
+        :param entrynode: root node
+        :type entrynode: :class:`xml.etree.ElementTree.Element`
+        :param linknode: the given link node
+        :type linknode: :obj:`xml.etree.ElementTree.Element`
+        :param linkpath: list with NeXus path (name, type)
+        :type linkpath: :obj:`list` < (:obj:`str`,:obj:`str`) >
+        :returns: the current link node
+        :rtype: :obj:`xml.etree.ElementTree.Element`
         """
         if node is not None:
             dsname = None
             dsnode = None
 
             dsname, dsnode = self.__getTextDataSource(
-                node, self.linkdatasources)
+                node, linkdatasources)
             for child in node:
                 cName = unicode(child.tag)
                 if cName == 'datasource':
                     dsname = child.get("name")
-                    if dsname in self.linkdatasources:
+                    if dsname in linkdatasources:
                         dsnode = child
                     else:
                         dsname, dsnode = self.__getTextDataSource(
-                            child, self.linkdatasources)
+                            child, linkdatasources)
                 if dsnode is not None:
                     break
             if dsnode is not None:
@@ -494,46 +533,75 @@ class Merger(object):
                 for anc in reversed(ancestors):
                     path.append((anc[1], anc[2]))
                 linkfound = False
-                datanode = None
                 if entrynode is not None:
-                    for gchild in entrynode:
-                        if gchild.get("name") == 'data' \
-                           and gchild.get("type") == 'NXdata':
-                            datanode = gchild
-                            for dchild in datanode:
-                                if dchild.get("name") == dsname:
-                                    linkfound = True
+                    if linknode is None:
+                        # found linknode
+                        parent = entrynode
+                        for nm, tp in linkpath:
+                            node = None
+                            for gchild in parent:
+                                if gchild.get("name") == nm \
+                                   and gchild.get("type") == tp:
+                                    node = gchild
                                     break
-                    if not linkfound:
-                        self.__createLink(entrynode, datanode, path)
+                            if node is None:
+                                break
+                            else:
+                                parent = node
+                        else:
+                            linknode = parent
 
-    def __createLink(self, entry, data, path):
+                    if linknode is not None:
+                        for dchild in linknode:
+                            if dchild.get("name") == dsname:
+                                linkfound = True
+                                break
+                    if not linkfound:
+                        linknode = self.__createLink(
+                            entrynode, linknode, path, linkpath)
+        return linknode
+
+    def __createLink(self, entrynode, linknode, path, linkpath=None):
         """ create link on given node
 
-        :param root: root node
-        :type root: :class:`xml.etree.ElementTree.Element`
-        :param node: the given node
-        :type node: :obj:`xml.etree.ElementTree.Element`
+        :param entrynode: root node
+        :type entrynode: :class:`xml.etree.ElementTree.Element`
+        :param linknode: the given link node
+        :type linknode: :obj:`xml.etree.ElementTree.Element`
         :param path: list with NeXus path (name, type)
-        :type node: :obj:`list` < (:obj:`str`,:obj:`str`) >
+        :type path: :obj:`list` < (:obj:`str`,:obj:`str`) >
+        :param linkpath: list with NeXus path (name, type)
+        :type linkpath: :obj:`list` < (:obj:`str`,:obj:`str`) >
+        :returns: the current link node
+        :rtype: :obj:`xml.etree.ElementTree.Element`
         """
-
         if path:
             target, dsname = path[0]
             if target:
-                if data is None:
-                    data = etree.Element("group")
-                    entry.append(data)
-                    data.attrib["type"] = "NXdata"
-                    data.attrib["name"] = "data"
+                if linknode is None:
+                    linknode = entrynode
+                    if linkpath is None:
+                        linkpath = [("data", "NXdata")]
+                    for nm, tp in linkpath:
+                        for gchild in linknode:
+                            if gchild.get("name") == nm \
+                                  and gchild.get("type") == tp:
+                                linknode = gchild
+                            else:
+                                node = etree.Element("group")
+                                linknode.append(node)
+                                linknode = node
+                                linknode.attrib["type"] = tp
+                                linknode.attrib["name"] = nm
                 for gname, gtype in path[1:]:
                     target = "%s:%s/" % (gname, gtype) + target
                 target = "/" + target
                 if dsname:
                     link = etree.Element("link")
-                    data.append(link)
+                    linknode.append(link)
                     link.attrib["target"] = "%s" % target
                     link.attrib["name"] = dsname
+        return linknode
 
     def collect(self, components):
         """ collects the given components in one DOM tree

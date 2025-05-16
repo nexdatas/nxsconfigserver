@@ -71,7 +71,7 @@ with proper privileges.
 Debian packages
 ^^^^^^^^^^^^^^^
 
-Debian Bookworm, Bullseye, Buster and as well as Ubuntu Lunar, Jammy  packages can be found in the HDRI repository.
+Debian Bookworm, Bullseye, Buster and as well as Ubuntu Plucky, Noble, Jammy  packages can be found in the HDRI repository.
 
 To install the debian packages, add the PGP repository key
 

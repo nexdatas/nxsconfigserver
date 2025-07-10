@@ -353,6 +353,20 @@ class XMLConfigurator(object):
             comps = [self.__instantiate(cp) for cp in comps]
         return comps
 
+    def instantiatedDataSources(self, names):
+        """ instantiates the required datasources
+
+        :param names: list of datasource names
+        :type names: :obj:`list` <:obj:`str`>
+        :returns: list of instantiated datasources
+        :rtype: :obj:`list` <:obj:`str`>
+        """
+        comps = []
+        if self.__mydb:
+            comps = self.__mydb.datasources(names)
+            comps = [self.__instantiate(ds) for ds in comps]
+        return comps
+
     def __instantiate(self, xmlcp):
         """ instantiates the xml component
 

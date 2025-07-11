@@ -9670,6 +9670,81 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
 
     # creatConf test
     # \brief It tests XMLConfigurator
+    def test_instantiatedDataSources(self):
+        fun = sys._getframe().f_code.co_name
+        print("Run: %s.%s() " % (self.__class__.__name__, fun))
+
+        el = self.openConf()
+        man = el.mandatoryComponents()
+        el.unsetMandatoryComponents(man)
+        self.__man += man
+
+        revision = long(el.version.split('.')[-1])
+
+        # avc = el.availableComponents()
+
+        xds = [
+            '<datasource name="%s" type="PYEVAL">'
+            '<result name="result">'
+            'ds.result = ds.%s + ds.%s\n'
+            '</result>\n'
+            '$datasources.%s\n'
+            '$datasources.%s\n'
+            '</datasource>',
+            '<datasource name="%s" type="CLIENT"><record name="r1" />'
+            '</datasource>',
+            '<datasource name="%s" type="CLIENT"><record name="r2" />'
+            '</datasource>',
+            '<datasource name="%s" type="CLIENT"><record name="r3" />'
+            '</datasource>',
+        ]
+
+        odsname = "pmcs_test.datasource"
+        avds = el.availableDataSources()
+        self.assertTrue(isinstance(avds, list))
+        dsnp = len(xds)
+        dsname = []
+        for i in range(dsnp):
+
+            dsname.append(odsname + '_%s' % i)
+            while dsname[i] in avds:
+                dsname[i] = dsname[i] + '_%s' % i
+
+        for i in range(dsnp):
+            if not i:
+                self.setXML(el, xds[i] % (
+                    dsname[0],
+                    dsname[1], dsname[2], dsname[1], dsname[2]))
+            else:
+                self.setXML(el, xds[i] % dsname[i])
+            self.assertEqual(el.storeDataSource(dsname[i]), None)
+            self.__ds.append(dsname[i])
+
+        css = [dsname[0],  dsname[3]]
+        comps = el.instantiatedDataSources(css)
+        self.assertEqual(len(comps), 2)
+        self.assertEqual(
+            comps[0],
+            '<datasource name="%s" type="PYEVAL">'
+            '<result name="result">ds.result = ds.%s + ds.%s\n'
+            '</result>\n\n'
+            '<datasource name="%s" type="CLIENT"><record name="r1" />'
+            '</datasource>\n\n'
+            '<datasource name="%s" type="CLIENT"><record name="r2" />'
+            '</datasource>\n'
+            '</datasource>' % (dsname[0], dsname[1], dsname[2],
+                               dsname[1], dsname[2]))
+        self.assertEqual(
+            comps[1],
+            '<datasource name="%s" type="CLIENT"><record name="r3" />'
+            '</datasource>' % (dsname[3]))
+
+        self.assertEqual(long(el.version.split('.')[-1]), revision + 4)
+        el.setMandatoryComponents(man)
+        el.close()
+
+    # creatConf test
+    # \brief It tests XMLConfigurator
     def test_instantiatedComponents_mixed(self):
         fun = sys._getframe().f_code.co_name
         print("Run: %s.%s() " % (self.__class__.__name__, fun))

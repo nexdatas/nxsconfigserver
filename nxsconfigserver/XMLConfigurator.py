@@ -363,7 +363,7 @@ class XMLConfigurator(object):
         """
         comps = []
         if self.__mydb:
-            comps = self.__mydb.datasources(names)
+            comps = self.__mydb.dataSources(names)
             comps = [self.__instantiate(ds) for ds in comps]
         return comps
 

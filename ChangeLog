@@ -1,3 +1,7 @@
+2025-07-10 Jan Kotanski <jankotan@gmail.com>
+	* add InstantiatedDataSources command (#73)
+	* tagged as v2.18.0
+
 2025-04-15 Jan Kotanski <jankotan@gmail.com>
 	* add ExtraLinkDataSources attribute and ExtraLinkPath property(#68)
 	* tagged as v2.17.0

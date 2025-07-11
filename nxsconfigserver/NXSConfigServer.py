@@ -522,6 +522,38 @@ class NXSConfigServer(tango.LatestDeviceImpl):
             return False
         return True
 
+    def InstantiatedDataSources(self, argin):
+        """ InstantiatedDataSources command
+
+        :brief: Returns a list of required components
+
+        :param argin:  DevVarStringArray    list of component names
+        :type argin: :obj:`list` <:obj:`str`>
+        :returns: DevVarStringArray    list of instantiated components
+        :rtype: :obj:`list` <:obj:`str`>
+        """
+        self.debug_stream("In InstantiateDataSources()")
+        try:
+            self.set_state(tango.DevState.RUNNING)
+            argout = self.xmlc.instantiatedDataSources(argin)
+            self.set_state(tango.DevState.OPEN)
+        finally:
+            if self.get_state() == tango.DevState.RUNNING:
+                self.set_state(tango.DevState.OPEN)
+
+        return argout
+
+    def is_InstantiatedDataSources_allowed(self):
+        """ DataSources command State Machine
+
+        :returns: True if the operation allowed
+        :rtype: :obj:`bool`
+        """
+        if self.get_state() in [tango.DevState.ON,
+                                tango.DevState.RUNNING]:
+            return False
+        return True
+
     def DataSources(self, argin):
         """ DataSources command
 
@@ -1195,6 +1227,9 @@ class NXSConfigServerClass(tango.DeviceClass):
         'InstantiatedComponents':
             [[tango.DevVarStringArray, "list of component names"],
              [tango.DevVarStringArray, "list of instantiated components"]],
+        'InstantiatedDataSources':
+            [[tango.DevVarStringArray, "list of component names"],
+             [tango.DevVarStringArray, "list of instantiated datasources"]],
         'DataSources':
             [[tango.DevVarStringArray, "list of DataSource names"],
              [tango.DevVarStringArray, "list of required DataSources"]],

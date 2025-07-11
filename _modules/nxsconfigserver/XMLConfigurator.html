@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nxsconfigserver.XMLConfigurator &#8212; NXSConfigServer 2.17.0 documentation</title>
+    <title>nxsconfigserver.XMLConfigurator &#8212; NXSConfigServer 2.18.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           NXSConfigServer</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.17</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.18</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -463,6 +463,20 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="p">:</span>
             <span class="n">comps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">components</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
             <span class="n">comps</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__instantiate</span><span class="p">(</span><span class="n">cp</span><span class="p">)</span> <span class="k">for</span> <span class="n">cp</span> <span class="ow">in</span> <span class="n">comps</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">comps</span></div>
+
+<div class="viewcode-block" id="XMLConfigurator.instantiatedDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.instantiatedDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">instantiatedDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; instantiates the required datasources</span>
+
+<span class="sd">        :param names: list of datasource names</span>
+<span class="sd">        :type names: :obj:`list` &lt;:obj:`str`&gt;</span>
+<span class="sd">        :returns: list of instantiated datasources</span>
+<span class="sd">        :rtype: :obj:`list` &lt;:obj:`str`&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">comps</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="p">:</span>
+            <span class="n">comps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">dataSources</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+            <span class="n">comps</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__instantiate</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span> <span class="k">for</span> <span class="n">ds</span> <span class="ow">in</span> <span class="n">comps</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">comps</span></div>
 
     <span class="k">def</span> <span class="nf">__instantiate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmlcp</span><span class="p">):</span>

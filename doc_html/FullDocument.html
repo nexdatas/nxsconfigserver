@@ -42,6 +42,7 @@
 				<li> <a href="FullDocument.html#cmdComponentVariables"> ComponentVariables </a>
 				<li> <a href="FullDocument.html#cmdMerge"> Merge </a>
 				<li> <a href="FullDocument.html#cmdDependentComponents"> DependentComponents </a>
+				<li> <a href="FullDocument.html#cmdInstantiatedDataSources"> InstantiatedDataSources </a>
 			</ul>
 			<li> <a href="FullDocument.html#attributes">   Attributes   </a>
 			<ul>
@@ -359,6 +360,13 @@
 		<td> DEVVAR_STRINGARRAY </td>
 		<td> OPERATOR </td>
 		<td> Returns a list of dependent component names for a given components </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdInstantiatedDataSources.html"> InstantiatedDataSources </a> </td>
+		<td> DEVVAR_STRINGARRAY </td>
+		<td> DEVVAR_STRINGARRAY </td>
+		<td> OPERATOR </td>
+		<td> Returns a list of required datasources </td>
 	</tr>
 </table>
 <br><br><hr>
@@ -1705,6 +1713,55 @@
 		<td> Output Argument </td>
 		<td> Tango::DEVVAR_STRINGARRAY </td>
 		<td> list of component names </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command NOT allowed for </td>
+		<td> <font size="-1">  <li> ON </li>  <li> RUNNING </li> </font> </td>
+		<td> .. </td>
+	</tr>
+</table>
+<br><br><hr>
+<a name="cmdInstantiatedDataSources"> </a>
+<br><br><br>
+<font size="+1"><u><b> Command InstantiatedDataSources : </b></u></font>
+<ul>
+	Returns a list of required datasources
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> InstantiatedDataSources Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEVVAR_STRINGARRAY </td>
+		<td> list of datasources names </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::DEVVAR_STRINGARRAY </td>
+		<td> list of instantiated datasources </td>
 	</tr>
 	<tr>
 		<td> DisplayLevel </td>

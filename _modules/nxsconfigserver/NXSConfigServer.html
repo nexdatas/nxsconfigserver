@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nxsconfigserver.NXSConfigServer &#8212; NXSConfigServer 2.17.0 documentation</title>
+    <title>nxsconfigserver.NXSConfigServer &#8212; NXSConfigServer 2.18.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           NXSConfigServer</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.17</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.18</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -625,6 +625,38 @@
 
 <div class="viewcode-block" id="NXSConfigServer.is_InstantiatedComponents_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_InstantiatedComponents_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_InstantiatedComponents_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Components command State Machine</span>
+
+<span class="sd">        :returns: True if the operation allowed</span>
+<span class="sd">        :rtype: :obj:`bool`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">ON</span><span class="p">,</span>
+                                <span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">RUNNING</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="NXSConfigServer.InstantiatedDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.InstantiatedDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">InstantiatedDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; InstantiatedDataSources command</span>
+
+<span class="sd">        :brief: Returns a list of required components</span>
+
+<span class="sd">        :param argin:  DevVarStringArray    list of component names</span>
+<span class="sd">        :type argin: :obj:`list` &lt;:obj:`str`&gt;</span>
+<span class="sd">        :returns: DevVarStringArray    list of instantiated components</span>
+<span class="sd">        :rtype: :obj:`list` &lt;:obj:`str`&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">debug_stream</span><span class="p">(</span><span class="s2">&quot;In InstantiateDataSources()&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">RUNNING</span><span class="p">)</span>
+            <span class="n">argout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">instantiatedDataSources</span><span class="p">(</span><span class="n">argin</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span> <span class="o">==</span> <span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">RUNNING</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">argout</span></div>
+
+<div class="viewcode-block" id="NXSConfigServer.is_InstantiatedDataSources_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_InstantiatedDataSources_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_InstantiatedDataSources_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; DataSources command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -1307,6 +1339,9 @@
         <span class="s1">&#39;InstantiatedComponents&#39;</span><span class="p">:</span>
             <span class="p">[[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevVarStringArray</span><span class="p">,</span> <span class="s2">&quot;list of component names&quot;</span><span class="p">],</span>
              <span class="p">[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevVarStringArray</span><span class="p">,</span> <span class="s2">&quot;list of instantiated components&quot;</span><span class="p">]],</span>
+        <span class="s1">&#39;InstantiatedDataSources&#39;</span><span class="p">:</span>
+            <span class="p">[[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevVarStringArray</span><span class="p">,</span> <span class="s2">&quot;list of component names&quot;</span><span class="p">],</span>
+             <span class="p">[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevVarStringArray</span><span class="p">,</span> <span class="s2">&quot;list of instantiated datasources&quot;</span><span class="p">]],</span>
         <span class="s1">&#39;DataSources&#39;</span><span class="p">:</span>
             <span class="p">[[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevVarStringArray</span><span class="p">,</span> <span class="s2">&quot;list of DataSource names&quot;</span><span class="p">],</span>
              <span class="p">[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevVarStringArray</span><span class="p">,</span> <span class="s2">&quot;list of required DataSources&quot;</span><span class="p">]],</span>

@@ -1,3 +1,7 @@
+2025-07-18 Jan Kotanski <jankotan@gmail.com>
+	* speedup InstantiatedDataSources command (#75)
+	* tagged as v2.18.1
+
 2025-07-10 Jan Kotanski <jankotan@gmail.com>
 	* add InstantiatedDataSources command (#73)
 	* tagged as v2.18.0

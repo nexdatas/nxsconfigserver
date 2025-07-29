@@ -1,3 +1,7 @@
+2025-07-29 Jan Kotanski <jankotan@gmail.com>
+	* clear the link name  (#79)
+	* tagged as v2.19.0
+
 2025-07-18 Jan Kotanski <jankotan@gmail.com>
 	* speedup InstantiatedDataSources command (#75)
 	* tagged as v2.18.1

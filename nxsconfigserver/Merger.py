@@ -530,6 +530,10 @@ class Merger(object):
                             child, linkdatasources)
                 if dsnode is not None:
                     break
+            if dsname:
+                dsname = dsname.replace(" ", "_").replace("/", "_").replace(
+                    ":", "_").replace(".", "_").replace("\\", "_").replace(
+                        ";", "_").lower()
             if dsnode is not None:
                 path = []
                 path = [(node.get("name"), dsname)]

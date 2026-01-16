@@ -86,6 +86,8 @@ class XMLConfigurator(object):
         self._streams = StreamSet(weakref.ref(server) if server else None)
         #: (:obj:`str`) XML config string
         self.xmlstring = ""
+        #: (:obj:`str`) Merged coponents in XML string without variables
+        self.mergedxml = ""
         #: (:obj:`str`) component selection
         self.selection = "{}"
         #: (:obj:`str`) JSON string with arguments to connect to database
@@ -976,10 +978,13 @@ class XMLConfigurator(object):
             allnames = self.dependentComponents(
                 list(set(self.__mydb.mandatory() + names)))
             comps = self.__mydb.components(list(set(allnames)))
+            xml = self.__merge(comps)
             if withVariables:
+                self.mergedxml = xml
+                comps = [xml]
                 cpvars = self.__variableComponentValues(comps)
                 comps = [self.__attachVariables(cp, cpvars) for cp in comps]
-            xml = self.__merge(comps)
+                xml = self.__merge(comps)
         return xml if xml is not None else ""
 
     def __merge(self, xmls):

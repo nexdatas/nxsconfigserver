@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nxsconfigserver.XMLConfigurator &#8212; NXSConfigServer 2.18.0 documentation</title>
+    <title>nxsconfigserver.XMLConfigurator &#8212; NXSConfigServer 2.20.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           NXSConfigServer</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.18</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.20</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -198,6 +198,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_streams</span> <span class="o">=</span> <span class="n">StreamSet</span><span class="p">(</span><span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">server</span><span class="p">)</span> <span class="k">if</span> <span class="n">server</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
         <span class="c1">#: (:obj:`str`) XML config string</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xmlstring</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="c1">#: (:obj:`str`) Merged coponents in XML string without variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mergedxml</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="c1">#: (:obj:`str`) component selection</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">selection</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
         <span class="c1">#: (:obj:`str`) JSON string with arguments to connect to database</span>
@@ -476,7 +478,7 @@
         <span class="n">comps</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="p">:</span>
             <span class="n">comps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">dataSources</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
-            <span class="n">comps</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__instantiate</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span> <span class="k">for</span> <span class="n">ds</span> <span class="ow">in</span> <span class="n">comps</span><span class="p">]</span>
+            <span class="n">comps</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__dsinstantiate</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span> <span class="k">for</span> <span class="n">ds</span> <span class="ow">in</span> <span class="n">comps</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">comps</span></div>
 
     <span class="k">def</span> <span class="nf">__instantiate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmlcp</span><span class="p">):</span>
@@ -493,6 +495,18 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">__attachVariables</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">__attachComponents</span><span class="p">(</span>
                         <span class="n">xmlcp</span><span class="p">))))</span>
+
+    <span class="k">def</span> <span class="nf">__dsinstantiate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmlcp</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; instantiates the xml datasource</span>
+
+<span class="sd">        :param xmlcp: xml datasource</span>
+<span class="sd">        :type xmlcp: :obj:`str`</span>
+<span class="sd">        :returns: instantiated datasource</span>
+<span class="sd">        :rtype: :obj:`str`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__attachVariables</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__attachDataSources</span><span class="p">(</span><span class="n">xmlcp</span><span class="p">))</span>
 
 <div class="viewcode-block" id="XMLConfigurator.componentDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.componentDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">componentDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; provides a list of datasources from the given component</span>
@@ -1076,13 +1090,18 @@
             <span class="n">allnames</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependentComponents</span><span class="p">(</span>
                 <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">mandatory</span><span class="p">()</span> <span class="o">+</span> <span class="n">names</span><span class="p">)))</span>
             <span class="n">comps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">components</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">allnames</span><span class="p">)))</span>
+            <span class="n">xml</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__merge</span><span class="p">(</span><span class="n">comps</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="n">withVariables</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">withVariables</span><span class="p">:</span>
-                <span class="n">cpvars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__variableComponentValues</span><span class="p">(</span><span class="n">comps</span><span class="p">)</span>
-                <span class="n">comps</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__attachVariables</span><span class="p">(</span><span class="n">cp</span><span class="p">,</span> <span class="n">cpvars</span><span class="p">)</span> <span class="k">for</span> <span class="n">cp</span> <span class="ow">in</span> <span class="n">comps</span><span class="p">]</span>
-            <span class="n">xml</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__merge</span><span class="p">(</span><span class="n">comps</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">mergedxml</span> <span class="o">=</span> <span class="n">xml</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+                <span class="k">if</span> <span class="n">xml</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">comps</span> <span class="o">=</span> <span class="p">[</span><span class="n">xml</span><span class="p">]</span>
+                    <span class="n">cpvars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__variableComponentValues</span><span class="p">(</span><span class="n">comps</span><span class="p">)</span>
+                    <span class="n">comps</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__attachVariables</span><span class="p">(</span><span class="n">cp</span><span class="p">,</span> <span class="n">cpvars</span><span class="p">)</span>
+                             <span class="k">for</span> <span class="n">cp</span> <span class="ow">in</span> <span class="n">comps</span><span class="p">]</span>
+                    <span class="n">xml</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__merge</span><span class="p">(</span><span class="n">comps</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">xml</span> <span class="k">if</span> <span class="n">xml</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmls</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmls</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; merges the give component xmls</span>
 
 <span class="sd">        :param xmls: list of component xmls</span>
@@ -1096,6 +1115,7 @@
         <span class="n">mgr</span><span class="o">.</span><span class="n">extralinkdatasources</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extralinkdatasources</span><span class="p">)</span>
         <span class="n">mgr</span><span class="o">.</span><span class="n">canfaildatasources</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">canfaildatasources</span><span class="p">)</span>
         <span class="n">mgr</span><span class="o">.</span><span class="n">extralinkpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__splitExtraPath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extraLinkPath</span><span class="p">)</span>
+        <span class="n">mgr</span><span class="o">.</span><span class="n">skip</span> <span class="o">=</span> <span class="n">skip</span>
         <span class="n">mgr</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="n">xmls</span><span class="p">)</span>
         <span class="n">mgr</span><span class="o">.</span><span class="n">merge</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">mgr</span><span class="o">.</span><span class="n">toString</span><span class="p">()</span>

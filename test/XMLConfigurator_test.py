@@ -173,6 +173,12 @@ class XMLConfiguratorTest(unittest.TestCase):
     def getXML(self, xmlc):
         return xmlc.xmlstring
 
+    # gets merged xmlconfiguration
+    # \param xmlc configuration instance
+    # \returns xml configuration string
+    def getMergedXML(self, xmlc):
+        return xmlc.mergedxml
+
     # sets selection configuration
     # \param selectionc configuration instance
     # \param selection selection configuration string
@@ -1196,9 +1202,11 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.getXML(el)
         self.assertEqual(self.getXML(el), '')
+        self.assertEqual(self.getMergedXML(el), '')
         self.assertEqual(el.createConfiguration([]), None)
         self.getXML(el)
         self.assertEqual(self.getXML(el), '')
+        self.assertEqual(self.getMergedXML(el), '')
         el.setMandatoryComponents(man)
         el.close()
 
@@ -1241,9 +1249,16 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertEqual(el.createConfiguration([name]), None)
         xml = self.getXML(el)
+        mxml = self.getMergedXML(el)
         checkxmls(
             self,
             xml,
+            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<definition><group type="NXentry"/>'
+            '</definition>')
+        checkxmls(
+            self,
+            mxml,
             '<?xml version=\'1.0\' encoding=\'utf8\'?>'
             '<definition><group type="NXentry"/>'
             '</definition>')
@@ -1280,6 +1295,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         name = "mcs_test_component"
         xml = "<?xml version='1.0' encoding='utf8'?><definition>" \
               + "<group type='NXentry' name='$var.myentry'/></definition>"
+        oxml = xml
         while name in avc:
             name = name + '_1'
 #        print(avc
@@ -1299,21 +1315,29 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertEqual(el.createConfiguration([name]), None)
         xml = self.getXML(el)
+        mxml = self.getMergedXML(el)
         checkxmls(
             self,
             xml,
             '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
             '<group name="" type="NXentry"/></definition>')
+        checkxmls(
+            self,
+            mxml, oxml)
 
         el.variables = '{"myentry":"entry1"}'
         self.assertEqual(el.createConfiguration([name]), None)
 
         xml = self.getXML(el)
+        mxml = self.getMergedXML(el)
         checkxmls(
             self,
             xml,
             '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
             '<group name="entry1" type="NXentry"/></definition>')
+        checkxmls(
+            self,
+            mxml, oxml)
 
         self.assertEqual(el.deleteComponent(name), None)
         self.__cmps.pop()
@@ -1376,16 +1400,23 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertEqual(el.createConfiguration([name]), None)
         xml = self.getXML(el)
+        mxml = self.getMergedXML(el)
         checkxmls(
             self,
             xml,
             '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
             '<group name="" type="NXentry"/></definition>')
+        checkxmls(
+            self,
+            mxml,
+            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<group name="$var.myentry" type="NXentry"/></definition>')
 
         el.variables = '{}'
         self.assertEqual(el.createConfiguration([name, name2]), None)
 
         xml = self.getXML(el)
+        mxml = self.getMergedXML(el)
         checkxmls(
             self,
             xml,
@@ -1394,11 +1425,19 @@ class XMLConfiguratorTest(unittest.TestCase):
             '<doc>$var(myentry=entry2)</doc>'
             '</definition>'
         )
+        checkxmls(
+            self,
+            mxml,
+            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<doc>$var(myentry=entry2)</doc>'
+            '<group type="NXentry" name="$var.myentry" /></definition>'
+        )
 
         el.variables = '{"myentry":"entry1"}'
         self.assertEqual(el.createConfiguration([name, name2]), None)
 
         xml = self.getXML(el)
+        mxml = self.getMergedXML(el)
         checkxmls(
             self,
             xml,
@@ -1406,6 +1445,12 @@ class XMLConfiguratorTest(unittest.TestCase):
             '<group name="entry1" type="NXentry"/>'
             '<doc>$var(myentry=entry2)</doc>'
             '</definition>')
+        checkxmls(
+            self,
+            mxml,
+            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<doc>$var(myentry=entry2)</doc>'
+            '<group type="NXentry" name="$var.myentry" /></definition>')
 
         self.assertEqual(el.deleteComponent(name2), None)
         self.__cmps.pop()

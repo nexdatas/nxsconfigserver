@@ -135,6 +135,26 @@ class NXSConfigServer(tango.LatestDeviceImpl):
             return False
         return True
 
+    def read_MergedXML(self, attr):
+        """ Read MergedXML attribute
+
+        :param attr: xml string attribute
+        :type attr: :class:`tango.Attribute`
+        """
+        self.debug_stream("In read_MergedXML()")
+        attr.set_value(self.xmlc.mergedxml)
+
+    def is_MergedXML_allowed(self, _):
+        """ MergedXML attribute State Machine
+
+        :returns: True if the operation allowed
+        :rtype: :obj:`bool`
+        """
+        if self.get_state() in [tango.DevState.ON,
+                                tango.DevState.RUNNING]:
+            return False
+        return True
+
     def read_Selection(self, attr):
         """ Read Selection attribute
 
@@ -765,6 +785,7 @@ class NXSConfigServer(tango.LatestDeviceImpl):
 
         :brief: Creates the NDTS configuration script from the
                 given components. The result is strored in XMLString
+                and MergedXML
 
         :param argin:  DevVarStringArray    list of component names
         :type argin: :obj:`list` <:obj:`str`>
@@ -1316,6 +1337,16 @@ class NXSConfigServerClass(tango.DeviceClass):
              "it contains the resulting XML configuration.",
              'Display level': tango.DispLevel.EXPERT,
         }],
+        'MergedXML':
+        [[tango.DevString,
+          tango.SCALAR,
+          tango.READ],
+         {
+             'label': "XML for merged components",
+             'description':
+             "XML for merged components without applied variables ",
+             'Display level': tango.DispLevel.EXPERT,
+         }],
         'Selection':
         [[tango.DevString,
           tango.SCALAR,

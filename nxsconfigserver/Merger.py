@@ -77,6 +77,8 @@ class Merger(object):
 
         #: (:obj:`xml.etree.ElementTree.Element`) DOM root node
         self.__root = None
+        #: (:obj:`bool`) do not merge node on false
+        self.skip = False
         #: (:obj:`list` <:obj:`str`> ) tags which cannot have the same siblings
         self.singles = ['strategy', 'dimensions', 'definition',
                         'record', 'device', 'query', 'database',
@@ -223,11 +225,14 @@ class Merger(object):
             text1 = unicode(self.__getText(elem1)).strip()
             text2 = unicode(self.__getText(elem2)).strip()
             if text1 != text2 and text1 and text2:
-                raise IncompatibleNodeError(
-                    "Incompatible \n%s element value\n%s \n%s "
-                    % (str(self.__getAncestors(elem1, ancestors)),
-                       text1, text2),
-                    [elem1, elem2])
+                if not self.skip:
+                    raise IncompatibleNodeError(
+                        "Incompatible \n%s element value\n%s \n%s "
+                        % (str(self.__getAncestors(elem1, ancestors)),
+                           text1, text2),
+                        [elem1, elem2])
+                else:
+                    status = False
         return status
 
     def __checkAttributes(self, elem1, elem2):

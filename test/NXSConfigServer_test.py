@@ -134,6 +134,12 @@ class NXSConfigServerTest(XMLConfigurator_test.XMLConfiguratorTest):
     def getXML(self, xmlc):
         return xmlc.XMLString
 
+    # gets xmlconfiguration
+    # \param xmlc configuration instance
+    # \returns xml configuration string
+    def getMergedXML(self, xmlc):
+        return xmlc.MergedXML
+
 
 if __name__ == '__main__':
     unittest.main()

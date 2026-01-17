@@ -980,6 +980,9 @@ class XMLConfigurator(object):
             comps = self.__mydb.components(list(set(allnames)))
             xml = self.__merge(comps, skip=withVariables)
             if withVariables:
+                xml = self.__attachDataSources(
+                   self.__attachComponents(
+                       xml))))
                 self.mergedxml = xml or ""
                 if xml is not None:
                     comps = [xml]
@@ -998,11 +1001,12 @@ class XMLConfigurator(object):
         :rtype: :obj:`str`
         """
         mgr = Merger()
-        mgr.switchdatasources = json.loads(self.stepdatasources)
-        mgr.linkdatasources = json.loads(self.linkdatasources)
-        mgr.extralinkdatasources = json.loads(self.extralinkdatasources)
-        mgr.canfaildatasources = json.loads(self.canfaildatasources)
-        mgr.extralinkpath = self.__splitExtraPath(self.extraLinkPath)
+        if not skip:
+            mgr.switchdatasources = json.loads(self.stepdatasources)
+            mgr.linkdatasources = json.loads(self.linkdatasources)
+            mgr.extralinkdatasources = json.loads(self.extralinkdatasources)
+            mgr.canfaildatasources = json.loads(self.canfaildatasources)
+            mgr.extralinkpath = self.__splitExtraPath(self.extraLinkPath)
         mgr.skip = skip
         mgr.collect(xmls)
         mgr.merge()

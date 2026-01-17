@@ -982,7 +982,7 @@ class XMLConfigurator(object):
             if withVariables:
                 xml = self.__attachDataSources(
                    self.__attachComponents(
-                       xml))))
+                       xml))
                 self.mergedxml = xml or ""
                 if xml is not None:
                     comps = [xml]

@@ -831,9 +831,12 @@ class XMLConfigurator(object):
             name = subc.strip() if subc else ""
             if name:
                 if tag and name not in keys:
-                    raise NonregisteredDBRecordError(
-                        "The %s %s of %s not registered in the DataBase" % (
-                            tag if tag else "variable", name, component))
+                    if onlyexisting:
+                        raise NonregisteredDBRecordError(
+                            "The %s %s of %s not registered in the "
+                            "DataBase" % (
+                                tag if tag else "variable",
+                                name, component))
                 try:
                     xmlds = funValue([name], defsubc)
                 except Exception:
@@ -842,7 +845,7 @@ class XMLConfigurator(object):
                     raise NonregisteredDBRecordError(
                         "The %s %s of %s not registered" % (
                             tag if tag else "variable", name, component))
-                if tag:
+                if tag and xmlds:
                     if sys.version_info > (3,):
                         root = et.fromstring(
                             bytes(xmlds[0], "UTF-8"),

@@ -831,7 +831,7 @@ class XMLConfigurator(object):
             name = subc.strip() if subc else ""
             if name:
                 if tag and name not in keys:
-                    if onlyexisting:
+                    if not onlyexisting:
                         raise NonregisteredDBRecordError(
                             "The %s %s of %s not registered in the "
                             "DataBase" % (

@@ -908,10 +908,12 @@ class XMLConfigurator(object):
             component, self.__varLabel,
             list(self.__parameters.keys()), self.__getVariable)
 
-    def __attachComponents(self, component):
+    def __attachComponents(self, component, onlyexisting=False):
         """ attaches variables to component
 
         :param component: given component
+        :param onlyexisting: attachElement only if exists
+        :type onlyexisting: :obj:`bool`
         :type component: :obj:`str`
         :returns: component with attached variables
         :rtype: :obj:`str`
@@ -919,13 +921,16 @@ class XMLConfigurator(object):
         if not component:
             return
         return self.__attachElements(
-            component, self.__cpLabel, [], lambda x, y: [""])
+            component, self.__cpLabel, [], lambda x, y: [""],
+            onlyexisting=onlyexisting)
 
-    def __attachDataSources(self, component):
+    def __attachDataSources(self, component, onlyexisting=False):
         """ attaches datasources to component
 
         :param component: given component
         :type component: :obj:`str`
+        :param onlyexisting: attachElement only if exists
+        :type onlyexisting: :obj:`bool`
         :returns: component with attached datasources
         :rtype: :obj:`str`
         """
@@ -934,7 +939,7 @@ class XMLConfigurator(object):
         return self.__attachElements(
             component, self.__dsLabel,
             self.availableDataSources(), self.dataSources,
-            "datasource")
+            "datasource", onlyexisting=onlyexisting)
 
     def merge(self, names):
         """ merges the give components
@@ -982,7 +987,7 @@ class XMLConfigurator(object):
             if withVariables:
                 xml = self.__attachDataSources(
                    self.__attachComponents(
-                       xml))
+                       xml, onlyexisting=True), onlyexisting=True)
                 self.mergedxml = xml or ""
                 if xml is not None:
                     comps = [xml]

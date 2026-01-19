@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nxsconfigserver.XMLConfigurator &#8212; NXSConfigServer 2.20.0 documentation</title>
+    <title>nxsconfigserver.XMLConfigurator &#8212; NXSConfigServer 2.21.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           NXSConfigServer</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.20</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.21</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -199,7 +199,7 @@
         <span class="c1">#: (:obj:`str`) XML config string</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xmlstring</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="c1">#: (:obj:`str`) Merged coponents in XML string without variables</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mergedxml</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xmlcache</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="c1">#: (:obj:`str`) component selection</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">selection</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
         <span class="c1">#: (:obj:`str`) JSON string with arguments to connect to database</span>
@@ -943,9 +943,12 @@
             <span class="n">name</span> <span class="o">=</span> <span class="n">subc</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">subc</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
             <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">tag</span> <span class="ow">and</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="n">NonregisteredDBRecordError</span><span class="p">(</span>
-                        <span class="s2">&quot;The </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> of </span><span class="si">%s</span><span class="s2"> not registered in the DataBase&quot;</span> <span class="o">%</span> <span class="p">(</span>
-                            <span class="n">tag</span> <span class="k">if</span> <span class="n">tag</span> <span class="k">else</span> <span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">component</span><span class="p">))</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">onlyexisting</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="n">NonregisteredDBRecordError</span><span class="p">(</span>
+                            <span class="s2">&quot;The </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> of </span><span class="si">%s</span><span class="s2"> not registered in the &quot;</span>
+                            <span class="s2">&quot;DataBase&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                                <span class="n">tag</span> <span class="k">if</span> <span class="n">tag</span> <span class="k">else</span> <span class="s2">&quot;variable&quot;</span><span class="p">,</span>
+                                <span class="n">name</span><span class="p">,</span> <span class="n">component</span><span class="p">))</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">xmlds</span> <span class="o">=</span> <span class="n">funValue</span><span class="p">([</span><span class="n">name</span><span class="p">],</span> <span class="n">defsubc</span><span class="p">)</span>
                 <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
@@ -954,7 +957,7 @@
                     <span class="k">raise</span> <span class="n">NonregisteredDBRecordError</span><span class="p">(</span>
                         <span class="s2">&quot;The </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> of </span><span class="si">%s</span><span class="s2"> not registered&quot;</span> <span class="o">%</span> <span class="p">(</span>
                             <span class="n">tag</span> <span class="k">if</span> <span class="n">tag</span> <span class="k">else</span> <span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">component</span><span class="p">))</span>
-                <span class="k">if</span> <span class="n">tag</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">tag</span> <span class="ow">and</span> <span class="n">xmlds</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,):</span>
                         <span class="n">root</span> <span class="o">=</span> <span class="n">et</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span>
                             <span class="nb">bytes</span><span class="p">(</span><span class="n">xmlds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">),</span>
@@ -1020,10 +1023,12 @@
             <span class="n">component</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__varLabel</span><span class="p">,</span>
             <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="bp">self</span><span class="o">.</span><span class="n">__getVariable</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__attachComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__attachComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">onlyexisting</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; attaches variables to component</span>
 
 <span class="sd">        :param component: given component</span>
+<span class="sd">        :param onlyexisting: attachElement only if exists</span>
+<span class="sd">        :type onlyexisting: :obj:`bool`</span>
 <span class="sd">        :type component: :obj:`str`</span>
 <span class="sd">        :returns: component with attached variables</span>
 <span class="sd">        :rtype: :obj:`str`</span>
@@ -1031,13 +1036,16 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">component</span><span class="p">:</span>
             <span class="k">return</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__attachElements</span><span class="p">(</span>
-            <span class="n">component</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__cpLabel</span><span class="p">,</span> <span class="p">[],</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">])</span>
+            <span class="n">component</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__cpLabel</span><span class="p">,</span> <span class="p">[],</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">],</span>
+            <span class="n">onlyexisting</span><span class="o">=</span><span class="n">onlyexisting</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__attachDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__attachDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">onlyexisting</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; attaches datasources to component</span>
 
 <span class="sd">        :param component: given component</span>
 <span class="sd">        :type component: :obj:`str`</span>
+<span class="sd">        :param onlyexisting: attachElement only if exists</span>
+<span class="sd">        :type onlyexisting: :obj:`bool`</span>
 <span class="sd">        :returns: component with attached datasources</span>
 <span class="sd">        :rtype: :obj:`str`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1046,7 +1054,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__attachElements</span><span class="p">(</span>
             <span class="n">component</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dsLabel</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">availableDataSources</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataSources</span><span class="p">,</span>
-            <span class="s2">&quot;datasource&quot;</span><span class="p">)</span>
+            <span class="s2">&quot;datasource&quot;</span><span class="p">,</span> <span class="n">onlyexisting</span><span class="o">=</span><span class="n">onlyexisting</span><span class="p">)</span>
 
 <div class="viewcode-block" id="XMLConfigurator.merge"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.merge">[docs]</a>    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; merges the give components</span>
@@ -1075,13 +1083,15 @@
                 <span class="n">cpvars</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cpvars</span>
 
-    <span class="k">def</span> <span class="nf">__mergeVars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">withVariables</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__mergeVars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">withVariables</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">onlyCache</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; merges the give components</span>
 
 <span class="sd">        :param names: list of component names</span>
 <span class="sd">        :type names: :obj:`list` &lt;:obj:`str`&gt;</span>
 <span class="sd">        :param withVariables: if true variables will be substituted</span>
 <span class="sd">        :param withVariables: :obj:`bool`</span>
+<span class="sd">        :param onlyCache: if true create only cache</span>
+<span class="sd">        :param onlyCache: :obj:`bool`</span>
 <span class="sd">        :returns: merged components</span>
 <span class="sd">        :rtype: :obj:`str`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1092,7 +1102,12 @@
             <span class="n">comps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">components</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">allnames</span><span class="p">)))</span>
             <span class="n">xml</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__merge</span><span class="p">(</span><span class="n">comps</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="n">withVariables</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">withVariables</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">mergedxml</span> <span class="o">=</span> <span class="n">xml</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+                <span class="n">xml</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__attachDataSources</span><span class="p">(</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">__attachComponents</span><span class="p">(</span>
+                       <span class="n">xml</span><span class="p">,</span> <span class="n">onlyexisting</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">onlyexisting</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">xmlcache</span> <span class="o">=</span> <span class="n">xml</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+                <span class="k">if</span> <span class="n">onlyCache</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">xmlcache</span>
                 <span class="k">if</span> <span class="n">xml</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">comps</span> <span class="o">=</span> <span class="p">[</span><span class="n">xml</span><span class="p">]</span>
                     <span class="n">cpvars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__variableComponentValues</span><span class="p">(</span><span class="n">comps</span><span class="p">)</span>
@@ -1110,11 +1125,12 @@
 <span class="sd">        :rtype: :obj:`str`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">mgr</span> <span class="o">=</span> <span class="n">Merger</span><span class="p">()</span>
-        <span class="n">mgr</span><span class="o">.</span><span class="n">switchdatasources</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stepdatasources</span><span class="p">)</span>
-        <span class="n">mgr</span><span class="o">.</span><span class="n">linkdatasources</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linkdatasources</span><span class="p">)</span>
-        <span class="n">mgr</span><span class="o">.</span><span class="n">extralinkdatasources</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extralinkdatasources</span><span class="p">)</span>
-        <span class="n">mgr</span><span class="o">.</span><span class="n">canfaildatasources</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">canfaildatasources</span><span class="p">)</span>
-        <span class="n">mgr</span><span class="o">.</span><span class="n">extralinkpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__splitExtraPath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extraLinkPath</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">skip</span><span class="p">:</span>
+            <span class="n">mgr</span><span class="o">.</span><span class="n">switchdatasources</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stepdatasources</span><span class="p">)</span>
+            <span class="n">mgr</span><span class="o">.</span><span class="n">linkdatasources</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linkdatasources</span><span class="p">)</span>
+            <span class="n">mgr</span><span class="o">.</span><span class="n">extralinkdatasources</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extralinkdatasources</span><span class="p">)</span>
+            <span class="n">mgr</span><span class="o">.</span><span class="n">canfaildatasources</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">canfaildatasources</span><span class="p">)</span>
+            <span class="n">mgr</span><span class="o">.</span><span class="n">extralinkpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__splitExtraPath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extraLinkPath</span><span class="p">)</span>
         <span class="n">mgr</span><span class="o">.</span><span class="n">skip</span> <span class="o">=</span> <span class="n">skip</span>
         <span class="n">mgr</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="n">xmls</span><span class="p">)</span>
         <span class="n">mgr</span><span class="o">.</span><span class="n">merge</span><span class="p">()</span>
@@ -1146,6 +1162,16 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">epath</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">nd</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;NX&quot;</span> <span class="o">+</span> <span class="n">nd</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
         <span class="k">return</span> <span class="n">epath</span>
+
+<div class="viewcode-block" id="XMLConfigurator.createCache"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.createCache">[docs]</a>    <span class="k">def</span> <span class="nf">createCache</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; creates the final configuration string in the xmlstring attribute</span>
+
+<span class="sd">        :param names: list of component names</span>
+<span class="sd">        :type names: :obj:`list` &lt;:obj:`str`&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__mergeVars</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">withVariables</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">onlyCache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_streams</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;XMLConfigurator::createConfiguration() &quot;</span>
+                           <span class="s2">&quot;- Create configuration&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="XMLConfigurator.createConfiguration"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.createConfiguration">[docs]</a>    <span class="k">def</span> <span class="nf">createConfiguration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; creates the final configuration string in the xmlstring attribute</span>

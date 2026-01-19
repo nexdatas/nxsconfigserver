@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nxsconfigserver.NXSConfigServer &#8212; NXSConfigServer 2.20.0 documentation</title>
+    <title>nxsconfigserver.NXSConfigServer &#8212; NXSConfigServer 2.21.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           NXSConfigServer</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.20</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.21</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -247,17 +247,17 @@
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="NXSConfigServer.read_MergedXML"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_MergedXML">[docs]</a>    <span class="k">def</span> <span class="nf">read_MergedXML</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read MergedXML attribute</span>
+<div class="viewcode-block" id="NXSConfigServer.read_XMLCache"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.read_XMLCache">[docs]</a>    <span class="k">def</span> <span class="nf">read_XMLCache</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read XMLCache attribute</span>
 
 <span class="sd">        :param attr: xml string attribute</span>
 <span class="sd">        :type attr: :class:`tango.Attribute`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">debug_stream</span><span class="p">(</span><span class="s2">&quot;In read_MergedXML()&quot;</span><span class="p">)</span>
-        <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">mergedxml</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">debug_stream</span><span class="p">(</span><span class="s2">&quot;In read_XMLCache()&quot;</span><span class="p">)</span>
+        <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">xmlcache</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="NXSConfigServer.is_MergedXML_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_MergedXML_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_MergedXML_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; MergedXML attribute State Machine</span>
+<div class="viewcode-block" id="NXSConfigServer.is_XMLCache_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_XMLCache_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_XMLCache_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; XMLCache attribute State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -897,7 +897,7 @@
 
 <span class="sd">        :brief: Creates the NDTS configuration script from the</span>
 <span class="sd">                given components. The result is strored in XMLString</span>
-<span class="sd">                and MergedXML</span>
+<span class="sd">                and XMLCache</span>
 
 <span class="sd">        :param argin:  DevVarStringArray    list of component names</span>
 <span class="sd">        :type argin: :obj:`list` &lt;:obj:`str`&gt;</span>
@@ -913,6 +913,36 @@
 
 <div class="viewcode-block" id="NXSConfigServer.is_CreateConfiguration_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_CreateConfiguration_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_CreateConfiguration_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; CreateConfiguration command State Machine</span>
+
+<span class="sd">        :returns: True if the operation allowed</span>
+<span class="sd">        :rtype: :obj:`bool`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">ON</span><span class="p">,</span>
+                                <span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">RUNNING</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="NXSConfigServer.CreateCache"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.CreateCache">[docs]</a>    <span class="k">def</span> <span class="nf">CreateCache</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; CreateCache command</span>
+
+<span class="sd">        :brief: Creates the NDTS cache script from the</span>
+<span class="sd">                given components. The result is strored in XMLString</span>
+<span class="sd">                and XMLCache</span>
+
+<span class="sd">        :param argin:  DevVarStringArray    list of component names</span>
+<span class="sd">        :type argin: :obj:`list` &lt;:obj:`str`&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">debug_stream</span><span class="p">(</span><span class="s2">&quot;In CreateCache()&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">RUNNING</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">xmlc</span><span class="o">.</span><span class="n">createCache</span><span class="p">(</span><span class="n">argin</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span> <span class="o">==</span> <span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">RUNNING</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">tango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NXSConfigServer.is_CreateCache_allowed"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.NXSConfigServer.NXSConfigServer.is_CreateCache_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_CreateCache_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; CreateCache command State Machine</span>
 
 <span class="sd">        :returns: True if the operation allowed</span>
 <span class="sd">        :rtype: :obj:`bool`</span>
@@ -1388,6 +1418,9 @@
         <span class="s1">&#39;CreateConfiguration&#39;</span><span class="p">:</span>
             <span class="p">[[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevVarStringArray</span><span class="p">,</span> <span class="s2">&quot;list of component names&quot;</span><span class="p">],</span>
              <span class="p">[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevVoid</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]],</span>
+        <span class="s1">&#39;CreateCache&#39;</span><span class="p">:</span>
+            <span class="p">[[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevVarStringArray</span><span class="p">,</span> <span class="s2">&quot;list of component names&quot;</span><span class="p">],</span>
+             <span class="p">[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevVoid</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]],</span>
         <span class="s1">&#39;DeleteComponent&#39;</span><span class="p">:</span>
             <span class="p">[[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevString</span><span class="p">,</span> <span class="s2">&quot;component name&quot;</span><span class="p">],</span>
              <span class="p">[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevVoid</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]],</span>
@@ -1449,7 +1482,7 @@
              <span class="s2">&quot;it contains the resulting XML configuration.&quot;</span><span class="p">,</span>
              <span class="s1">&#39;Display level&#39;</span><span class="p">:</span> <span class="n">tango</span><span class="o">.</span><span class="n">DispLevel</span><span class="o">.</span><span class="n">EXPERT</span><span class="p">,</span>
         <span class="p">}],</span>
-        <span class="s1">&#39;MergedXML&#39;</span><span class="p">:</span>
+        <span class="s1">&#39;XMLCache&#39;</span><span class="p">:</span>
         <span class="p">[[</span><span class="n">tango</span><span class="o">.</span><span class="n">DevString</span><span class="p">,</span>
           <span class="n">tango</span><span class="o">.</span><span class="n">SCALAR</span><span class="p">,</span>
           <span class="n">tango</span><span class="o">.</span><span class="n">READ</span><span class="p">],</span>

@@ -1,3 +1,7 @@
+2026-01-19 Jan Kotanski <jankotan@gmail.com>
+	* changed MergedXML to XMLCache attribute  (#88)
+	* tagged as v2.21.0
+
 2026-01-16 Jan Kotanski <jankotan@gmail.com>
 	* add MergedXML attribute  (#88)
 	* tagged as v2.20.0

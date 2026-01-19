@@ -176,8 +176,8 @@ class XMLConfiguratorTest(unittest.TestCase):
     # gets merged xmlconfiguration
     # \param xmlc configuration instance
     # \returns xml configuration string
-    def getMergedXML(self, xmlc):
-        return xmlc.mergedxml
+    def getXMLCache(self, xmlc):
+        return xmlc.xmlcache
 
     # sets selection configuration
     # \param selectionc configuration instance
@@ -1202,11 +1202,11 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.getXML(el)
         self.assertEqual(self.getXML(el), '')
-        self.assertEqual(self.getMergedXML(el), '')
+        self.assertEqual(self.getXMLCache(el), '')
         self.assertEqual(el.createConfiguration([]), None)
         self.getXML(el)
         self.assertEqual(self.getXML(el), '')
-        self.assertEqual(self.getMergedXML(el), '')
+        self.assertEqual(self.getXMLCache(el), '')
         el.setMandatoryComponents(man)
         el.close()
 
@@ -1249,7 +1249,7 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertEqual(el.createConfiguration([name]), None)
         xml = self.getXML(el)
-        mxml = self.getMergedXML(el)
+        mxml = self.getXMLCache(el)
         checkxmls(
             self,
             xml,
@@ -1315,7 +1315,7 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertEqual(el.createConfiguration([name]), None)
         xml = self.getXML(el)
-        mxml = self.getMergedXML(el)
+        mxml = self.getXMLCache(el)
         checkxmls(
             self,
             xml,
@@ -1329,7 +1329,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         self.assertEqual(el.createConfiguration([name]), None)
 
         xml = self.getXML(el)
-        mxml = self.getMergedXML(el)
+        mxml = self.getXMLCache(el)
         checkxmls(
             self,
             xml,
@@ -1400,7 +1400,7 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertEqual(el.createConfiguration([name]), None)
         xml = self.getXML(el)
-        mxml = self.getMergedXML(el)
+        mxml = self.getXMLCache(el)
         checkxmls(
             self,
             xml,
@@ -1416,7 +1416,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         self.assertEqual(el.createConfiguration([name, name2]), None)
 
         xml = self.getXML(el)
-        mxml = self.getMergedXML(el)
+        mxml = self.getXMLCache(el)
         checkxmls(
             self,
             xml,
@@ -1437,7 +1437,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         self.assertEqual(el.createConfiguration([name, name2]), None)
 
         xml = self.getXML(el)
-        mxml = self.getMergedXML(el)
+        mxml = self.getXMLCache(el)
         checkxmls(
             self,
             xml,

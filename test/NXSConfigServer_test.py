@@ -137,8 +137,8 @@ class NXSConfigServerTest(XMLConfigurator_test.XMLConfiguratorTest):
     # gets xmlconfiguration
     # \param xmlc configuration instance
     # \returns xml configuration string
-    def getMergedXML(self, xmlc):
-        return xmlc.MergedXML
+    def getXMLCache(self, xmlc):
+        return xmlc.XMLCache
 
 
 if __name__ == '__main__':

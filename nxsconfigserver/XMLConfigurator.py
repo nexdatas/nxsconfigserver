@@ -87,7 +87,7 @@ class XMLConfigurator(object):
         #: (:obj:`str`) XML config string
         self.xmlstring = ""
         #: (:obj:`str`) Merged coponents in XML string without variables
-        self.mergedxml = ""
+        self.xmlcache = ""
         #: (:obj:`str`) component selection
         self.selection = "{}"
         #: (:obj:`str`) JSON string with arguments to connect to database
@@ -831,9 +831,12 @@ class XMLConfigurator(object):
             name = subc.strip() if subc else ""
             if name:
                 if tag and name not in keys:
-                    raise NonregisteredDBRecordError(
-                        "The %s %s of %s not registered in the DataBase" % (
-                            tag if tag else "variable", name, component))
+                    if not onlyexisting:
+                        raise NonregisteredDBRecordError(
+                            "The %s %s of %s not registered in the "
+                            "DataBase" % (
+                                tag if tag else "variable",
+                                name, component))
                 try:
                     xmlds = funValue([name], defsubc)
                 except Exception:
@@ -842,7 +845,7 @@ class XMLConfigurator(object):
                     raise NonregisteredDBRecordError(
                         "The %s %s of %s not registered" % (
                             tag if tag else "variable", name, component))
-                if tag:
+                if tag and xmlds:
                     if sys.version_info > (3,):
                         root = et.fromstring(
                             bytes(xmlds[0], "UTF-8"),
@@ -908,10 +911,12 @@ class XMLConfigurator(object):
             component, self.__varLabel,
             list(self.__parameters.keys()), self.__getVariable)
 
-    def __attachComponents(self, component):
+    def __attachComponents(self, component, onlyexisting=False):
         """ attaches variables to component
 
         :param component: given component
+        :param onlyexisting: attachElement only if exists
+        :type onlyexisting: :obj:`bool`
         :type component: :obj:`str`
         :returns: component with attached variables
         :rtype: :obj:`str`
@@ -919,13 +924,16 @@ class XMLConfigurator(object):
         if not component:
             return
         return self.__attachElements(
-            component, self.__cpLabel, [], lambda x, y: [""])
+            component, self.__cpLabel, [], lambda x, y: [""],
+            onlyexisting=onlyexisting)
 
-    def __attachDataSources(self, component):
+    def __attachDataSources(self, component, onlyexisting=False):
         """ attaches datasources to component
 
         :param component: given component
         :type component: :obj:`str`
+        :param onlyexisting: attachElement only if exists
+        :type onlyexisting: :obj:`bool`
         :returns: component with attached datasources
         :rtype: :obj:`str`
         """
@@ -934,7 +942,7 @@ class XMLConfigurator(object):
         return self.__attachElements(
             component, self.__dsLabel,
             self.availableDataSources(), self.dataSources,
-            "datasource")
+            "datasource", onlyexisting=onlyexisting)
 
     def merge(self, names):
         """ merges the give components
@@ -963,13 +971,15 @@ class XMLConfigurator(object):
                 cpvars[str(key)] = str(value)
         return cpvars
 
-    def __mergeVars(self, names, withVariables=False):
+    def __mergeVars(self, names, withVariables=False, onlyCache=False):
         """ merges the give components
 
         :param names: list of component names
         :type names: :obj:`list` <:obj:`str`>
         :param withVariables: if true variables will be substituted
         :param withVariables: :obj:`bool`
+        :param onlyCache: if true create only cache
+        :param onlyCache: :obj:`bool`
         :returns: merged components
         :rtype: :obj:`str`
         """
@@ -980,7 +990,12 @@ class XMLConfigurator(object):
             comps = self.__mydb.components(list(set(allnames)))
             xml = self.__merge(comps, skip=withVariables)
             if withVariables:
-                self.mergedxml = xml or ""
+                xml = self.__attachDataSources(
+                   self.__attachComponents(
+                       xml, onlyexisting=True), onlyexisting=True)
+                self.xmlcache = xml or ""
+                if onlyCache:
+                    return self.xmlcache
                 if xml is not None:
                     comps = [xml]
                     cpvars = self.__variableComponentValues(comps)
@@ -998,11 +1013,12 @@ class XMLConfigurator(object):
         :rtype: :obj:`str`
         """
         mgr = Merger()
-        mgr.switchdatasources = json.loads(self.stepdatasources)
-        mgr.linkdatasources = json.loads(self.linkdatasources)
-        mgr.extralinkdatasources = json.loads(self.extralinkdatasources)
-        mgr.canfaildatasources = json.loads(self.canfaildatasources)
-        mgr.extralinkpath = self.__splitExtraPath(self.extraLinkPath)
+        if not skip:
+            mgr.switchdatasources = json.loads(self.stepdatasources)
+            mgr.linkdatasources = json.loads(self.linkdatasources)
+            mgr.extralinkdatasources = json.loads(self.extralinkdatasources)
+            mgr.canfaildatasources = json.loads(self.canfaildatasources)
+            mgr.extralinkpath = self.__splitExtraPath(self.extraLinkPath)
         mgr.skip = skip
         mgr.collect(xmls)
         mgr.merge()
@@ -1034,6 +1050,16 @@ class XMLConfigurator(object):
                 else:
                     epath.append([nd[0], "NX" + nd[0]])
         return epath
+
+    def createCache(self, names):
+        """ creates the final configuration string in the xmlstring attribute
+
+        :param names: list of component names
+        :type names: :obj:`list` <:obj:`str`>
+        """
+        self.__mergeVars(names, withVariables=True, onlyCache=True)
+        self._streams.info("XMLConfigurator::createConfiguration() "
+                           "- Create configuration")
 
     def createConfiguration(self, names):
         """ creates the final configuration string in the xmlstring attribute

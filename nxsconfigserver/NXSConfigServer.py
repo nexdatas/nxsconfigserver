@@ -135,17 +135,17 @@ class NXSConfigServer(tango.LatestDeviceImpl):
             return False
         return True
 
-    def read_MergedXML(self, attr):
-        """ Read MergedXML attribute
+    def read_XMLCache(self, attr):
+        """ Read XMLCache attribute
 
         :param attr: xml string attribute
         :type attr: :class:`tango.Attribute`
         """
-        self.debug_stream("In read_MergedXML()")
-        attr.set_value(self.xmlc.mergedxml)
+        self.debug_stream("In read_XMLCache()")
+        attr.set_value(self.xmlc.xmlcache)
 
-    def is_MergedXML_allowed(self, _):
-        """ MergedXML attribute State Machine
+    def is_XMLCache_allowed(self, _):
+        """ XMLCache attribute State Machine
 
         :returns: True if the operation allowed
         :rtype: :obj:`bool`
@@ -785,7 +785,7 @@ class NXSConfigServer(tango.LatestDeviceImpl):
 
         :brief: Creates the NDTS configuration script from the
                 given components. The result is strored in XMLString
-                and MergedXML
+                and XMLCache
 
         :param argin:  DevVarStringArray    list of component names
         :type argin: :obj:`list` <:obj:`str`>
@@ -801,6 +801,36 @@ class NXSConfigServer(tango.LatestDeviceImpl):
 
     def is_CreateConfiguration_allowed(self):
         """ CreateConfiguration command State Machine
+
+        :returns: True if the operation allowed
+        :rtype: :obj:`bool`
+        """
+        if self.get_state() in [tango.DevState.ON,
+                                tango.DevState.RUNNING]:
+            return False
+        return True
+
+    def CreateCache(self, argin):
+        """ CreateCache command
+
+        :brief: Creates the NDTS cache script from the
+                given components. The result is strored in XMLString
+                and XMLCache
+
+        :param argin:  DevVarStringArray    list of component names
+        :type argin: :obj:`list` <:obj:`str`>
+        """
+        self.debug_stream("In CreateCache()")
+        try:
+            self.set_state(tango.DevState.RUNNING)
+            self.xmlc.createCache(argin)
+            self.set_state(tango.DevState.OPEN)
+        finally:
+            if self.get_state() == tango.DevState.RUNNING:
+                self.set_state(tango.DevState.OPEN)
+
+    def is_CreateCache_allowed(self):
+        """ CreateCache command State Machine
 
         :returns: True if the operation allowed
         :rtype: :obj:`bool`
@@ -1276,6 +1306,9 @@ class NXSConfigServerClass(tango.DeviceClass):
         'CreateConfiguration':
             [[tango.DevVarStringArray, "list of component names"],
              [tango.DevVoid, ""]],
+        'CreateCache':
+            [[tango.DevVarStringArray, "list of component names"],
+             [tango.DevVoid, ""]],
         'DeleteComponent':
             [[tango.DevString, "component name"],
              [tango.DevVoid, ""]],
@@ -1337,7 +1370,7 @@ class NXSConfigServerClass(tango.DeviceClass):
              "it contains the resulting XML configuration.",
              'Display level': tango.DispLevel.EXPERT,
         }],
-        'MergedXML':
+        'XMLCache':
         [[tango.DevString,
           tango.SCALAR,
           tango.READ],

@@ -28,7 +28,7 @@
 				<li> <a href="FullDocument.html#cmdStoreSelection"> StoreSelection </a>
 				<li> <a href="FullDocument.html#cmdStoreComponent"> StoreComponent </a>
 				<li> <a href="FullDocument.html#cmdStoreDataSource"> StoreDataSource </a>
-				<li> <a href="FullDocument.html#cmdCreateConfiguration"> CreateConfiguration </a>
+				<li> <a href="FullDocument.html#cmdCreateCache"> CreateCache </a>
 				<li> <a href="FullDocument.html#cmdDeleteComponent"> DeleteComponent </a>
 				<li> <a href="FullDocument.html#cmdDeleteSelection"> DeleteSelection </a>
 				<li> <a href="FullDocument.html#cmdDeleteDataSource"> DeleteDataSource </a>
@@ -55,7 +55,7 @@
 				<li> <a href="FullDocument.html#attrLinkDataSources"> LinkDataSources </a>
 				<li> <a href="FullDocument.html#attrCanFailDataSources"> CanFailDataSources </a>
 				<li> <a href="FullDocument.html#attrExtraLinkDataSources"> ExtraLinkDataSources </a>
-				<li> <a href="FullDocument.html#attrMergedXML"> MergedXML </a>
+				<li> <a href="FullDocument.html#attrXMLCache"> XMLCache </a>
 			</ul>
 			<li> <a href="FullDocument.html#states">       States       </a>
 		</ul>
@@ -265,11 +265,11 @@
 		<td> Stores the DataSource from XMLString </td>
 	</tr>
 	<tr>
-		<td> <a href="CmdCreateConfiguration.html"> CreateConfiguration </a> </td>
+		<td> <a href="CmdCreateCache.html"> CreateCache </a> </td>
 		<td> DEVVAR_STRINGARRAY </td>
 		<td> DEV_VOID </td>
 		<td> OPERATOR </td>
-		<td> Creates the NDTS configuration script from the given components. The result is strored in XMLString </td>
+		<td> Creates the cache configuration script from the given components. The result is strored in XMLCache </td>
 	</tr>
 	<tr>
 		<td> <a href="CmdDeleteComponent.html"> DeleteComponent </a> </td>
@@ -1057,16 +1057,16 @@
 	</tr>
 </table>
 <br><br><hr>
-<a name="cmdCreateConfiguration"> </a>
+<a name="cmdCreateCache"> </a>
 <br><br><br>
-<font size="+1"><u><b> Command CreateConfiguration : </b></u></font>
+<font size="+1"><u><b> Command CreateCache : </b></u></font>
 <ul>
-	Creates the NDTS configuration script from the given components. The result is strored in XMLString
+	Creates the cache configuration script from the given components. The result is strored in XMLCache
 </ul>
 <br><br><br>
 <Table Border=2 Cellpadding=3 CELLSPACING=0>
 	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
-	<td colspan=0> <font size=+1> <center><b> CreateConfiguration Definition </b></font></center></td>
+	<td colspan=0> <font size=+1> <center><b> CreateCache Definition </b></font></center></td>
 	</tr>
 	<tr>
 		<td> Input Argument </td>
@@ -1900,14 +1900,14 @@
 		<td> JSON list of datasources to which links will be added </td>
 	</tr>
 	<tr>
-		<td> <a href="AttrMergedXML.html"> MergedXML </a> </td>
+		<td> <a href="AttrXMLCache.html"> XMLCache </a> </td>
 		<td> false </td>
 		<td> false </td>
 		<td> Scalar </td>
 		<td> READ </td>
 		<td> Tango::DEV_STRING </td>
 		<td> EXPERT </td>
-		<td> XML for merged components without applied variables  </td>
+		<td> XML for merged components without applied variables </td>
 	</tr>
 </table>
 <br><br>
@@ -3420,11 +3420,11 @@
 </table>
 <br><br>
 <hr>
-<a name="attrMergedXML"> </a>
+<a name="attrXMLCache"> </a>
 <br><br><br>
-<font size="+1"><u><b> Attribute MergedXML : </b></u></font>
+<font size="+1"><u><b> Attribute XMLCache : </b></u></font>
 <ul>
-	XML for merged components without applied variables 
+	XML for merged components without applied variables
 </ul>
 <br><br><br>
 <Table Border=0 Cellpadding=0 CELLSPACING=20>

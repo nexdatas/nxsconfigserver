@@ -184,7 +184,7 @@ class Merger(object):
             res += ":" + name
         return res
 
-    def __areMergeable(self, elem1, elem2, ancestors):
+    def __areMergeable(self, elem1, elem2, ancestors, node):
         """ checks if two elements are mergeable
 
         :param elem1: first element
@@ -216,10 +216,19 @@ class Merger(object):
         if tags:
             status = False
             if tagName in self.singles or (name1 and name1 == name2):
-                raise IncompatibleNodeError(
-                    "Incompatible element attributes  %s: %s"
-                    % (str(self.__getAncestors(elem1, ancestors)), str(tags)),
-                    [elem1, elem2])
+                if not self.skip:
+                    if tags and tags[0] == ('TANGO', 'CLIENT'):
+                        node.remove(elem2)
+                    elif tags and tags[0] == ('CLIENT', 'TANGO'):
+                        node.remove(elem1)
+                    else:
+                        raise IncompatibleNodeError(
+                            "Incompatible element attributes  %s: %s %s"
+                            % (str(self.__getAncestors(elem1, ancestors)),
+                               str(node.get("name")),  str(tags)),
+                            [elem1, elem2])
+                else:
+                    status = False
 
         if tagName in self.uniqueText:
             text1 = unicode(self.__getText(elem1)).strip()
@@ -330,6 +339,9 @@ class Merger(object):
 
             children = list(node)
             c1 = 0
+            if unicode(node.tag) in self.switchable and self.switchdatasources:
+                # print("NODE", node.tag, node.get("name"))
+                self.__switch(node)
             while c1 < len(children):
                 child1 = children[c1]
                 c2 = c1 + 1
@@ -338,7 +350,7 @@ class Merger(object):
                     if child1 != child2:
                         if self.__areMergeable(
                                 child1, child2,
-                                ancestors):
+                                ancestors, node):
                             self.__mergeNodes(child1, child2, node)
                             children.pop(c2)
                             c2 -= 1
@@ -359,8 +371,9 @@ class Merger(object):
 
                 self.__mergeChildren(child, newancestors, entrynode,
                                      datanode, linknode)
-                if cName in self.switchable and self.switchdatasources:
-                    self.__switch(child)
+                # if cName in self.switchable and self.switchdatasources:
+                #     print("CHILD", child.tag, child.get("name"))
+                #     self.__switch(child)
                 if cName in self.linkable and self.linkdatasources:
                     datanode = self.__addlink(
                         child, newancestors, entrynode, datanode,
@@ -431,7 +444,8 @@ class Merger(object):
         :type node: :obj:`xml.etree.ElementTree.Element`
         """
         if node is not None:
-            stnode = None
+            stnodes = []
+            modes = []
             mode = None
             dsname = None
             dsnode = None
@@ -456,13 +470,18 @@ class Merger(object):
                 elif cName == 'strategy':
                     mode = child.get("mode")
                     if mode in self.modesToSwitch.keys():
-                        stnode = child
-                    else:
-                        break
-                if stnode is not None and dsnode is not None:
-                    break
-            if stnode is not None and dsnode is not None:
-                stnode.attrib["mode"] = self.modesToSwitch[mode]
+                        stnodes.append(child)
+                        modes.append(mode)
+                    # else:
+                    #     break
+                # if stnode not None and dsnode is not None:
+                #     break
+            if stnodes and dsnode is not None:
+                for si, stn in enumerate(stnodes):
+                    mode = modes[si]
+                    if mode in self.modesToSwitch.keys():
+                        stn.attrib["mode"] = self.modesToSwitch[mode]
+                        # print("SWITCH", node.get("name"), dsname, dsnode)
 
     def __canfail(self, node):
         """ switch the given node to canfail mode

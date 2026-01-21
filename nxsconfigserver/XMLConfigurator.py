@@ -985,8 +985,12 @@ class XMLConfigurator(object):
         """
         xml = ""
         if self.__mydb:
-            allnames = self.dependentComponents(
-                list(set(self.__mydb.mandatory() + names)))
+            cached = [nm for nm in names if nm.startswith("__configuration_")]
+            if cached:
+                allnames = self.dependentComponents(list(set(names)))
+            else:
+                allnames = self.dependentComponents(
+                    list(set(self.__mydb.mandatory() + names)))
             comps = self.__mydb.components(list(set(allnames)))
             xml = self.__merge(comps, skip=withVariables)
             if withVariables:

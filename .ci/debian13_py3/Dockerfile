@@ -16,8 +16,8 @@ RUN chmod 644 /etc/apt/trusted.gpg.d/debian-hdri-repo.gpg
 RUN cd /etc/apt/sources.list.d && wget http://repos.pni-hdri.de/trixie-pni-hdri.list
 
 
-RUN apt-get -qq update && apt-get -qq -y dist-upgrade
-RUN apt-get -qq update && apt-get -qq install -y default-mysql-client  python3-h5py  python3-sphinx  apt-utils debconf-utils net-tools  omniidl libomniorb4-dev libcos4-dev libomnithread4-dev libzmq3-dev python3-lxml liblog4j1.2-java python3-setuptools python3-pytest
+RUN apt-get -qq update && apt-get  -y dist-upgrade
+RUN apt-get -qq update && apt-get install -y default-mysql-client  python3-h5py  python3-sphinx  apt-utils debconf-utils net-tools  omniidl libomniorb4-dev libcos4-dev libomnithread4-dev libzmq3-dev python3-lxml liblog4j1.2-java python3-setuptools python3-pytest
 
 # set db configuration
 RUN useradd -ms /bin/bash tango

@@ -20,4 +20,4 @@
 """ release version module """
 
 #: version number
-__version__ = "2.22.9"
+__version__ = "2.22.0"

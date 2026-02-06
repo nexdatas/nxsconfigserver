@@ -1,3 +1,7 @@
+2026-02-06 Jan Kotanski <jankotan@gmail.com>
+	* prefer INIT over STEP mode in merging (#100)
+	* tagged as v2.22.0
+
 2026-01-20 Jan Kotanski <jankotan@gmail.com>
 	* skip mandatory components when caching applied (#94)
 	* tagged as v2.21.2

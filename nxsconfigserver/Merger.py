@@ -221,6 +221,10 @@ class Merger(object):
                         node.remove(elem2)
                     elif tags and tags[0] == ('CLIENT', 'TANGO'):
                         node.remove(elem1)
+                    elif tags and tags[0] == ('INIT', 'STEP'):
+                        node.remove(elem2)
+                    elif tags and tags[0] == ('STEP', 'INIT'):
+                        node.remove(elem1)
                     else:
                         raise IncompatibleNodeError(
                             "Incompatible element attributes  %s: %s %s"

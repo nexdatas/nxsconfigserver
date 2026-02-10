@@ -1089,7 +1089,8 @@ class XMLConfigurator(object):
             if xmls.startswith("<?xml"):
                 self.xmlstring = xmls
             else:
-                self.xmlstring = "<?xml version='1.0' encoding='utf-8'?>" + xmls
+                self.xmlstring = \
+                    "<?xml version='1.0' encoding='utf-8'?>" + xmls
         else:
             self.xmlstring = ''
         self._streams.info("XMLConfigurator::createConfiguration() "

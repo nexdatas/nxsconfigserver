@@ -30,7 +30,7 @@ from nxsconfigserver.ComponentParser import ComponentHandler
 
 def parseEncode(text, element):
     if hasattr(text, "encode"):
-        return sax.parseString(text.encode("utf8"), element)
+        return sax.parseString(text.encode("utf-8"), element)
     else:
         return text
 

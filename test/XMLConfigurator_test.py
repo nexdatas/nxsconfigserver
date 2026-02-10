@@ -217,7 +217,7 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?>" \
               "<definition><group type='NXentry'/>" \
               "</definition>"
         while name in avc:
@@ -259,7 +259,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         avc = el.availableComponents()
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?>" \
               "<definition><group type='NXentry'/>" \
               + "</definition>"
         while name in avc:
@@ -309,7 +309,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         avc = el.availableComponents()
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?>" \
               "<definition><group type=NXentry'/>" \
               + "</definition>"
         while name in avc:
@@ -365,10 +365,10 @@ class XMLConfiguratorTest(unittest.TestCase):
         avc = el.availableComponents()
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?>" \
               "<definition><group type='NXentry'/>" \
               "</definition>"
-        xml2 = "<?xml version='1.0' encoding='utf8'?>" \
+        xml2 = "<?xml version='1.0' encoding='utf-8'?>" \
                "<definition><group type='NXentry2'/>" \
                "</definition>"
         while name in avc:
@@ -432,10 +432,10 @@ class XMLConfiguratorTest(unittest.TestCase):
         avc = el.availableComponents()
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?>" \
               "<definition><group type='NXentry'/>" \
               + "</definition>"
-        xml2 = "<?xml version='1.0' encoding='utf8'?>" \
+        xml2 = "<?xml version='1.0' encoding='utf-8'?>" \
                "<definition><group type='NXentry2'/>" \
                + "</definition>"
         while name in avc:
@@ -748,7 +748,7 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_datasource"
-        xml = "<?xml version='1.0' encoding='utf8'?>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?>" \
               "<definition><group type='NXentry'/>" \
               + "</definition>"
         while name in avc:
@@ -790,7 +790,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         avc = el.availableDataSources()
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_datasource"
-        xml = "<?xml version='1.0' encoding='utf8'?>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?>" \
               "<definition><group type='NXentry'/>" \
               + "</definition>"
         while name in avc:
@@ -840,7 +840,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         avc = el.availableDataSources()
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_datasource"
-        xml = "<?xml version='1.0' encoding='utf8'?>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?>" \
               "<definition><group type='NXentry'>" \
               + "</definition>"
         while name in avc:
@@ -885,10 +885,10 @@ class XMLConfiguratorTest(unittest.TestCase):
         avc = el.availableDataSources()
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_datasource"
-        xml = "<?xml version='1.0' encoding='utf8'?>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?>" \
               "<definition><group type='NXentry'/>" \
               + "</definition>"
-        xml2 = "<?xml version='1.0' encoding='utf8'?>" \
+        xml2 = "<?xml version='1.0' encoding='utf-8'?>" \
                "<definition><group type='NXentry2'/>" \
                + "</definition>"
         while name in avc:
@@ -955,10 +955,10 @@ class XMLConfiguratorTest(unittest.TestCase):
         avc = el.availableDataSources()
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_datasource"
-        xml = "<?xml version='1.0' encoding='utf8'?>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?>" \
               "<definition><group type='NXentry'/>" \
               + "</definition>"
-        xml2 = "<?xml version='1.0' encoding='utf8'?>" \
+        xml2 = "<?xml version='1.0' encoding='utf-8'?>" \
                "<definition><group type='NXentry2'/>" \
                + "</definition>"
         while name in avc:
@@ -1062,7 +1062,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         avc = el.availableComponents()
 
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?>" \
               "<definition><group type='NXentry'/>" \
               + "</definition>"
         while name in avc:
@@ -1116,7 +1116,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         avc = el.availableComponents()
 
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?>" \
               "<definition><group type='NXentry'/>" \
               + "</definition>"
         while name in avc:
@@ -1227,7 +1227,7 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?>" \
               "<definition><group type='NXentry'/>" \
               "</definition>"
         while name in avc:
@@ -1253,13 +1253,13 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/>'
             '</definition>')
         checkxmls(
             self,
             mxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/>'
             '</definition>')
 
@@ -1293,7 +1293,7 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?><definition>" \
               + "<group type='NXentry' name='$var.myentry'/></definition>"
         oxml = xml
         while name in avc:
@@ -1319,7 +1319,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="" type="NXentry"/></definition>')
         checkxmls(
             self,
@@ -1333,7 +1333,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry1" type="NXentry"/></definition>')
         checkxmls(
             self,
@@ -1370,9 +1370,9 @@ class XMLConfiguratorTest(unittest.TestCase):
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
         name2 = "mcs_var_component"
-        xml = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?><definition>" \
               + "<group type='NXentry' name='$var.myentry'/></definition>"
-        xml2 = "<?xml version='1.0' encoding='utf8'?><definition><doc>" \
+        xml2 = "<?xml version='1.0' encoding='utf-8'?><definition><doc>" \
                + "$var(myentry=entry2)</doc></definition>"
         while name in avc:
             name = name + '_1'
@@ -1404,12 +1404,12 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="" type="NXentry"/></definition>')
         checkxmls(
             self,
             mxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="$var.myentry" type="NXentry"/></definition>')
 
         el.variables = '{}'
@@ -1420,7 +1420,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry2" type="NXentry"/>'
             '<doc>$var(myentry=entry2)</doc>'
             '</definition>'
@@ -1428,7 +1428,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             mxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<doc>$var(myentry=entry2)</doc>'
             '<group type="NXentry" name="$var.myentry" /></definition>'
         )
@@ -1441,14 +1441,14 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry1" type="NXentry"/>'
             '<doc>$var(myentry=entry2)</doc>'
             '</definition>')
         checkxmls(
             self,
             mxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<doc>$var(myentry=entry2)</doc>'
             '<group type="NXentry" name="$var.myentry" /></definition>')
 
@@ -1483,7 +1483,7 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?><definition>" \
               + "<group type='$var.entryType' name='$var.myentry'/>" \
               + "</definition>"
         while name in avc:
@@ -1509,7 +1509,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="" type=""/></definition>')
         el.variables = '{"myentry":"entry1", "entryType":"NXentry"}'
         self.assertEqual(el.createConfiguration([name]), None)
@@ -1518,7 +1518,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry1" type="NXentry"/></definition>')
 
         self.assertEqual(el.deleteComponent(name), None)
@@ -1551,9 +1551,9 @@ class XMLConfiguratorTest(unittest.TestCase):
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
         name2 = "mcs_var_component"
-        xml = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?><definition>" \
               "<group type='$var.entryType' name='$var.myentry'/></definition>"
-        xml2 = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml2 = "<?xml version='1.0' encoding='utf-8'?><definition>" \
                "<doc>$var(myentry=entry2) $var(entryType=NXentry)</doc>" \
                "</definition>"
         while name in avc:
@@ -1584,7 +1584,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group name="" type=""/>'
             '</definition>')
 
@@ -1594,7 +1594,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry2" type="NXentry"/>'
             '<doc>$var(myentry=entry2) $var(entryType=NXentry)</doc>'
             '</definition>'
@@ -1606,7 +1606,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry1" type="NXentry"/></definition>')
 
         self.assertEqual(el.deleteComponent(name2), None)
@@ -1641,11 +1641,11 @@ class XMLConfiguratorTest(unittest.TestCase):
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
         name2 = "mcs_var_component"
-        xml = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?><definition>" \
               "<group type='$var.entryType' " \
               "name='$var.myentry#\"12def34\"'/>" \
               "</definition>"
-        xml2 = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml2 = "<?xml version='1.0' encoding='utf-8'?><definition>" \
                "<doc>$var(myentry=entry2) $var(entryType=NXentry)</doc>" \
                "</definition>"
         while name in avc:
@@ -1676,7 +1676,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="12def34" type=""/>'
             '</definition>')
 
@@ -1686,7 +1686,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry2" type="NXentry"/>'
             '<doc>$var(myentry=entry2) $var(entryType=NXentry)</doc>'
             '</definition>'
@@ -1697,7 +1697,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry1" type="NXentry"/></definition>')
 
         self.assertEqual(el.deleteComponent(name2), None)
@@ -1732,13 +1732,13 @@ class XMLConfiguratorTest(unittest.TestCase):
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
         name2 = "mcs_var_component"
-        xml = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?><definition>" \
               "<group type='NXentry' name='entry'>" \
               "<group type='NXinstrument' name='instrument'> " \
               "<group type='NXdetector' name='$var.detector#\"mydetector\"'>" \
             "<group type='NXtransformations' name='transformations2'/>" \
             "</group></group></group></definition>"
-        xml2 = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml2 = "<?xml version='1.0' encoding='utf-8'?><definition>" \
                "<group type='NXentry' name='entry'>" \
                "<group type='NXinstrument' name='instrument'>" \
                "<group type='NXdetector' name='pilatus'>" \
@@ -1774,7 +1774,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry">'
             '<group name="instrument" type="NXinstrument">'
             '<group name="mydetector" type="NXdetector">'
@@ -1787,7 +1787,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry">'
             '<group name="instrument" type="NXinstrument">'
             '<group name="pilatus" type="NXdetector">'
@@ -1829,13 +1829,13 @@ class XMLConfiguratorTest(unittest.TestCase):
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
         name2 = "mcs_var_component"
-        xml = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?><definition>" \
               "<group type='NXentry' name='entry'>" \
               "<group type='NXinstrument' name='instrument'> " \
               "<group type='NXdetector' name='$var.detector#\"mydetector\"'>" \
             "<group type='NXtransformations' name='transformations'/>" \
             "</group></group></group></definition>"
-        xml2 = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml2 = "<?xml version='1.0' encoding='utf-8'?><definition>" \
                "<group type='NXentry' name='entry'>" \
                "<group type='NXinstrument' name='instrument'>" \
                "<group type='NXdetector' name='pilatus'>" \
@@ -1871,7 +1871,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry">'
             '<group name="instrument" type="NXinstrument">'
             '<group name="mydetector" type="NXdetector"/>'
@@ -1883,7 +1883,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry">'
             '<group name="instrument" type="NXinstrument">'
             '<group name="pilatus" type="NXdetector">'
@@ -1924,7 +1924,7 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?><definition>" \
               "<group type='NXentry' name='$var.myentry#\"12def34\"'/>" \
               "</definition>"
         while name in avc:
@@ -1949,7 +1949,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="12def34" type="NXentry"/></definition>')
 
         el.variables = '{"myentry":"entry1"}'
@@ -1960,7 +1960,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry1" type="NXentry"/></definition>')
 
         self.assertEqual(el.deleteComponent(name), None)
@@ -1993,7 +1993,7 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?><definition>" \
               "<group type='NXentry' " \
               "name='$var.myentry#&quot;12def34&quot;'/></definition>"
         while name in avc:
@@ -2018,7 +2018,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group name="12def34" '
             'type="NXentry"/></definition>')
 
@@ -2029,7 +2029,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group name="entry1" '
             'type="NXentry"/></definition>')
 
@@ -2061,7 +2061,7 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?>" \
               "<definition><group type='NXentry' " \
               "name='$var.myentry#&quot;12def34&quot;'/></definition>"
         while name in avc:
@@ -2086,7 +2086,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group name="12def34" '
             'type="NXentry"/></definition>')
 
@@ -2097,7 +2097,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry1" type="NXentry"/></definition>')
 
         self.assertEqual(el.deleteComponent(name), None)
@@ -2152,7 +2152,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="12def34" type="NXentry"/></definition>')
 
         el.variables = '{"myentry":"entry1"}'
@@ -2162,7 +2162,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry1" type="NXentry"/></definition>')
 
         self.assertEqual(el.deleteComponent(name), None)
@@ -2217,7 +2217,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="12def34" type="NXentry"/></definition>')
 
         el.variables = '{"myentry":"entry1"}'
@@ -2227,7 +2227,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry1" type="NXentry"/></definition>')
 
         self.assertEqual(el.deleteComponent(name), None)
@@ -2282,7 +2282,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="12def34" type="NXentry"/></definition>')
 
         el.variables = '{"myentry":"entry1"}'
@@ -2292,7 +2292,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry1" type="NXentry"/></definition>')
 
         self.assertEqual(el.deleteComponent(name), None)
@@ -2324,7 +2324,7 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?><definition>" \
               "<group type='$var.entryType#\"myty\"' name='$var.myentry'/>" \
               "</definition>"
         while name in avc:
@@ -2350,7 +2350,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group name="" type="myty"/>'
             '</definition>')
         el.variables = '{"myentry":"entry1", "entryType":"NXentry"}'
@@ -2360,7 +2360,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry1" type="NXentry"/></definition>')
 
         self.assertEqual(el.deleteComponent(name), None)
@@ -2417,7 +2417,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="12def34" type="NXentry"/></definition>')
 
         el.variables = '{"myentry":"entry1"}'
@@ -2427,7 +2427,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry1" type="NXentry"/></definition>')
 
         self.assertEqual(el.deleteComponent(name), None)
@@ -2459,7 +2459,7 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?><definition>" \
               "<group type=\"$var.entryType#'myty'\" name='$var.myentry'/>" \
               "</definition>"
         while name in avc:
@@ -2485,7 +2485,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="" type="myty"/></definition>')
         el.variables = '{"myentry":"entry1", "entryType":"NXentry"}'
         self.assertEqual(el.createConfiguration([name]), None)
@@ -2494,7 +2494,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry1" type="NXentry"/></definition>')
 
         self.assertEqual(el.deleteComponent(name), None)
@@ -2598,7 +2598,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/>'
             '</definition>')
 
@@ -2649,7 +2649,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/>'
             '</definition>')
 
@@ -2699,7 +2699,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition>'
             '<group type="NXentry2"/><group type="NXentry"/>'
             '</definition>')
@@ -2833,7 +2833,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry">'
             '<field type="field"/></group></definition>')
 
@@ -2885,7 +2885,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry2"/><field name="field1"/>'
             '<group type="NXentry"><field name="field1"/></group>'
             '</definition>')
@@ -2936,7 +2936,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry2"/></definition>')
 
         for i in range(np):
@@ -2986,7 +2986,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group name="entry" type="NXentry"/></definition>')
 
         for i in range(np):
@@ -3036,7 +3036,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group name="entry" type="NXentry"/>'
             '<group name="entry2"/></definition>')
 
@@ -3087,7 +3087,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry">'
             '<field type="field"/></group></definition>')
 
@@ -3140,7 +3140,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry">'
             '<field type="field"/></group></definition>')
 
@@ -3194,7 +3194,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group name="entry" '
             'type="NXentry"><field type="field">myvalue</field>'
             '</group></definition>')
@@ -3294,7 +3294,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group name="entry2" type="NXentry2">'
             '<field type="field"/></group><group name="entry" '
             'type="NXentry"><field type="field"/></group></definition>')
@@ -3449,7 +3449,7 @@ class XMLConfiguratorTest(unittest.TestCase):
             checkxmls(
                 self,
                 gxml,
-                '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
                 '<field name="entry">'
                 '<datasource type="TANGO"><%s/></datasource></field>'
                 '</definition>' % (ut))
@@ -3555,7 +3555,7 @@ class XMLConfiguratorTest(unittest.TestCase):
             checkxmls(
                 self,
                 gxml,
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition>'
                 '<field name="entry">'
                 '<attribute type="TANGO">'
@@ -3661,7 +3661,7 @@ class XMLConfiguratorTest(unittest.TestCase):
             checkxmls(
                 self,
                 gxml,
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><%s name="entry"/>'
                 '</definition>' % (ut))
 
@@ -3765,7 +3765,7 @@ class XMLConfiguratorTest(unittest.TestCase):
             checkxmls(
                 self,
                 gxml,
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><field name="entry">'
                 '<dimensions type="TANGO"><%s/></dimensions></field>'
                 '</definition>' % (ut))
@@ -3870,7 +3870,7 @@ class XMLConfiguratorTest(unittest.TestCase):
             checkxmls(
                 self,
                 gxml,
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><field name="entry">'
                 '<%s/></field></definition>' % (ut))
 
@@ -3974,7 +3974,7 @@ class XMLConfiguratorTest(unittest.TestCase):
             checkxmls(
                 self,
                 gxml,
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><group name="entry">'
                 '<%s/></group></definition>' % (ut))
 
@@ -4078,7 +4078,7 @@ class XMLConfiguratorTest(unittest.TestCase):
             checkxmls(
                 self,
                 gxml,
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><link name="entry">'
                 '<%s/></link></definition>' % (ut))
 
@@ -4185,7 +4185,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/>'
             '<group type="NXentry2"/></definition>')
 
@@ -4244,7 +4244,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry2"/><group type="NXentry3"/>'
             '<group type="NXentry"/></definition>')
 
@@ -4298,7 +4298,7 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?>" \
               "<definition><group type='NXentry'/>" \
               "</definition>"
         while name in avc:
@@ -4321,7 +4321,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         xml = el.merge([name])
         self.assertEqual(
             xml.replace(">\n", ">"),
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" />'
             '</definition>')
 
@@ -4355,7 +4355,7 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?><definition>" \
               "<group type='NXentry' name='$var.myentry'/></definition>"
         while name in avc:
             name = name + '_1'
@@ -4378,7 +4378,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="$var.myentry" type="NXentry" /></definition>')
 
         el.variables = '{"myentry":"entry1"}'
@@ -4387,7 +4387,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="$var.myentry" type="NXentry" /></definition>')
 
         self.assertEqual(el.deleteComponent(name), None)
@@ -4421,9 +4421,9 @@ class XMLConfiguratorTest(unittest.TestCase):
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
         name2 = "mcs_var_component"
-        xml = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?><definition>" \
               "<group type='NXentry' name='$var.myentry'/></definition>"
-        xml2 = "<?xml version='1.0' encoding='utf8'?>" \
+        xml2 = "<?xml version='1.0' encoding='utf-8'?>" \
                "<definition><doc>$var(myentry=entry2)" \
                "</doc></definition>"
         while name in avc:
@@ -4452,14 +4452,14 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="$var.myentry" type="NXentry" /></definition>')
 
         xml = el.merge([name, name2])
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="$var.myentry" type="NXentry" />'
             '<doc>$var(myentry=entry2)</doc></definition>')
         el.variables = '{"myentry":"entry1"}'
@@ -4468,7 +4468,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="$var.myentry" type="NXentry" /></definition>')
 
         self.assertEqual(el.deleteComponent(name2), None)
@@ -4502,7 +4502,7 @@ class XMLConfiguratorTest(unittest.TestCase):
 
         self.assertTrue(isinstance(avc, list))
         name = "mcs_test_component"
-        xml = "<?xml version='1.0' encoding='utf8'?><definition>" \
+        xml = "<?xml version='1.0' encoding='utf-8'?><definition>" \
               "<group type='$var.entryType' name='$var.myentry'/></definition>"
         while name in avc:
             name = name + '_1'
@@ -4526,7 +4526,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="$var.myentry" type="$var.entryType" />'
             '</definition>')
         el.variables = '{"myentry":"entry1", "entryType":"NXentry"}'
@@ -4535,7 +4535,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             xml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="$var.myentry" type="$var.entryType" />'
             '</definition>')
 
@@ -4639,7 +4639,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group type="NXentry" /></definition>')
 
         self.assertEqual(el.deleteComponent(name[1]), None)
@@ -4688,7 +4688,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group type="NXentry" /></definition>')
 
         for i in range(np):
@@ -4736,7 +4736,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry2" /><group type="NXentry" />'
             '</definition>')
 
@@ -4785,7 +4785,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry2" />'
             'second group<group type="NXentry" />'
             '</definition>')
@@ -4835,7 +4835,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry2" />'
             '<group type="NXentry" />first group'
             '</definition>')
@@ -4885,7 +4885,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition>before<group type="NXentry2" />'
             '<group type="NXentry" />'
             '</definition>')
@@ -4935,7 +4935,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition>'
             '<group type="NXentry" />after'
             '</definition>')
@@ -4986,10 +4986,10 @@ class XMLConfiguratorTest(unittest.TestCase):
             self,
             gxml,
             [
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><group type="NXentry">txt</group>'
                 '</definition>',
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition>txt<group type="NXentry"></group>'
                 '</definition>',
             ])
@@ -5040,10 +5040,10 @@ class XMLConfiguratorTest(unittest.TestCase):
             self,
             gxml,
             [
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><group type="NXentry">txt2\ntxt</group>'
                 '</definition>',
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><group type="NXentry">txt\ntxt2</group>'
                 '</definition>'
             ]
@@ -5096,10 +5096,10 @@ class XMLConfiguratorTest(unittest.TestCase):
             self,
             gxml,
             [
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><group type="NXentry"><doc />txt</group>'
                 '</definition>',
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><group type="NXentry">txt<doc /></group>'
                 '</definition>'
             ]
@@ -5152,10 +5152,10 @@ class XMLConfiguratorTest(unittest.TestCase):
             self,
             gxml,
             [
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><group type="NXentry"><doc />txt</group>'
                 '</definition>',
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><group type="NXentry">txt<doc /></group>'
                 '</definition>'
             ]
@@ -5289,7 +5289,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry">'
             '<field type="field" /></group></definition>')
 
@@ -5341,7 +5341,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry2" /><field name="field1" />'
             '<group type="NXentry"><field name="field1" />'
             '</group></definition>')
@@ -5391,7 +5391,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry2" /></definition>')
 
         for i in range(np):
@@ -5439,7 +5439,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry" /></definition>')
 
         for i in range(np):
@@ -5487,7 +5487,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group name="entry" type="NXentry" />'
             '<group name="entry2" /></definition>')
 
@@ -5537,7 +5537,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group type="NXentry"><field type="field" />'
             '</group></definition>')
 
@@ -5589,7 +5589,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry">'
             '<field type="field" /></group></definition>')
 
@@ -5642,7 +5642,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="$var.entry" type="NXentry">'
             '<field type="field">$var.value</field></group></definition>')
 
@@ -5738,7 +5738,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group name="entry2" type="NXentry2">'
             '<field type="field" /></group>'
             '<group name="entry" type="NXentry">'
@@ -5885,7 +5885,7 @@ class XMLConfiguratorTest(unittest.TestCase):
             checkxmls(
                 self,
                 gxml,
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><field name="entry">'
                 '<datasource type="TANGO"><%s /></datasource></field>'
                 '</definition>' % (ut))
@@ -5989,7 +5989,7 @@ class XMLConfiguratorTest(unittest.TestCase):
             checkxmls(
                 self,
                 gxml,
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><field name="entry">'
                 '<attribute type="TANGO"><%s /></attribute></field>'
                 '</definition>' % (ut))
@@ -6089,7 +6089,7 @@ class XMLConfiguratorTest(unittest.TestCase):
             checkxmls(
                 self,
                 gxml,
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><%s name="entry" />'
                 '</definition>' % (ut))
 
@@ -6190,7 +6190,7 @@ class XMLConfiguratorTest(unittest.TestCase):
             checkxmls(
                 self,
                 gxml,
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><field name="entry">'
                 '<dimensions type="TANGO"><%s /></dimensions></field>'
                 '</definition>' % (ut))
@@ -6293,7 +6293,7 @@ class XMLConfiguratorTest(unittest.TestCase):
             checkxmls(
                 self,
                 gxml,
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><field name="entry">'
                 '<%s /></field></definition>' % (ut))
 
@@ -6395,7 +6395,7 @@ class XMLConfiguratorTest(unittest.TestCase):
             checkxmls(
                 self,
                 gxml,
-                '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
                 '<group name="entry"><%s /></group></definition>' % (ut))
 
             for i in range(np):
@@ -6496,7 +6496,7 @@ class XMLConfiguratorTest(unittest.TestCase):
             checkxmls(
                 self,
                 gxml,
-                '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+                '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
                 '<definition><link name="entry">'
                 '<%s /></link></definition>' % (ut))
 
@@ -6601,7 +6601,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry2" /><group type="NXentry" />'
             '</definition>')
 
@@ -6659,7 +6659,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry2" /><group type="NXentry3" />'
             '<group type="NXentry" /></definition>')
 
@@ -7411,13 +7411,13 @@ class XMLConfiguratorTest(unittest.TestCase):
                ]
 
         xml2 = [
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" />'
             '<field name="field1">%s'
             '</field></definition>',
             '<definition><group type="NXentry" /><field name="field2">%s'
             '</field></definition>',
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" />'
             '<field name="field3">%s'
             '</field><field name="field4">%s</field></definition>'
@@ -8437,7 +8437,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3"/>'
             '</datasource></field><field name="field4">'
@@ -8528,7 +8528,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3"/>'
             '</datasource></field><field name="field4">'
@@ -8613,7 +8613,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/>'
             '<field name="field"><datasource name="%s" type="CLIENT">'
             '<record name="r1"/></datasource></field></definition>'
@@ -8701,7 +8701,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition>'
             '<group type="NXentry"/>'
             '<field name="field3">'
@@ -8803,7 +8803,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r1"/>'
             '</datasource></field><field name="field4">'
@@ -8894,7 +8894,7 @@ class XMLConfiguratorTest(unittest.TestCase):
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/><field name="field3">'
             '<datasource><datasource name="%s" type="CLIENT">'
             '<record name="r1"/></datasource>'
@@ -8993,7 +8993,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition>'
             '<group type="NXentry"/><field name="field3">'
             '<datasource name="%s" type="CLIENT">'
@@ -9087,7 +9087,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3"/>'
             '</datasource></field><field name="field4">'
@@ -9176,7 +9176,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" /><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3" />'
             '</datasource></field><field name="field4">$datasources.%s'
@@ -9263,7 +9263,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" /><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="$var.name3" />'
             '</datasource></field><field name="field4">$datasources.%s'
@@ -9351,7 +9351,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" /><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="$var.name3" />'
             '</datasource></field><field name="field4">$datasources.%s'
@@ -9437,7 +9437,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" /><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r1" />'
             '</datasource></field><field name="field4">$datasources.%s'
@@ -9523,7 +9523,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" /><field name="field3">'
             '<datasource>$datasources.%s$datasources.%s</datasource>'
             '</field><field name="field1">$datasources.%s</field>'
@@ -9617,7 +9617,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group type="NXentry" /><field name="field3">$datasources.%s'
             '</field><field name="field1">$datasources.%s</field>'
             '</definition>' % (dsname[2], dsname[0]))
@@ -9702,7 +9702,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" /><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3" />'
             '</datasource></field><field name="field4">$datasources.%s'
@@ -10601,7 +10601,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3"/>'
             '</datasource><strategy mode="FINAL"/></field>'
@@ -10691,7 +10691,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3"/>'
             '</datasource><strategy mode="FINAL"/></field>'
@@ -10782,7 +10782,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3"/>'
             '</datasource><strategy mode="STEP"/></field>'
@@ -10873,7 +10873,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3"/>'
             '</datasource><strategy mode="STEP"/></field>'
@@ -10963,7 +10963,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3"/>'
             '</datasource><strategy canfail="false"/></field>'
@@ -11054,7 +11054,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3"/>'
             '</datasource><strategy canfail="false"/></field>'
@@ -11146,7 +11146,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3"/>'
             '</datasource><strategy canfail="true"/></field>'
@@ -11237,7 +11237,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry"/><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3"/>'
             '</datasource><strategy canfail="true"/></field>'
@@ -11330,7 +11330,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry"><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3"/>'
             '</datasource><strategy mode="FINAL"/></field>'
@@ -11425,7 +11425,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry"/><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3"/>'
             '</datasource><strategy mode="FINAL"/></field>'
@@ -11518,7 +11518,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry"><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3"/>'
             '</datasource><strategy mode="FINAL"/></field>'
@@ -11618,7 +11618,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry"><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3"/>'
             '</datasource><strategy mode="FINAL"/></field>'
@@ -11713,7 +11713,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" /><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3" />'
             '</datasource><strategy mode="FINAL" /></field>'
@@ -11802,7 +11802,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" /><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3" />'
             '</datasource><strategy mode="FINAL" /></field>'
@@ -11892,7 +11892,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" /><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3" />'
             '</datasource><strategy mode="STEP" /></field>'
@@ -11981,7 +11981,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" />'
             '<field name="field3"><datasource name="%s" type="CLIENT">'
             '<record name="r3" /></datasource>'
@@ -12070,7 +12070,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" /><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3" />'
             '</datasource><strategy canfail="false" /></field>'
@@ -12158,7 +12158,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" /><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3" />'
             '</datasource><strategy canfail="false" /></field>'
@@ -12248,7 +12248,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" /><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3" />'
             '</datasource><strategy canfail="true" /></field>'
@@ -12337,7 +12337,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?>'
             '<definition><group type="NXentry" />'
             '<field name="field3"><datasource name="%s" type="CLIENT">'
             '<record name="r3" /></datasource><strategy canfail="true" />'
@@ -12428,7 +12428,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry"><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3" />'
             '</datasource><strategy mode="FINAL" /></field>'
@@ -12521,7 +12521,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry" /><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3" />'
             '</datasource><strategy mode="FINAL" /></field>'
@@ -12612,7 +12612,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry"><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3" />'
             '</datasource><strategy mode="FINAL" /></field>'
@@ -12708,7 +12708,7 @@ ds.result = nxsconfigserver.__version__</result></datasource>"""
         checkxmls(
             self,
             gxml,
-            '<?xml version=\'1.0\' encoding=\'utf8\'?><definition>'
+            '<?xml version=\'1.0\' encoding=\'utf-8\'?><definition>'
             '<group name="entry" type="NXentry"><field name="field3">'
             '<datasource name="%s" type="CLIENT"><record name="r3" />'
             '</datasource><strategy mode="FINAL" /></field>'

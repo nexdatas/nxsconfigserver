@@ -1,3 +1,7 @@
+2026-02-10 Jan Kotanski <jankotan@gmail.com>
+	* change utf8 to utf-8 encoding (#103)
+	* tagged as v2.23.0
+
 2026-02-06 Jan Kotanski <jankotan@gmail.com>
 	* prefer INIT over STEP mode in merging (#100)
 	* tagged as v2.22.0

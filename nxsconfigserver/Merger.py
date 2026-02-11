@@ -44,7 +44,7 @@ def _tostr(text):
     if isinstance(text, str):
         return text
     elif sys.version_info > (3,):
-        return str(text, encoding="utf8")
+        return str(text, encoding="utf-8")
     else:
         return str(text)
 
@@ -61,7 +61,9 @@ def _toxml(node):
         xml = _tostr(et.tostring(node, encoding='unicode', method='xml'))
     else:
         xml = _tostr(et.tostring(node, encoding='utf8', method='xml'))
-    if xml.startswith("<?xml version='1.0' encoding='utf8'?>"):
+    if xml.startswith("<?xml version='1.0' encoding='utf-8'?>"):
+        xml = str(xml[39:])
+    elif xml.startswith("<?xml version='1.0' encoding='utf8'?>"):
         xml = str(xml[38:])
     return xml
 
@@ -679,7 +681,7 @@ class Merger(object):
         """
         if self.__root is not None:
             if sys.version_info > (3,):
-                return "<?xml version='1.0' encoding='utf8'?>" + \
+                return "<?xml version='1.0' encoding='utf-8'?>" + \
                     _tostr(
                         et.tostring(
                             self.__root, encoding='unicode', method='xml'))

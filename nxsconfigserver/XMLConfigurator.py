@@ -47,7 +47,7 @@ def _tostr(text):
     if isinstance(text, str):
         return text
     elif sys.version_info > (3,):
-        return str(text, encoding="utf8")
+        return str(text, encoding="utf-8")
     else:
         return str(text)
 
@@ -66,6 +66,8 @@ def _toxml(node):
         xml = _tostr(et.tostring(node, encoding='utf8', method='xml'))
     if xml.startswith("<?xml version='1.0' encoding='utf8'?>"):
         xml = str(xml[38:])
+    elif xml.startswith("<?xml version='1.0' encoding='utf-8'?>"):
+        xml = str(xml[39:])
     return xml
 
 
@@ -411,7 +413,7 @@ class XMLConfigurator(object):
                 handler = ComponentHandler(self.__dsLabel)
                 text = str(cpl[0]).strip()
                 if sys.version_info > (3,):
-                    sax.parseString(bytes(text, "UTF-8"), handler)
+                    sax.parseString(bytes(text, "utf-8"), handler)
                 else:
                     sax.parseString(text, handler)
                 return list(handler.datasources.keys())
@@ -1087,7 +1089,8 @@ class XMLConfigurator(object):
             if xmls.startswith("<?xml"):
                 self.xmlstring = xmls
             else:
-                self.xmlstring = "<?xml version='1.0' encoding='utf8'?>" + xmls
+                self.xmlstring = \
+                    "<?xml version='1.0' encoding='utf-8'?>" + xmls
         else:
             self.xmlstring = ''
         self._streams.info("XMLConfigurator::createConfiguration() "

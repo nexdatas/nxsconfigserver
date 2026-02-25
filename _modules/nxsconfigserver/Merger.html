@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nxsconfigserver.Merger &#8212; NXSConfigServer 2.20.0 documentation</title>
+    <title>nxsconfigserver.Merger &#8212; NXSConfigServer 2.23.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -37,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           NXSConfigServer</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.20</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.23</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -156,7 +156,7 @@
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">text</span>
     <span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,):</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
 
@@ -173,7 +173,9 @@
         <span class="n">xml</span> <span class="o">=</span> <span class="n">_tostr</span><span class="p">(</span><span class="n">et</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;xml&#39;</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">xml</span> <span class="o">=</span> <span class="n">_tostr</span><span class="p">(</span><span class="n">et</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;xml&#39;</span><span class="p">))</span>
-    <span class="k">if</span> <span class="n">xml</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&lt;?xml version=&#39;1.0&#39; encoding=&#39;utf8&#39;?&gt;&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">xml</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&lt;?xml version=&#39;1.0&#39; encoding=&#39;utf-8&#39;?&gt;&quot;</span><span class="p">):</span>
+        <span class="n">xml</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">xml</span><span class="p">[</span><span class="mi">39</span><span class="p">:])</span>
+    <span class="k">elif</span> <span class="n">xml</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&lt;?xml version=&#39;1.0&#39; encoding=&#39;utf8&#39;?&gt;&quot;</span><span class="p">):</span>
         <span class="n">xml</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">xml</span><span class="p">[</span><span class="mi">38</span><span class="p">:])</span>
     <span class="k">return</span> <span class="n">xml</span>
 
@@ -296,7 +298,7 @@
             <span class="n">res</span> <span class="o">+=</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="n">name</span>
         <span class="k">return</span> <span class="n">res</span>
 
-    <span class="k">def</span> <span class="nf">__areMergeable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem1</span><span class="p">,</span> <span class="n">elem2</span><span class="p">,</span> <span class="n">ancestors</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__areMergeable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem1</span><span class="p">,</span> <span class="n">elem2</span><span class="p">,</span> <span class="n">ancestors</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; checks if two elements are mergeable</span>
 
 <span class="sd">        :param elem1: first element</span>
@@ -328,10 +330,23 @@
         <span class="k">if</span> <span class="n">tags</span><span class="p">:</span>
             <span class="n">status</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">if</span> <span class="n">tagName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">singles</span> <span class="ow">or</span> <span class="p">(</span><span class="n">name1</span> <span class="ow">and</span> <span class="n">name1</span> <span class="o">==</span> <span class="n">name2</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="n">IncompatibleNodeError</span><span class="p">(</span>
-                    <span class="s2">&quot;Incompatible element attributes  </span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span>
-                    <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__getAncestors</span><span class="p">(</span><span class="n">elem1</span><span class="p">,</span> <span class="n">ancestors</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="n">tags</span><span class="p">)),</span>
-                    <span class="p">[</span><span class="n">elem1</span><span class="p">,</span> <span class="n">elem2</span><span class="p">])</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">skip</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">tags</span> <span class="ow">and</span> <span class="n">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="s1">&#39;TANGO&#39;</span><span class="p">,</span> <span class="s1">&#39;CLIENT&#39;</span><span class="p">):</span>
+                        <span class="n">node</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">elem2</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">tags</span> <span class="ow">and</span> <span class="n">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="s1">&#39;CLIENT&#39;</span><span class="p">,</span> <span class="s1">&#39;TANGO&#39;</span><span class="p">):</span>
+                        <span class="n">node</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">elem1</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">tags</span> <span class="ow">and</span> <span class="n">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="s1">&#39;INIT&#39;</span><span class="p">,</span> <span class="s1">&#39;STEP&#39;</span><span class="p">):</span>
+                        <span class="n">node</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">elem2</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">tags</span> <span class="ow">and</span> <span class="n">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="s1">&#39;STEP&#39;</span><span class="p">,</span> <span class="s1">&#39;INIT&#39;</span><span class="p">):</span>
+                        <span class="n">node</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">elem1</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="n">IncompatibleNodeError</span><span class="p">(</span>
+                            <span class="s2">&quot;Incompatible element attributes  </span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span>
+                            <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__getAncestors</span><span class="p">(</span><span class="n">elem1</span><span class="p">,</span> <span class="n">ancestors</span><span class="p">)),</span>
+                               <span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)),</span>  <span class="nb">str</span><span class="p">(</span><span class="n">tags</span><span class="p">)),</span>
+                            <span class="p">[</span><span class="n">elem1</span><span class="p">,</span> <span class="n">elem2</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">status</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="k">if</span> <span class="n">tagName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">uniqueText</span><span class="p">:</span>
             <span class="n">text1</span> <span class="o">=</span> <span class="n">unicode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__getText</span><span class="p">(</span><span class="n">elem1</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
@@ -442,6 +457,9 @@
 
             <span class="n">children</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
             <span class="n">c1</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">unicode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">switchable</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">switchdatasources</span><span class="p">:</span>
+                <span class="c1"># print(&quot;NODE&quot;, node.tag, node.get(&quot;name&quot;))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__switch</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
             <span class="k">while</span> <span class="n">c1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">children</span><span class="p">):</span>
                 <span class="n">child1</span> <span class="o">=</span> <span class="n">children</span><span class="p">[</span><span class="n">c1</span><span class="p">]</span>
                 <span class="n">c2</span> <span class="o">=</span> <span class="n">c1</span> <span class="o">+</span> <span class="mi">1</span>
@@ -450,7 +468,7 @@
                     <span class="k">if</span> <span class="n">child1</span> <span class="o">!=</span> <span class="n">child2</span><span class="p">:</span>
                         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__areMergeable</span><span class="p">(</span>
                                 <span class="n">child1</span><span class="p">,</span> <span class="n">child2</span><span class="p">,</span>
-                                <span class="n">ancestors</span><span class="p">):</span>
+                                <span class="n">ancestors</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">__mergeNodes</span><span class="p">(</span><span class="n">child1</span><span class="p">,</span> <span class="n">child2</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
                             <span class="n">children</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span>
                             <span class="n">c2</span> <span class="o">-=</span> <span class="mi">1</span>
@@ -471,8 +489,9 @@
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">__mergeChildren</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">newancestors</span><span class="p">,</span> <span class="n">entrynode</span><span class="p">,</span>
                                      <span class="n">datanode</span><span class="p">,</span> <span class="n">linknode</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">cName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">switchable</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">switchdatasources</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">__switch</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+                <span class="c1"># if cName in self.switchable and self.switchdatasources:</span>
+                <span class="c1">#     print(&quot;CHILD&quot;, child.tag, child.get(&quot;name&quot;))</span>
+                <span class="c1">#     self.__switch(child)</span>
                 <span class="k">if</span> <span class="n">cName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">linkable</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">linkdatasources</span><span class="p">:</span>
                     <span class="n">datanode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__addlink</span><span class="p">(</span>
                         <span class="n">child</span><span class="p">,</span> <span class="n">newancestors</span><span class="p">,</span> <span class="n">entrynode</span><span class="p">,</span> <span class="n">datanode</span><span class="p">,</span>
@@ -543,7 +562,8 @@
 <span class="sd">        :type node: :obj:`xml.etree.ElementTree.Element`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">stnode</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">stnodes</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">modes</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">mode</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">dsname</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">dsnode</span> <span class="o">=</span> <span class="kc">None</span>
@@ -568,13 +588,18 @@
                 <span class="k">elif</span> <span class="n">cName</span> <span class="o">==</span> <span class="s1">&#39;strategy&#39;</span><span class="p">:</span>
                     <span class="n">mode</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;mode&quot;</span><span class="p">)</span>
                     <span class="k">if</span> <span class="n">mode</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modesToSwitch</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                        <span class="n">stnode</span> <span class="o">=</span> <span class="n">child</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="k">break</span>
-                <span class="k">if</span> <span class="n">stnode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">dsnode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="k">break</span>
-            <span class="k">if</span> <span class="n">stnode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">dsnode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">stnode</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&quot;mode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modesToSwitch</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
+                        <span class="n">stnodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+                        <span class="n">modes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
+                    <span class="c1"># else:</span>
+                    <span class="c1">#     break</span>
+                <span class="c1"># if stnode not None and dsnode is not None:</span>
+                <span class="c1">#     break</span>
+            <span class="k">if</span> <span class="n">stnodes</span> <span class="ow">and</span> <span class="n">dsnode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">si</span><span class="p">,</span> <span class="n">stn</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">stnodes</span><span class="p">):</span>
+                    <span class="n">mode</span> <span class="o">=</span> <span class="n">modes</span><span class="p">[</span><span class="n">si</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">mode</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modesToSwitch</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                        <span class="n">stn</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&quot;mode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modesToSwitch</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
+                        <span class="c1"># print(&quot;SWITCH&quot;, node.get(&quot;name&quot;), dsname, dsnode)</span>
 
     <span class="k">def</span> <span class="nf">__canfail</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; switch the given node to canfail mode</span>
@@ -630,6 +655,7 @@
 <span class="sd">        :returns: the current link node</span>
 <span class="sd">        :rtype: :obj:`xml.etree.ElementTree.Element`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># print(&quot;ADD LINK&quot;, ancestors, linknode, linkdatasources, linkpath)</span>
         <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">dsname</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">dsnode</span> <span class="o">=</span> <span class="kc">None</span>
@@ -683,6 +709,7 @@
                     <span class="k">if</span> <span class="ow">not</span> <span class="n">linkfound</span><span class="p">:</span>
                         <span class="n">linknode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__createLink</span><span class="p">(</span>
                             <span class="n">entrynode</span><span class="p">,</span> <span class="n">linknode</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">linkpath</span><span class="p">)</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CREATe LINK&quot;</span><span class="p">,</span> <span class="n">dsname</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">linkpath</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">linknode</span>
 
     <span class="k">def</span> <span class="nf">__createLink</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entrynode</span><span class="p">,</span> <span class="n">linknode</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">linkpath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -768,7 +795,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__root</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,):</span>
-                <span class="k">return</span> <span class="s2">&quot;&lt;?xml version=&#39;1.0&#39; encoding=&#39;utf8&#39;?&gt;&quot;</span> <span class="o">+</span> \
+                <span class="k">return</span> <span class="s2">&quot;&lt;?xml version=&#39;1.0&#39; encoding=&#39;utf-8&#39;?&gt;&quot;</span> <span class="o">+</span> \
                     <span class="n">_tostr</span><span class="p">(</span>
                         <span class="n">et</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">__root</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;xml&#39;</span><span class="p">))</span>

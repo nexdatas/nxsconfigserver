@@ -543,6 +543,7 @@ class Merger(object):
         :returns: the current link node
         :rtype: :obj:`xml.etree.ElementTree.Element`
         """
+        # print("ADD LINK", ancestors, linknode, linkdatasources, linkpath)
         if node is not None:
             dsname = None
             dsnode = None
@@ -596,6 +597,7 @@ class Merger(object):
                     if not linkfound:
                         linknode = self.__createLink(
                             entrynode, linknode, path, linkpath)
+                        print("CREATe LINK", dsname, path, linkpath)
         return linknode
 
     def __createLink(self, entrynode, linknode, path, linkpath=None):

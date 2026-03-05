@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nxsconfigserver.MYSQLDataBase &#8212; NXSConfigServer 2.15.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <title>nxsconfigserver.MYSQLDataBase &#8212; NXSConfigServer 2.23.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
-<script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
 
   </head><body>
@@ -35,7 +37,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           NXSConfigServer</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.15</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.23</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -142,11 +144,11 @@
 
 <div class="viewcode-block" id="MYSQLDataBase"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase">[docs]</a><span class="k">class</span> <span class="nc">MYSQLDataBase</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="sd">&quot;&quot;&quot; XML Configurer</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; XML Configurer</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">streams</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; constructor</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; constructor</span>
 
 <span class="sd">        :brief: It creates the MYSQLDataBase instance</span>
 <span class="sd">        :param streams: tango-like steamset class</span>
@@ -162,7 +164,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_streams</span> <span class="o">=</span> <span class="n">streams</span>
 
 <div class="viewcode-block" id="MYSQLDataBase.connect"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; connects to the database</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; connects to the database</span>
 
 <span class="sd">        :param args: arguments of the MySQLdb connect method</span>
 <span class="sd">        :type args: :obj:`dict` &lt;:obj:`str`, any&gt;</span>
@@ -184,7 +186,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">__argstr</span> <span class="o">=</span> <span class="n">argstr</span></div>
 
 <div class="viewcode-block" id="MYSQLDataBase.close"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; closes database connection</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; closes database connection</span>
 
 <span class="sd">        :brief: It closes connection to the open database</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -197,7 +199,7 @@
                 <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="MYSQLDataBase.version"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.version">[docs]</a>    <span class="k">def</span> <span class="nf">version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; provides DB configuration version</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; provides DB configuration version</span>
 
 <span class="sd">        :returns: DB configuration version</span>
 <span class="sd">        :rtype: :obj:`str`</span>
@@ -230,7 +232,7 @@
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">__escape</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; adds escape characters to string</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; adds escape characters to string</span>
 
 <span class="sd">        :param string: input string</span>
 <span class="sd">        :type string: :obj:`str`</span>
@@ -241,7 +243,7 @@
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">__incRevision</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">cursor</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; increases revision number</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; increases revision number</span>
 
 <span class="sd">        :param cursor: transaction cursor</span>
 <span class="sd">        :type cursor: :class:`MySQLdb.cursors.Cursor`</span>
@@ -255,7 +257,7 @@
             <span class="o">%</span> <span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">__escape</span><span class="p">(</span><span class="n">new</span><span class="p">)))</span>
 
 <div class="viewcode-block" id="MYSQLDataBase.components"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.components">[docs]</a>    <span class="k">def</span> <span class="nf">components</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; fetches the required components</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; fetches the required components</span>
 
 <span class="sd">        :param names: list of component names</span>
 <span class="sd">        :type names: :obj:`list` &lt;:obj:`str`&gt;</span>
@@ -286,7 +288,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="MYSQLDataBase.selections"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.selections">[docs]</a>    <span class="k">def</span> <span class="nf">selections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; fetches the required selections</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; fetches the required selections</span>
 
 <span class="sd">        :param names: list of selection names</span>
 <span class="sd">        :type names: :obj:`list` &lt;:obj:`str`&gt;</span>
@@ -317,7 +319,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="MYSQLDataBase.dataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.dataSources">[docs]</a>    <span class="k">def</span> <span class="nf">dataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; fetches the required datasources</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; fetches the required datasources</span>
 
 <span class="sd">        :param names: list of datasource names</span>
 <span class="sd">        :type names: :obj:`list` &lt;:obj:`str`&gt;</span>
@@ -349,7 +351,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="MYSQLDataBase.availableComponents"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.availableComponents">[docs]</a>    <span class="k">def</span> <span class="nf">availableComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; fetches the names of available components</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; fetches the names of available components</span>
 
 <span class="sd">        :returns: list of available components</span>
 <span class="sd">        :rtype: :obj:`list` &lt;:obj:`str`&gt;</span>
@@ -371,7 +373,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="MYSQLDataBase.availableSelections"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.availableSelections">[docs]</a>    <span class="k">def</span> <span class="nf">availableSelections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; fetches the names of available selections</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; fetches the names of available selections</span>
 
 <span class="sd">        :returns: list of available selections</span>
 <span class="sd">        :rtype: :obj:`list` &lt;:obj:`str`&gt;</span>
@@ -393,7 +395,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="MYSQLDataBase.availableDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.availableDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">availableDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; fetches the names of available datasources</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; fetches the names of available datasources</span>
 
 <span class="sd">        :returns: list of available datasources</span>
 <span class="sd">        :rtype: :obj:`list` &lt;:obj:`str`&gt;</span>
@@ -416,7 +418,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="MYSQLDataBase.storeComponent"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.storeComponent">[docs]</a>    <span class="k">def</span> <span class="nf">storeComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">xml</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; stores the given component</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; stores the given component</span>
 
 <span class="sd">        :param name: name of the component to store</span>
 <span class="sd">        :type name: :obj:`str`</span>
@@ -464,7 +466,7 @@
                                    <span class="s2">&quot; - store component </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MYSQLDataBase.storeDataSource"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.storeDataSource">[docs]</a>    <span class="k">def</span> <span class="nf">storeDataSource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">xml</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; stores the given datasource</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; stores the given datasource</span>
 
 <span class="sd">        :param name: name of the datasource to store</span>
 <span class="sd">        :type name: :obj:`str`</span>
@@ -512,7 +514,7 @@
                                    <span class="s2">&quot;- store datasource </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MYSQLDataBase.storeSelection"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.storeSelection">[docs]</a>    <span class="k">def</span> <span class="nf">storeSelection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">selection</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; stores the given selection</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; stores the given selection</span>
 
 <span class="sd">        :param name: name of the selection to store</span>
 <span class="sd">        :type name: :obj:`str`</span>
@@ -560,7 +562,7 @@
                                    <span class="s2">&quot;- store selection </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MYSQLDataBase.deleteComponent"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.deleteComponent">[docs]</a>    <span class="k">def</span> <span class="nf">deleteComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; deletes the given component</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; deletes the given component</span>
 
 <span class="sd">        :param name: name of the component to delete</span>
 <span class="sd">        :type name: :obj:`str`</span>
@@ -594,7 +596,7 @@
                                    <span class="s2">&quot;- delete component </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MYSQLDataBase.deleteSelection"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.deleteSelection">[docs]</a>    <span class="k">def</span> <span class="nf">deleteSelection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; deletes the given selection</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; deletes the given selection</span>
 
 <span class="sd">        :param name: name of the selection to delete</span>
 <span class="sd">        :type name: :obj:`str`</span>
@@ -628,7 +630,7 @@
                                    <span class="s2">&quot;- delete selection </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MYSQLDataBase.setMandatory"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.setMandatory">[docs]</a>    <span class="k">def</span> <span class="nf">setMandatory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; sets components as mandatory</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; sets components as mandatory</span>
 
 <span class="sd">        :param name: name of the component</span>
 <span class="sd">        :type name: :obj:`str`</span>
@@ -662,7 +664,7 @@
                     <span class="s2">&quot;MYSQLDataBase::setMandatory() - component </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MYSQLDataBase.unsetMandatory"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.unsetMandatory">[docs]</a>    <span class="k">def</span> <span class="nf">unsetMandatory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;sets components as not mandatory</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;sets components as not mandatory</span>
 
 <span class="sd">        :param name: name of the component to delete</span>
 <span class="sd">        :type name: :obj:`str`</span>
@@ -699,7 +701,7 @@
                                    <span class="s2">&quot;- component </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MYSQLDataBase.mandatory"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.mandatory">[docs]</a>    <span class="k">def</span> <span class="nf">mandatory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; provides mandatory components</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; provides mandatory components</span>
 
 <span class="sd">        :returns: list of mandatory components</span>
 <span class="sd">        :rtype: :obj:`list` &lt;:obj:`str`&gt;</span>
@@ -724,7 +726,7 @@
         <span class="k">return</span> <span class="n">argout</span></div>
 
 <div class="viewcode-block" id="MYSQLDataBase.deleteDataSource"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.MYSQLDataBase.MYSQLDataBase.deleteDataSource">[docs]</a>    <span class="k">def</span> <span class="nf">deleteDataSource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; deletes the given datasource</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; deletes the given datasource</span>
 
 <span class="sd">        :param name: name of the datasource to delete</span>
 <span class="sd">        :type name: :obj:`str`</span>
@@ -775,7 +777,7 @@
         &copy; Copyright 2012-2017 DESY, Jan Kotanski &lt;jkotan@mail.desy.de&gt;
 
 GNU GENERAL PUBLIC LICENSE, version 3.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
     </p>
   </div>
 </footer>

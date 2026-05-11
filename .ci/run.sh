@@ -7,6 +7,9 @@ else
     docker exec ndts python3 -m pytest
 fi
 ERR=$?
+
+echo "ERROR: "$ERR
+
 if [ $ERR != 0 ]; then
     if [ $ERR != 139 ]; then
 	exit $ERR;

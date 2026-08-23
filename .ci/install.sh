@@ -72,11 +72,6 @@ fi
 if [ "$?" != "0" ]; then exit 255; fi
 
 
-if  [ "$1" = "debian13py" ]; then
-	echo "remove python3-mysqldb"
-	docker exec  --user root ndts /bin/bash -c 'apt-get  remove -y   python3-mysqldb'
-fi
-
 echo "install nxsconfigserver"
 if [ "$2" = "2" ]; then
     docker exec --user root ndts chown -R tango:tango .
@@ -86,5 +81,11 @@ else
     docker exec --user root ndts chown -R tango:tango .
     docker exec  ndts python3 setup.py build
     docker exec --user root ndts python3 setup.py  install
+fi
+if [ "$?" != "0" ]; then exit 255; fi
+
+if  [ "$1" = "debian13py" ]; then
+    echo "remove python3-mysqldb"
+    docker exec  --user root ndts /bin/bash -c 'apt-get  remove -y   python3-mysqldb'
 fi
 if [ "$?" != "0" ]; then exit 255; fi

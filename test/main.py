@@ -43,7 +43,13 @@ except ImportError as e:
 DB_AVAILABLE = []
 
 try:
-    import MySQLdb
+
+    try:
+        import MySQLdb
+    except ImportError:
+        import pymysql
+        pymysql.install_as_MySQLdb()
+
     # connection arguments to MYSQL DB
     args = {'db': u'nxsconfig',
             'read_default_file': u'/etc/my.cnf', 'use_unicode': True}

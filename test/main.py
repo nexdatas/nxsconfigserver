@@ -47,7 +47,7 @@ try:
     try:
         import MySQLdb
     except ImportError:
-        import pymysql
+        import pymysql as MySQLdb
         pymysql.install_as_MySQLdb()
 
     # connection arguments to MYSQL DB

@@ -48,7 +48,7 @@ try:
         import MySQLdb
     except ImportError:
         import pymysql as MySQLdb
-        pymysql.install_as_MySQLdb()
+        MySQLdb.install_as_MySQLdb()
 
     # connection arguments to MYSQL DB
     args = {'db': u'nxsconfig',

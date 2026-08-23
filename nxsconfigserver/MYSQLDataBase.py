@@ -28,7 +28,7 @@ try:
     import MySQLdb
 except ImportError:
     import pymysql as MySQLdb
-    pymysql.install_as_MySQLdb()
+    MySQLdb.install_as_MySQLdb()
 
 
 from .Errors import NonregisteredDBRecordError

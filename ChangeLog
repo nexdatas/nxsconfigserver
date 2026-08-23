@@ -1,3 +1,7 @@
+2026-08-23 Jan Kotanski <jankotan@gmail.com>
+	* add support for pymysql (#111)
+	* tagged as v2.24.0
+
 2026-02-10 Jan Kotanski <jankotan@gmail.com>
 	* change utf8 to utf-8 encoding (#103)
 	* tagged as v2.23.0

@@ -19,9 +19,17 @@
 
 """ Providesthe access to MYSQL database with NDTS configuration files """
 
-import MySQLdb
+
 import sys
 import json
+
+
+try:
+    import MySQLdb
+except ImportError:
+    import pymysql as MySQLdb
+    MySQLdb.install_as_MySQLdb()
+
 
 from .Errors import NonregisteredDBRecordError
 

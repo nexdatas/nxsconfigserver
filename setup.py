@@ -129,7 +129,8 @@ SETUPDATA = dict(
         'Programming Language :: Python :: 3.14',
     ],
     install_requires=install_requires,
-    scripts=['NXSConfigServer'],
+    entry_points=['NXSConfigServer:nxsconfigserver:main'],
+    # scripts=['NXSConfigServer'],
     cmdclass={
         # 'test': TestCommand,
         'build_sphinx': BuildDoc

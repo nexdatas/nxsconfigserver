@@ -22,7 +22,7 @@
 # package version
 from .Release import __version__
 
-__all__ = ["__version__", "run"]
+__all__ = ["__version__", "run", "main"]
 
 
 def run(argv):
@@ -49,3 +49,8 @@ def run(argv):
         print('-------> Received a DevFailed exception: %s' % ex)
     except Exception as ex:
         print('-------> An unforeseen exception occured.... %s' % ex)
+
+
+def main():
+    import sys
+    run(sys.argv)

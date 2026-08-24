@@ -129,7 +129,9 @@ SETUPDATA = dict(
         'Programming Language :: Python :: 3.14',
     ],
     install_requires=install_requires,
-    entry_points=['NXSConfigServer:nxsconfigserver:main'],
+    entry_points={
+        'console_scripts':
+        'NXSConfigServer = nxsconfigserver:main'},
     # scripts=['NXSConfigServer'],
     cmdclass={
         # 'test': TestCommand,

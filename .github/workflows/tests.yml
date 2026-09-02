@@ -95,11 +95,11 @@ jobs:
       - name: run tests
         shell: bash
         run: |
-          pixi add  --manifest-path .github/workflows/pixi/pixi.toml rattler-build compilers sphinx  mariadb tango-database tango-starter tango-admin nxsconfigserver-db
-          mkdir -p ./db_data
-          pixi run --manifest-path .github/workflows/pixi/pixi.toml mariadb-install-db --datadir=./db_data
-          pixi run --manifest-path .github/workflows/pixi/pixi.toml mariadbd --datadir=./db_data --port=3306 --pid-file=./mariadb.pid &
-          pixi run --manifest-path .github/workflows/pixi/pixi.toml mariadb -u root -P 3306 < .pixi/envs/default/share/tango/db/create_db.sql
+          pixi add  --manifest-path .github/workflows/pixi/pixi.toml rattler-build compilers sphinx  mysqldb tango-database tango-starter tango-admin nxsconfigserver-db mysql-server
+          mkdir ./mysql_data
+          pixi run --manifest-path .github/workflows/pixi/pixi.toml mysql_install_db  --datadir=./.mysql_data
+          pixi run --manifest-path .github/workflows/pixi/pixi.toml mysqld --datadir=./.mysql_data --port=3306 --bind-address=127.0.0.1
+          pixi run --manifest-path .github/workflows/pixi/pixi.toml mysqldb -u root -P 3306 < .pixi/envs/default/share/tango/db/create_db.sql
           export MYSQL_HOST="127.0.0.1"
           export MYSQL_USER="root"
           export MYSQL_PASSWORD=""
@@ -113,4 +113,4 @@ jobs:
           pixi run --manifest-path .github/workflows/pixi/pixi.toml rattler-build build  --recipe .github/workflows/pixi/recipe.yaml
           pkill Starter
           pkill Databaseds
-          kill $(cat ./mariadb.pid)
+          kill $(cat ./mysqldb.pid)

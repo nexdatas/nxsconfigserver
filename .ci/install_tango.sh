@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+echo "restart mysql"
+docker exec --user root ndts service mariadb restart
+
+echo "install tango-db "
+docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FRONTEND=noninteractive; apt-get -qq install -y tango-common; sleep 10; apt-get -qq install -y tango-db; sleep 10'
+docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FRONTEND=noninteractive'
+docker exec  --user root ndts service tango-db restart
+
+echo "install tango-starter"
+docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FRONTEND=noninteractive;  apt-get -qq install -y  tango-starter tango-test liblog4j1.2-java'
+if [ "$?" -ne "0" ]; then exit 255; fi
+
+docker exec --user root ndts service tango-starter restart
+
+docker exec --user root ndts chown -R tango:tango .

@@ -95,7 +95,7 @@ jobs:
       - name: run tests
         shell: bash
         run: |
-          pixi add  --manifest-path .github/workflows/pixi/pixi.toml rattler-build compilers sphinx  mysqldb tango-database tango-starter tango-admin nxsconfigserver-db mysql-server
+          pixi add  --manifest-path .github/workflows/pixi/pixi.toml rattler-build compilers sphinx  tango-database tango-starter tango-admin nxsconfigserver-db mysql-server
           mkdir ./mysql_data
           pixi run --manifest-path .github/workflows/pixi/pixi.toml mysql_install_db  --datadir=./.mysql_data
           pixi run --manifest-path .github/workflows/pixi/pixi.toml mysqld --datadir=./.mysql_data --port=3306 --bind-address=127.0.0.1

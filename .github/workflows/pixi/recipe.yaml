@@ -52,7 +52,6 @@ tests:
         - nxsconfigserver.XMLConfigurator
 
       python_version:
-        - ${{ python_min }}.*
         - "*"
   - script:
       - if: unix

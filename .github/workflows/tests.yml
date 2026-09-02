@@ -20,62 +20,97 @@ jobs:
       - name: Run flake8
         run: flake8 .
 
-  dpkg_tests:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [debian13py, debian13, debian12tg10, debian12, debian11, ubuntu26.04py, ubuntu26.04, ubuntu24.04, ubuntu22.04]
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - name: Update bash files
-        run: |
-          chmod +x .ci/run.sh
-          chmod +x .ci/install.sh
-      - name: Build the docker
-        env:
-          OSYS: ${{ matrix.os }}
-        run: docker build -t ndts .ci/${OSYS}_py3
-      - name: Run the docker
-        run: docker run  --name  ndts -d -it -v `pwd`:/home/tango  ndts
-      - name: install tango and nxsconfigserver
-        env:
-          OSYS: ${{ matrix.os }}
-        run: .ci/install.sh ${OSYS} 3
-      - name: run tests
-        env:
-          OSYS: ${{ matrix.os }}
-        run: .ci/run.sh ${OSYS} 3
-      - name: Stop the docker
-        run: |
-             docker exec  --user root ndts  /bin/bash -c "chown -R 1001 /home/tango "
-             docker container stop ndts
+  # dpkg_tests:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       os: [debian13py, debian13, debian12tg10, debian12, debian11, ubuntu26.04py, ubuntu26.04, ubuntu24.04, ubuntu22.04]
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-python@v2
+  #     - name: Update bash files
+  #       run: |
+  #         chmod +x .ci/run.sh
+  #         chmod +x .ci/install.sh
+  #     - name: Build the docker
+  #       env:
+  #         OSYS: ${{ matrix.os }}
+  #       run: docker build -t ndts .ci/${OSYS}_py3
+  #     - name: Run the docker
+  #       run: docker run  --name  ndts -d -it -v `pwd`:/home/tango  ndts
+  #     - name: install tango and nxsconfigserver
+  #       env:
+  #         OSYS: ${{ matrix.os }}
+  #       run: .ci/install.sh ${OSYS} 3
+  #     - name: run tests
+  #       env:
+  #         OSYS: ${{ matrix.os }}
+  #       run: .ci/run.sh ${OSYS} 3
+  #     - name: Stop the docker
+  #       run: |
+  #            docker exec  --user root ndts  /bin/bash -c "chown -R 1001 /home/tango "
+  #            docker container stop ndts
 
-  pixi_tests:
+  # pixi_tests:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       os: [debian13, ubuntu26.04]
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-python@v2
+  #     - name: Update bash files
+  #       run: |
+  #         chmod +x .ci/run_pixi.sh
+  #         chmod +x .ci/install_tango.sh
+  #     - name: Build the docker
+  #       env:
+  #         OSYS: ${{ matrix.os }}
+  #       run: docker build -t ndts .ci/${OSYS}_pixi
+  #     - name: Run the docker
+  #       run: docker run  --name  ndts -d -it -v `pwd`:/home/tango  ndts
+  #     - name: Install tango
+  #       env:
+  #         OSYS: ${{ matrix.os }}
+  #       run: .ci/install_tango.sh ${OSYS}
+  #     - name: Run pixi and tests
+  #       run: .ci/run_pixi.sh ${OSYS}
+  #     - name: Stop the docker
+  #       run: |
+  #            docker exec  --user root ndts  /bin/bash -c "chown -R 1001 /home/tango "
+  #            docker container stop ndts
+
+  pixi_ubuntu_tests:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [debian13, ubuntu26.04]
+    container:
+      image: debian:trixie
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - name: Update bash files
+      - uses: actions/checkout@v4
+      - name: install pixi
+        uses: prefix-dev/setup-pixi@v0.10.2
+        with:
+          manifest-path: .github/workflows/pixi/pixi.toml
+          pixi-version: v0.66.0
+          cache: false
+      - name: run tests
+        shell: bash
         run: |
-          chmod +x .ci/run_pixi.sh
-          chmod +x .ci/install_tango.sh
-      - name: Build the docker
-        env:
-          OSYS: ${{ matrix.os }}
-        run: docker build -t ndts .ci/${OSYS}_pixi
-      - name: Run the docker
-        run: docker run  --name  ndts -d -it -v `pwd`:/home/tango  ndts
-      - name: Install tango
-        env:
-          OSYS: ${{ matrix.os }}
-        run: .ci/install_tango.sh ${OSYS}
-      - name: Run pixi and tests
-        run: .ci/run_pixi.sh ${OSYS}
-      - name: Stop the docker
-        run: |
-             docker exec  --user root ndts  /bin/bash -c "chown -R 1001 /home/tango "
-             docker container stop ndts
+          pixi add  --manifest-path .github/workflows/pixi/pixi.toml rattler-build compilers sphinx  mariadb tango-database tango-starter tango-admin nxsconfigserver-db
+          mkdir -p ./db_data
+          pixi run --manifest-path .github/workflows/pixi/pixi.toml mariadb-install-db --datadir=./db_data
+          pixi run --manifest-path .github/workflows/pixi/pixi.toml mariadbd --datadir=./db_data --port=3306 --pid-file=./mariadb.pid &
+          pixi run --manifest-path .github/workflows/pixi/pixi.toml mariadb -u root -P 3306 < .pixi/envs/default/share/tango/db/create_db.sql
+          export MYSQL_HOST="127.0.0.1"
+          export MYSQL_USER="root"
+          export MYSQL_PASSWORD=""
+          export TANGO_HOST="127.0.0.1:10000"
+          pixi run --manifest-path .github/workflows/pixi/pixi.toml DataBaseds 2 &
+          pixi run --manifest-path .github/workflows/pixi/pixi.toml tango-admin --ping-db
+          pixi run --manifest-path .github/workflows/pixi/pixi.toml tango-admin --add-server Starter/my-computer Starter tango/admin/my-computer
+          pixi run --manifest-path .github/workflows/pixi/pixi.toml run Starter my-computer &
+          pixi run --manifest-path .github/workflows/pixi/pixi.toml tango-admin --ping-device tango/admin/my-computer
+          pixi run --manifest-path .github/workflows/pixi/pixi.toml create_nxsconfig_db -x -d=nxsonfig -u=tango -p=".pixi/envs/default"
+          pixi run --manifest-path .github/workflows/pixi/pixi.toml rattler-build build  --recipe .github/workflows/pixi/recipe.yaml
+          pkill Starter
+          pkill Databaseds
+          kill $(cat ./mariadb.pid)

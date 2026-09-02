@@ -1,19 +1,21 @@
 schema_version: 1
 
 context:
-  version: "1.11.0"
+  version: "2.25.0"
 
 package:
-  name: nxsconfigserver-db
+  name: nxsconfigserver
   version: ${{ version }}
 
 source:
   - path: ../../../
 
 build:
+  noarch: python
   number: 0
   script:
     - python -m pip install . -vv --no-deps --no-build-isolation
+    - python -m pytest test
 
 requirements:
   host:
@@ -21,36 +23,59 @@ requirements:
     - setuptools >=61
     - pip
     - wheel
+    - numpy
+    - argcomplete
+    - lxml
+    - pytango
+    - mysql-client
+    - pymysql
   run:
     - python
-    - mysql-client # Provides the 'mysql' command line tool
+    - numpy
+    - argcomplete
+    - lxml
+    - pytango
+    - mysql-client
+    - pymysql
 
 tests:
+  - python:
+      imports:
+        - nxsconfigserver
+        - nxsconfigserver.ComponentParser
+        - nxsconfigserver.Errors
+        - nxsconfigserver.MYSQLDataBase
+        - nxsconfigserver.Merger
+        - nxsconfigserver.NXSConfigServer
+        - nxsconfigserver.Release
+        - nxsconfigserver.StreamSet
+        - nxsconfigserver.XMLConfigurator
+
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
   - script:
-      - test -x "$PREFIX/bin/create_nxsconfig_db"
+      - if: unix
+        then:
+          - test -x "$PREFIX/bin/NXSConfigServer"
+          - NXSConfigServer --help
     requirements:
       run:
-        - mysql-server
         - python
-    files:
-      source:
-        - share/nxsconfigserver/mysql_create.sql
-  - package_contents:
-      files:
-        - share/nxsconfigserver/mysql_create.sql
 
 
 about:
-  homepage: https://github.com/nexdatas/nxsconfigserver-db
-  repository: https://github.com/nexdatas/nxsconfigserver-db
+  homepage: https://github.com/nexdatas/nxsconfigserver
+  repository: https://github.com/nexdatas/nxsconfigserver
   license: GPL-3.0-or-later
   license_file: COPYRIGHT
-  summary: NeXDaTaS configuration server database
+  summary: NeXus Configuration tango server
   description: |
-    NeXuS Configuration Server is a Tango Server with its implementation
-    based on a MySQL database. It allows to store XML configuration
-    datasources and components. It also gives possibility to select
-    mandatory components and perform the process of component merging.
+    NeXuS Configuration Server is a Tango Server with its
+    implementation based on a MySQL database.
+    It allows to store XML configuration datasources and components.
+    It also gives possibility to select mandatory components
+    and perform the process of component merging.
 
 extra:
   recipe-maintainers:

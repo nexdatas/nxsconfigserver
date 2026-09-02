@@ -8,7 +8,7 @@ docker exec  ndts /bin/bash -c 'pwd '
 docker exec  ndts /bin/bash -c 'echo "$HOME" '
 
 # create nxsconfig database
-docker exec  --user root ndts /bin/bash -c 'source /home/tango/.sh.sh ; create_nxsconfig_db -x -d=nxsonfig -u=tango -p="$CONDA_PREFIX"'
+docker exec  --user root ndts /bin/bash -c 'source /home/tango/.sh.sh ; MYSQL_PASSWORD="rootpw" create_nxsconfig_db -x -d=nxsonfig -u=tango -p="$CONDA_PREFIX"'
 
 echo "run nxsconfigserver-db"
 docker exec  ndts /bin/bash -c 'source .sh.sh ; pixi run  --manifest-path .github/workflows/pixi/pixi.toml rattler-build build  --recipe .github/workflows/pixi/recipe.yaml'

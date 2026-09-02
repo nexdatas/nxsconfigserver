@@ -29,6 +29,7 @@ requirements:
     - pytango
     - mysql-client
     - pymysql
+    - pytest
   run:
     - python
     - numpy
@@ -37,6 +38,7 @@ requirements:
     - pytango
     - mysql-client
     - pymysql
+    - pytest
 
 tests:
   - python:

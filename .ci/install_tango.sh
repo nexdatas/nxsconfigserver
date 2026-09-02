@@ -13,7 +13,12 @@ docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON tango.*
 docker exec  --user root ndts /usr/bin/mysql -e 'FLUSH PRIVILEGES'
 
 docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FRONTEND=noninteractive; apt-get -qq install -y tango-db; sleep 10'
-docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FRONTEND=noninteractive'
+
+if [ "$1" = "ubuntu26.04" ]; then
+    docker exec  --user tango ndts /usr/bin/mysql -e 'create database tango'
+    docker exec  --user tango ndts /bin/bash -c '/usr/bin/mysql tango < /usr/share/dbconfig-common/data/tango-db/install/mysql'
+fi
+
 docker exec  --user root ndts service tango-db restart
 
 echo "install tango-starter"
@@ -26,3 +31,10 @@ docker exec --user root ndts chown -R tango:tango .
 
 docker exec --user root ndts /bin/bash -c 'apt-get -qq update; apt-get  install -y   nxsconfigserver-db'
 
+if  [ "$1" = "ubuntu26.04" ]; then
+    docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"%" identified by "rootpw"'
+    docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"localhost" identified by "rootpw"'
+    docker exec  --user root ndts /usr/bin/mysql -e 'FLUSH PRIVILEGES'
+    docker exec  --user tango ndts /usr/bin/mysql -e 'create database nxsconfig'
+    docker exec  --user tango ndts /bin/bash -c '/usr/bin/mysql nxsconfig < /usr/share/dbconfig-common/data/nxsconfigserver-db/install/mysql'
+fi

@@ -23,3 +23,6 @@ if [ "$?" -ne "0" ]; then exit 255; fi
 docker exec --user root ndts service tango-starter restart
 
 docker exec --user root ndts chown -R tango:tango .
+
+docker exec --user root ndts /bin/bash -c 'apt-get -qq update; apt-get  install -y   nxsconfigserver-db'
+

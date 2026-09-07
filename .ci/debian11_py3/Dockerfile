@@ -10,6 +10,7 @@ RUN sed -i 's|deb http://archive.debian.org/debian-security|# deb http://archive
 # RUN /bin/bash -c 'echo "deb http://ftp.de.debian.org/debian bullseye main" > /etc/apt/sources.list.d/debiande.list'
 
 # add the HDRI repository
+RUN apt-get -qq update && apt-get -qq -y dist-upgrade
 RUN  apt-get -qq update && apt-get install -y base-passwd apt-utils dialog -y
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN apt-get -qq update && apt-get  install -y libterm-readline-gnu-perl software-properties-common coreutils gnupg2 procps curl apt-transport-https gnupg2 ca-certificates wget

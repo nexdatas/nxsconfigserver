@@ -4,7 +4,9 @@ FROM debian:bullseye
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN /bin/bash -c 'echo "deb http://ftp.de.debian.org/debian bullseye main" > /etc/apt/sources.list.d/debiande.list'
+RUN sed -i 's|http://deb.debian.org|http://archive.debian.org|g' /etc/apt/sources.list
+RUN sed -i 's|http://security.debian.org|http://archive.debian.org|g' /etc/apt/sources.list
+# RUN /bin/bash -c 'echo "deb http://ftp.de.debian.org/debian bullseye main" > /etc/apt/sources.list.d/debiande.list'
 
 # add the HDRI repository
 RUN  apt-get -qq update && apt-get install -y base-passwd apt-utils dialog -y

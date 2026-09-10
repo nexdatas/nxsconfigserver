@@ -6,7 +6,7 @@ docker exec  ndts /bin/bash -c 'curl -fsSL https://pixi.sh/install.sh | sh ; exp
 
 # # create nxsconfig database
 # docker exec  --user root ndts /bin/bash -c 'source /home/tango/.sh.sh ; export MYSQL_PASSWORD="rootpw" ; create_nxsconfig_db -x -d=nxsonfig -u=tango -p="$CONDA_PREFIX"'
-'
+
 echo "run nxsconfigserver tests"
 docker exec  ndts /bin/bash -c 'source .sh.sh ;  echo "export MYTANGO_PREFIX=$CONDA_PREFIX/bin" > /home/tango/.env ;   python -m pip install . -vv --no-deps --no-build-isolation ;   python -m pytest test'
 

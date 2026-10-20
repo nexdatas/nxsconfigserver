@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 echo "restart mysql service"
-if [ "$1" = "debian11" ] || [ "$1" = "debian12" ]  || [ "$1" = "debian12tg10" ]  || [ "$1" = "debian13" ]  || [ "$1" = "debian13py" ] || [ "$1" = "ubuntu26.10" ] || [ "$1" = "ubuntu26.04py" ] || [ "$1" = "ubuntu26.04" ] || [ "$1" = "ubuntu24.04" ]; then
+if [ "$1" = "debian11" ] || [ "$1" = "debian12" ]  || [ "$1" = "debian12tg10" ]  || [ "$1" = "debian13" ]  || [ "$1" = "debian13py" ] || [ "$1" = "ubuntu26.04py" ] || [ "$1" = "ubuntu26.04" ] || [ "$1" = "ubuntu24.04" ]; then
     docker exec --user root ndts service mariadb restart
 else
     # workaround for a bug in debian9, i.e. starting mysql hangs
-    docker exec --user root ndts service mysql stop
-    if [ "$1" = "ubuntu20.04" ] || [ "$1" = "ubuntu20.10" ] || [ "$1" = "ubuntu21.04" ] || [ "$1" = "ubuntu22.04" ] ; then
-	docker exec --user root ndts /bin/bash -c 'usermod -d /var/lib/mysql/ mysql'
-    fi
+    docker exec --user root ndts systemctl restart mariadb.service
+    # if [ "$1" = "ubuntu20.04" ] || [ "$1" = "ubuntu20.10" ] || [ "$1" = "ubuntu21.04" ] || [ "$1" = "ubuntu22.04" ] ; then
+    # 	docker exec --user root ndts /bin/bash -c 'usermod -d /var/lib/mysql/ mysql'
+    # fi
     # docker exec  --user root ndts /bin/bash -c '$(service mysql start &) && sleep 30'
-    docker exec --user root ndts service mysql start
+    docker exec --user root ndts systemctl status mariadb.service
 fi
 
 
@@ -30,7 +30,7 @@ if [ "$1" = "ubuntu20.04" ] || [ "$1" = "ubuntu20.10" ] || [ "$1" = "ubuntu21.04
     docker exec  --user root ndts /bin/bash -c 'echo -e "[client]\nuser=tango\nhost=127.0.0.1\npassword=rootpw" > /var/lib/tango/.my.cnf'
 fi
 if   [ "$1" = "ubuntu26.10" ]; then
-    docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/DataBaseds 2 -ORBendPoint giop:tcp::10000  &'
+    # docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/DataBaseds 2 -ORBendPoint giop:tcp::10000  &'
     docker exec  --user root ndts /bin/bash -c 'echo -e "[client]\nuser=root\npassword=rootpw" > /root/.my.cnf'
     docker exec  --user root ndts /bin/bash -c 'echo -e "[client]\nuser=tango\nhost=localhost\npassword=rootpw" > /var/lib/tango/.my.cnf'
     docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON tango.* TO "tango"@"%" identified by "rootpw"'

@@ -43,7 +43,7 @@ if   [ "$1" = "ubuntu26.10" ]; then
     docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON tango.* TO "tango"@"localhost" identified by "rootpw"'
     docker exec  --user root ndts /usr/bin/mysql -e 'FLUSH PRIVILEGES'
     docker exec --user tango ndts /usr/bin/bash  -c 'pwd'
-    docker exec --user tango ndts /usr/bin/bash  -c 'echo "$HOME"'
+    docker exec --user tango ndts /usr/bin/bash  -c 'echo "$TANGO_HOST"'
     docker exec --user tango ndts /usr/bin/mysql -e 'show databases;'
 fi
 echo "install tango-db"

@@ -80,15 +80,16 @@ docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FR
 # if [ "$?" -ne "0" ]; then exit 255; fi
 
 if   [ "$1" = "ubuntu26.10" ] ; then
-    echo "restart tango-starter"
-    docker exec --user root ndts service tango-starter restart
-    echo "start tango-starter"
-    docker exec --user root ndts service tango-starter start
+    # echo "restart tango-starter"
+    # docker exec --user root ndts service tango-starter restart
+    # echo "start tango-starter"
+    # docker exec --user root ndts service tango-starter start
     echo "status tango-starter"
     docker exec --user root ndts service tango-starter status
     docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Starter'
-    # echo "start  STARTER"
-    # docker exec  --user tango ndts /bin/bash -c '/usr/bin/tango_admin --add-server Starter/$(hostname) Starter tango/admin/$(hostname)'
+    echo "start  STARTER"
+    docker exec  --user tango ndts /bin/bash -c '/usr/bin/tango_admin --add-server Starter/$(hostname) Starter tango/admin/$(hostname)'
+    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Starter'
     # docker exec --user root ndts systemctl restart tango-starter.service
     # docker exec --user root ndts systemctl status tango-starter.service
     # docker exec  --user root ndts service tango-db status
@@ -107,12 +108,17 @@ else
 	docker exec --user root ndts /bin/bash -c 'apt-get -qq update; apt-get install -y   python3-tango'
 	echo "install nxsconfigserver-db"
 	docker exec --user root ndts /bin/bash -c 'apt-get -qq update; apt-get  install -y   nxsconfigserver-db'
-	if [ "$1" = "ubuntu24.04" ] || [ "$1" = "ubuntu26.10" ] || [ "$1" = "ubuntu26.04" ] || [ "$1" = "ubuntu26.04py" ]; then
+	if [ "$1" = "ubuntu24.04" ] || [ "$1" = "ubuntu24.10" ] || [ "$1" = "ubuntu26.04" ] || [ "$1" = "ubuntu26.04py" ]; then
 	    docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"%" identified by "rootpw"'
 	    docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"localhost" identified by "rootpw"'
 	    docker exec  --user root ndts /usr/bin/mysql -e 'FLUSH PRIVILEGES'
 	    docker exec  --user tango ndts /usr/bin/mysql -e 'create database nxsconfig'
 	    docker exec  --user tango ndts /bin/bash -c '/usr/bin/mysql nxsconfig < /usr/share/dbconfig-common/data/nxsconfigserver-db/install/mysql'
+	fi
+	if [ "$1" = "ubuntu26.10" ]; then
+	    docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"%" identified by "rootpw"'
+	    docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"localhost" identified by "rootpw"'
+	    docker exec  --user root ndts /usr/bin/mysql -e 'FLUSH PRIVILEGES'
 	fi
     else
 	echo "install pytango and nxsconfigserver-db"

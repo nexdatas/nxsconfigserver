@@ -5,7 +5,7 @@ if [ "$1" = "debian11" ] || [ "$1" = "debian12" ]  || [ "$1" = "debian12tg10" ] 
     docker exec --user root ndts service mariadb restart
 else
     # workaround for a bug in debian9, i.e. starting mysql hangs
-    docker exec --user root ndts /bin/bash -c '/lib/systemd/systemd &; sleep 5'
+    docker exec --user root ndts /bin/bash -c '/lib/systemd/systemd &  sleep 5'
     docker exec --user root ndts systemctl restart mariadb.service
     # docker exec --user root ndts service mariadb restart
     # if [ "$1" = "ubuntu20.04" ] || [ "$1" = "ubuntu20.10" ] || [ "$1" = "ubuntu21.04" ] || [ "$1" = "ubuntu22.04" ] ; then

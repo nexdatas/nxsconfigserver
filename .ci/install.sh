@@ -12,8 +12,8 @@ else
     # docker exec --user root ndts /bin/bash -c 'usermod -d /var/lib/mysql/ mysql'
     # 
     # docker exec  --user root ndts /bin/bash -c '$(service mysql start &) && sleep 30'
-    docker exec --user root ndts service mariadb status
-    docker exec --user root ndts /usr/bin/mysql -e 'show databases;'
+    # docker exec --user root ndts service mariadb status
+    # docker exec --user root ndts /usr/bin/mysql -e 'show databases;'
 fi
 
 
@@ -59,14 +59,14 @@ if   [ "$1" = "ubuntu26.10" ] ; then
     docker exec  --user root ndts service tango-db restart
     echo "status tango-db"
     docker exec  --user root ndts service tango-db status
-    echo "start tango-db"
-    docker exec  --user root ndts service tango-db start
-    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Databaseds'
-    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep tango'
-    echo "start databaseds"
-    docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/Databaseds 2  -v4 -ORBendPoint giop:tcp::10000  &'
-    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Databaseds'
-    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep tango'
+    # echo "start tango-db"
+    # docker exec  --user root ndts service tango-db start
+    # docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Databaseds'
+    # docker exec  --user root ndts /bin/bash -c 'ps -ef | grep tango'
+    # echo "start databaseds"
+    # docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/Databaseds 2  -v4 -ORBendPoint giop:tcp::10000  &'
+    # docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Databaseds'
+    # docker exec  --user root ndts /bin/bash -c 'ps -ef | grep tango'
 else
     docker exec  --user root ndts service tango-db restart
 fi
@@ -81,12 +81,12 @@ if   [ "$1" = "ubuntu26.10" ] ; then
     echo "restart tango-starter"
     docker exec --user root ndts service tango-starter restart
     echo "start tango-starter"
-    docker exec --user root ndts service tango-starter start
-    echo "status tango-starter"
+    # docker exec --user root ndts service tango-starter start
+    # echo "status tango-starter"
     docker exec --user root ndts service tango-starter status
     docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Starter'
-    echo "start  STARTER"
-    docker exec  --user tango ndts /bin/bash -c '/usr/bin/tango_admin --add-server Starter/$(hostname) Starter tango/admin/$(hostname)'
+    # echo "start  STARTER"
+    # docker exec  --user tango ndts /bin/bash -c '/usr/bin/tango_admin --add-server Starter/$(hostname) Starter tango/admin/$(hostname)'
     # docker exec --user root ndts systemctl restart tango-starter.service
     # docker exec --user root ndts systemctl status tango-starter.service
     # docker exec  --user root ndts service tango-db status

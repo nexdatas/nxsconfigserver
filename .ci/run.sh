@@ -11,7 +11,8 @@ ERR=$?
 echo "ERROR: "$ERR
 
 if [ $ERR != 0 ]; then
-    if [ $ERR != 139 ]; then
+    # if [ "$1" != "ubuntu26.04" ] && [ $ERR != 139 ]; then
+    if  [ $ERR != 139 ]; then
 	exit $ERR;
     fi
 fi

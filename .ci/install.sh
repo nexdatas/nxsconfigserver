@@ -8,6 +8,7 @@ else
     # docker exec --user root ndts /bin/bash -c '/lib/systemd/systemd &  sleep 5'
     # docker exec --user root ndts systemctl restart mariadb.service
     docker exec --user root ndts service mariadb restart
+    docker exec --user root ndts /bin/bash -c 'mkdir -p /usr/lib/systemd/system'
     # if [ "$1" = "ubuntu20.04" ] || [ "$1" = "ubuntu20.10" ] || [ "$1" = "ubuntu21.04" ] || [ "$1" = "ubuntu22.04" ] ; then
     # docker exec --user root ndts /bin/bash -c 'usermod -d /var/lib/mysql/ mysql'
     # 

@@ -49,7 +49,7 @@ fi
 echo "install tango-db"
 docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FRONTEND=noninteractive; apt-get -qq install -y tango-db; sleep 10'
 # if [ "$?" -ne "0" ]; then exit 255; fi
-if  [ "$1" = "ubuntu24.04" ] || [ "$1" = "ubuntu24.10" ] || [ "$1" = "ubuntu26.04" ] || [ "$1" = "ubuntu26.04py" ] || [ "$1" = "ubuntu26.10" ]; then
+if  [ "$1" = "ubuntu24.04" ] || [ "$1" = "ubuntu24.10" ] || [ "$1" = "ubuntu26.04" ] || [ "$1" = "ubuntu26.04py" ] || [ "$1" = "ubuntu24.10" ]; then
     docker exec  --user tango ndts /usr/bin/mysql -e 'create database tango'
     docker exec  --user tango ndts /bin/bash -c '/usr/bin/mysql tango < /usr/share/dbconfig-common/data/tango-db/install/mysql'
 fi

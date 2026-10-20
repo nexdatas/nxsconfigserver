@@ -9,7 +9,7 @@ RUN cd /etc/apt/sources.list.d && wget https://repos.pni-hdri.de/stonking-pni-hd
     && useradd -ms /bin/bash tango
 RUN  /bin/bash -c 'export DEBIAN_FRONTEND=noninteractive; debconf-set-selections <<< "mariadb-server mysql-server/root_password password rootpw"' \
      && /bin/bash -c 'export DEBIAN_FRONTEND=noninteractive; debconf-set-selections <<< "mariadb-server mysql-server/root_password_again password rootpw"' \
-     && apt-get -qq update && apt-get -qq install -y mariadb-server python3-mysqldb mysql-client dialog \
+     && apt-get -qq update && apt-get -qq install -y mariadb-server python3-mysqldb mysql-client libtango-tools dialog \
      &&  /bin/bash -c 'sleep 10'
 RUN /bin/bash -c 'export DEBIAN_FRONTEND=noninteractive; debconf-set-selections <<< "tango-db tango-db/db/app-user string tango"'  \
      && /bin/bash -c 'export DEBIAN_FRONTEND=noninteractive; debconf-set-selections <<< "tango-db tango-db/mysql/app-pass	password rootpw"' \

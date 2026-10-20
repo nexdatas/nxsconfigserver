@@ -1,24 +1,5 @@
 FROM ubuntu:26.10
 
-# # Install systemd and clean up packages to reduce bloat
-# RUN apt-get update && apt-get install -y \
-#     systemd \
-#     systemd-sysv \
-#     && apt-get clean \
-#     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# # Remove unnecessary systemd targets that cause errors in containers
-# RUN cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
-#     systemd-tmpfiles-setup.service ] || rm -f $i; done; \
-#     rm -f /lib/systemd/system/multi-user.target.wants/*;\
-#     rm -f /etc/systemd/system/*.wants/*;\
-#     rm -f /lib/systemd/system/local-fs.target.wants/*; \
-#     rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
-#     rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
-#     rm -f /lib/systemd/system/basic.target.wants/*;\
-#     rm -f /lib/systemd/system/anaconda.target.wants/*;
-
-
 
 RUN apt-get -qq update && export DEBIAN_FRONTEND=noninteractive && apt-get install -y  curl gpg-agent mariadb-client python3-h5py python3-sphinx apt-utils debconf-utils net-tools  omniidl libomniorb4-dev libcos4-dev libzmq3-dev python3-setuptools python3-setuptools libterm-readline-gnu-perl software-properties-common coreutils procps  apt-transport-https gnupg2 ca-certificates wget python3-h5py python3-sphinx apt-utils debconf-utils net-tools  omniidl libomniorb4-dev libcos4-dev libzmq3-dev python3-setuptools python3-lxml  liblog4j1.2-java python3-setuptools python3-pytest  python3-pip python3-pip-whl python3-sphinx-bootstrap-theme git
 
@@ -47,6 +28,7 @@ RUN /bin/bash -c 'export DEBIAN_FRONTEND=noninteractive; debconf-set-selections 
 ENV PKG_CONFIG_PATH=/home/tango/lib/pkgconfig
 
 ENV MYSQL_HOST=localhost
+ENV MYSQL_USER=tango
+ENV TANGO_HOST=localhost:10000
 USER tango
 WORKDIR /home/tango
-# CMD ["/lib/systemd/systemd"]

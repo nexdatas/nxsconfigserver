@@ -6,13 +6,13 @@ if [ "$1" = "debian11" ] || [ "$1" = "debian12" ]  || [ "$1" = "debian12tg10" ] 
 else
     # workaround for a bug in debian9, i.e. starting mysql hangs
     # docker exec --user root ndts /bin/bash -c '/lib/systemd/systemd &  sleep 5'
-    docker exec --user root ndts systemctl restart mariadb.service
-    # docker exec --user root ndts service mariadb restart
+    # docker exec --user root ndts systemctl restart mariadb.service
+    docker exec --user root ndts service mariadb restart
     # if [ "$1" = "ubuntu20.04" ] || [ "$1" = "ubuntu20.10" ] || [ "$1" = "ubuntu21.04" ] || [ "$1" = "ubuntu22.04" ] ; then
     # docker exec --user root ndts /bin/bash -c 'usermod -d /var/lib/mysql/ mysql'
     # 
     # docker exec  --user root ndts /bin/bash -c '$(service mysql start &) && sleep 30'
-    #docker exec --user root ndts service mariadb status
+    docker exec --user root ndts service mariadb status
 fi
 
 
@@ -47,10 +47,20 @@ if  [ "$1" = "ubuntu24.04" ] || [ "$1" = "ubuntu26.10" ] || [ "$1" = "ubuntu26.0
 fi
 
 if   [ "$1" = "ubuntu26.10" ] ; then
-    docker exec --user root ndts systemctl restart tango-db.service
-    docker exec --user root ndts systemctl status tango-db.service
-    # docker exec  --user root ndts service tango-db status
-    # docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/Databaseds 2 -ORBendPoint giop:tcp::10000  &'
+    # docker exec --user root ndts systemctl restart tango-db.service
+    # docker exec --user root ndts systemctl status tango-db.service
+    echo "restart tango-db"
+    docker exec  --user root ndts service tango-db restart
+    echo "status tango-db"
+    docker exec  --user root ndts service tango-db status
+    echo "start tango-db"
+    docker exec  --user root ndts service tango-db start
+    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Databaseds'
+    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep tango'
+    echo "start databaseds"
+    docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/Databaseds 2 -ORBendPoint giop:tcp::10000  &'
+    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Databaseds'
+    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep tango'
 else
     docker exec  --user root ndts service tango-db restart
 fi
@@ -62,12 +72,18 @@ docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FR
 # if [ "$?" -ne "0" ]; then exit 255; fi
 
 if   [ "$1" = "ubuntu26.10" ] ; then
-    # docker exec --user root ndts service tango-starter status
-    # docker exec  --user tango ndts /bin/bash -c '/usr/bin/tango_admin --add-server Starter/$(hostname) Starter tango/admin/$(hostname)'
-    docker exec --user root ndts systemctl restart tango-starter.service
-    docker exec --user root ndts systemctl status tango-starter.service
+    echo "restart tango-starter"
+    docker exec --user root ndts service tango-starter restart
+    echo "start tango-starter"
+    docker exec --user root ndts service tango-starter start
+    echo "status tango-starter"
+    docker exec --user root ndts service tango-starter status
+    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Starter'
+    echo "start  STARTER"
+    docker exec  --user tango ndts /bin/bash -c '/usr/bin/tango_admin --add-server Starter/$(hostname) Starter tango/admin/$(hostname)'
+    # docker exec --user root ndts systemctl restart tango-starter.service
+    # docker exec --user root ndts systemctl status tango-starter.service
     # docker exec  --user root ndts service tango-db status
-    # docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/Databaseds 2 -ORBendPoint giop:tcp::10000  &'
 else
     docker exec --user root ndts service tango-starter restart
 fi

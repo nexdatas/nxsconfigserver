@@ -1,22 +1,22 @@
 FROM ubuntu:26.10
 
-# Install systemd and clean up packages to reduce bloat
-RUN apt-get update && apt-get install -y \
-    systemd \
-    systemd-sysv \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# # Install systemd and clean up packages to reduce bloat
+# RUN apt-get update && apt-get install -y \
+#     systemd \
+#     systemd-sysv \
+#     && apt-get clean \
+#     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Remove unnecessary systemd targets that cause errors in containers
-RUN cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
-    systemd-tmpfiles-setup.service ] || rm -f $i; done; \
-    rm -f /lib/systemd/system/multi-user.target.wants/*;\
-    rm -f /etc/systemd/system/*.wants/*;\
-    rm -f /lib/systemd/system/local-fs.target.wants/*; \
-    rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
-    rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
-    rm -f /lib/systemd/system/basic.target.wants/*;\
-    rm -f /lib/systemd/system/anaconda.target.wants/*;
+# # Remove unnecessary systemd targets that cause errors in containers
+# RUN cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
+#     systemd-tmpfiles-setup.service ] || rm -f $i; done; \
+#     rm -f /lib/systemd/system/multi-user.target.wants/*;\
+#     rm -f /etc/systemd/system/*.wants/*;\
+#     rm -f /lib/systemd/system/local-fs.target.wants/*; \
+#     rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
+#     rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
+#     rm -f /lib/systemd/system/basic.target.wants/*;\
+#     rm -f /lib/systemd/system/anaconda.target.wants/*;
 
 
 
@@ -47,6 +47,6 @@ RUN /bin/bash -c 'export DEBIAN_FRONTEND=noninteractive; debconf-set-selections 
 ENV PKG_CONFIG_PATH=/home/tango/lib/pkgconfig
 
 ENV MYSQL_HOST=localhost
-# USER tango
+USER tango
 WORKDIR /home/tango
-CMD ["/lib/systemd/systemd"]
+# CMD ["/lib/systemd/systemd"]

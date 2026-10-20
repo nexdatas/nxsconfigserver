@@ -79,7 +79,7 @@ install_requires = [
 #: metadata for distutils
 SETUPDATA = dict(
     name="nxsconfigserver",
-    version=INXS.__version__,
+    version=release,
     author="Jan Kotanski, Eugen Wintersberger , Halil Pasic",
     author_email="jankotan@gmail.com, eugen.wintersberger@gmail.com, "
     "halil.pasic@gmail.com",

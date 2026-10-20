@@ -49,4 +49,3 @@ ENV PKG_CONFIG_PATH=/home/tango/lib/pkgconfig
 ENV MYSQL_HOST=localhost
 USER tango
 WORKDIR /home/tango
-CMD ["/lib/systemd/systemd"]

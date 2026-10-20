@@ -46,7 +46,7 @@ fi
 
 docker exec  --user root ndts service tango-db restart
 if   [ "$1" = "ubuntu26.10" ] ; then
-    docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/DataBaseds 2 -ORBendPoint giop:tcp::10000  &'
+    docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/Databaseds 2 -ORBendPoint giop:tcp::10000  &'
 fi
 
 

@@ -53,7 +53,6 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 
-
 release = get_version().__version__
 version = ".".join(release.split(".")[:2])
 name = "NXSConfigServer"
@@ -88,7 +87,7 @@ SETUPDATA = dict(
     license="GNU GENERAL PUBLIC LICENSE v3",
     keywords="configuration MySQL writer Tango server nexus data",
     url="http://github.com/jkotan/nexdatas/nxsconfigserver",
-    packages=[NXS],
+    packages=['nxsconfigserver'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Science/Research',

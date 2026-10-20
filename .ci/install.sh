@@ -59,10 +59,10 @@ if   [ "$1" = "ubuntu26.10" ] ; then
     docker exec  --user root ndts service tango-db restart
     echo "status tango-db"
     docker exec  --user root ndts service tango-db status
-    # echo "start tango-db"
-    # docker exec  --user root ndts service tango-db start
-    # docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Databaseds'
-    # docker exec  --user root ndts /bin/bash -c 'ps -ef | grep tango'
+    echo "start tango-db"
+    docker exec  --user root ndts service tango-db start
+    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Databaseds'
+    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep tango'
     # echo "start databaseds"
     # docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/Databaseds 2  -v4 -ORBendPoint giop:tcp::10000  &'
     # docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Databaseds'

@@ -46,19 +46,21 @@ fi
 
 docker exec  --user root ndts service tango-db restart
 if   [ "$1" = "ubuntu26.10" ] ; then
+    docker exec  --user root ndts service tango-db status
     docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/Databaseds 2 -ORBendPoint giop:tcp::10000  &'
 fi
 
 
 echo "install tango servers"
 docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FRONTEND=noninteractive;  apt-get -qq install -y  tango-starter tango-test liblog4j1.2-java'
-if   [ "$1" = "ubuntu26.10" ] ; then
-    docker exec  --user tango ndts /bin/bash -c '/usr/bin/tango_admin --add-server Starter/$(hostname) Starter tango/admin/$(hostname)'
-fi
 
 # if [ "$?" -ne "0" ]; then exit 255; fi
 
 docker exec --user root ndts service tango-starter restart
+if   [ "$1" = "ubuntu26.10" ] ; then
+    docker exec --user root ndts service tango-starter status
+    docker exec  --user tango ndts /bin/bash -c '/usr/bin/tango_admin --add-server Starter/$(hostname) Starter tango/admin/$(hostname)'
+fi
 
 docker exec  --user root ndts chown -R tango:tango .
 

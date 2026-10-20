@@ -16,7 +16,7 @@ fi
 
 echo "install tango-common"
 docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FRONTEND=noninteractive; apt-get -qq install -y tango-common; sleep 10'
-if  [ "$1" = "ubuntu24.04" ] || [ "$1" = "ubuntu26.10" ] || [ "$1" = "ubuntu26.04" ] || [ "$1" = "ubuntu26.04py" ] || [ "$1" = "debian13" ] || [ "$1" = "debian13py" ]; then
+if  [ "$1" = "ubuntu24.04" ]  || [ "$1" = "ubuntu26.04" ] || [ "$1" = "ubuntu26.04py" ] || [ "$1" = "debian13" ] || [ "$1" = "debian13py" ]; then
     # docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/DataBaseds 2 -ORBendPoint giop:tcp::10000  &'
     docker exec  --user root ndts /bin/bash -c 'echo -e "[client]\nuser=root\npassword=rootpw" > /root/.my.cnf'
     docker exec  --user root ndts /bin/bash -c 'echo -e "[client]\nuser=tango\nhost=localhost\npassword=rootpw" > /var/lib/tango/.my.cnf'
@@ -28,6 +28,14 @@ if [ "$1" = "ubuntu20.04" ] || [ "$1" = "ubuntu20.10" ] || [ "$1" = "ubuntu21.04
     # docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/DataBaseds 2 -ORBendPoint giop:tcp::10000  &'
     docker exec  --user root ndts /bin/bash -c 'echo -e "[client]\nuser=root\npassword=rootpw" > /root/.my.cnf'
     docker exec  --user root ndts /bin/bash -c 'echo -e "[client]\nuser=tango\nhost=127.0.0.1\npassword=rootpw" > /var/lib/tango/.my.cnf'
+fi
+if   [ "$1" = "ubuntu26.10" ]; then
+    docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/DataBaseds 2 -ORBendPoint giop:tcp::10000  &'
+    docker exec  --user root ndts /bin/bash -c 'echo -e "[client]\nuser=root\npassword=rootpw" > /root/.my.cnf'
+    docker exec  --user root ndts /bin/bash -c 'echo -e "[client]\nuser=tango\nhost=localhost\npassword=rootpw" > /var/lib/tango/.my.cnf'
+    docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON tango.* TO "tango"@"%" identified by "rootpw"'
+    docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON tango.* TO "tango"@"localhost" identified by "rootpw"'
+    docker exec  --user root ndts /usr/bin/mysql -e 'FLUSH PRIVILEGES'
 fi
 echo "install tango-db"
 docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FRONTEND=noninteractive; apt-get -qq install -y tango-db; sleep 10'
@@ -97,4 +105,4 @@ if  [ "$1" = "debian13py" ] || [ "$1" = "ubuntu26.04py" ] || [ "$1" = "ubuntu26.
     echo "remove python3-mysqldb"
     docker exec  --user root ndts /bin/bash -c 'apt-get  remove -y   python3-mysqldb'
 fi
-if [ "$?" != "0" ]; then exit 255; fi
+if [ "$1" != "ubuntu26.04" ] && [ "$?" != "0" ]; then exit 255; fi

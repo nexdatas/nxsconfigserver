@@ -1,0 +1,6 @@
+# Site settings
+title: nxsconfigserver
+email: jan.kotanski@desy.de
+description: "nxsconfigserver"
+
+include: ['_sources', '_static', '_images', '_modules']

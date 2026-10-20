@@ -13,7 +13,7 @@
 # serve to show the default.
 
 # import sys
-# import os
+import os
 
 # import sphinx_rtd_theme
 import sphinx_bootstrap_theme
@@ -246,7 +246,18 @@ html_static_path = ['_static']
 #  html_use_smartypants = True
 
 # Custom sidebar templates, maps document names to template names.
-#  html_sidebars = {}
+html_sidebars = {}
+
+if os.getenv("NXSCONFIGSERVER_HIDE_VERSIONS") != 'TRUE':
+    html_sidebars['**'].append('versions.html')
+
+html_context = {
+    "current_version": "v2.25.0",
+    "docs_versions": [
+        "v2.25.0",
+    ]
+}
+
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
@@ -434,9 +445,8 @@ epub_exclude_files = ['search.html']
 autoclass_content = 'both'
 
 intersphinx_mapping = {
-    'http://docs.python.org/2.7/': None,
-    'http://docs.python.org/3.5/': None,
-    'http://docs.scipy.org/doc/scipy/reference': None,
-    'http://docs.scipy.org/doc/numpy': None,
-    'http://pytango.readthedocs.io/en/stable/': None,
+    'python': ('http://docs.python.org/3.5/', None),
+    'scipy': ('http://docs.scipy.org/doc/scipy/reference', None),
+    'numpy': ('http://docs.scipy.org/doc/numpy',  None),
+    'pytango': ('http://pytango.readthedocs.io/en/stable/', None),
 }

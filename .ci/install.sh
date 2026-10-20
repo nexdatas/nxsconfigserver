@@ -48,7 +48,7 @@ fi
 echo "install tango-db"
 docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FRONTEND=noninteractive; apt-get -qq install -y tango-db; sleep 10'
 # if [ "$?" -ne "0" ]; then exit 255; fi
-if  [ "$1" = "ubuntu24.04" ] || [ "$1" = "ubuntu26.10" ] || [ "$1" = "ubuntu26.04" ] || [ "$1" = "ubuntu26.04py" ] || [ "$1" = "ubuntu26.10" ]; then
+if  [ "$1" = "ubuntu24.04" ] || [ "$1" = "ubuntu24.10" ] || [ "$1" = "ubuntu26.04" ] || [ "$1" = "ubuntu26.04py" ] || [ "$1" = "ubuntu26.10" ]; then
     docker exec  --user tango ndts /usr/bin/mysql -e 'create database tango'
     docker exec  --user tango ndts /bin/bash -c '/usr/bin/mysql tango < /usr/share/dbconfig-common/data/tango-db/install/mysql'
 fi
@@ -56,14 +56,14 @@ fi
 if   [ "$1" = "ubuntu26.10" ] ; then
     # docker exec --user root ndts systemctl restart tango-db.service
     # docker exec --user root ndts systemctl status tango-db.service
-    # echo "restart tango-db"
-    # docker exec  --user root ndts service tango-db restart
+    echo "restart tango-db"
+    docker exec  --user root ndts service tango-db restart
     echo "start tango-db"
     docker exec  --user root ndts service tango-db start
     echo "status tango-db"
     docker exec  --user root ndts service tango-db status
-    # docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Databaseds'
-    # docker exec  --user root ndts /bin/bash -c 'ps -ef | grep tango'
+    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Databaseds'
+    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep tango'
     # echo "start databaseds"
     # docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/Databaseds 2  -v4 -ORBendPoint giop:tcp::10000  &'
     # docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Databaseds'
@@ -79,8 +79,8 @@ docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FR
 # if [ "$?" -ne "0" ]; then exit 255; fi
 
 if   [ "$1" = "ubuntu26.10" ] ; then
-    # echo "restart tango-starter"
-    # docker exec --user root ndts service tango-starter restart
+    echo "restart tango-starter"
+    docker exec --user root ndts service tango-starter restart
     echo "start tango-starter"
     docker exec --user root ndts service tango-starter start
     echo "status tango-starter"

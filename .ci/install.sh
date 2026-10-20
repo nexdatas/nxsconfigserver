@@ -5,19 +5,18 @@ if [ "$1" = "debian11" ] || [ "$1" = "debian12" ]  || [ "$1" = "debian12tg10" ] 
     docker exec --user root ndts service mariadb restart
 else
     # workaround for a bug in debian9, i.e. starting mysql hangs
-    docker exec --user root ndts systemctl restart mariadb.service
+    docker exec --user root ndts service mariadb restart
     # if [ "$1" = "ubuntu20.04" ] || [ "$1" = "ubuntu20.10" ] || [ "$1" = "ubuntu21.04" ] || [ "$1" = "ubuntu22.04" ] ; then
-    # 	docker exec --user root ndts /bin/bash -c 'usermod -d /var/lib/mysql/ mysql'
-    # fi
+    # docker exec --user root ndts /bin/bash -c 'usermod -d /var/lib/mysql/ mysql'
+    # 
     # docker exec  --user root ndts /bin/bash -c '$(service mysql start &) && sleep 30'
-    docker exec --user root ndts systemctl status mariadb.service
+    docker exec --user root ndts service mariadb status
 fi
 
 
 echo "install tango-common"
 docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FRONTEND=noninteractive; apt-get -qq install -y tango-common; sleep 10'
 if  [ "$1" = "ubuntu24.04" ]  || [ "$1" = "ubuntu26.04" ] || [ "$1" = "ubuntu26.04py" ] || [ "$1" = "debian13" ] || [ "$1" = "debian13py" ]; then
-    # docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/DataBaseds 2 -ORBendPoint giop:tcp::10000  &'
     docker exec  --user root ndts /bin/bash -c 'echo -e "[client]\nuser=root\npassword=rootpw" > /root/.my.cnf'
     docker exec  --user root ndts /bin/bash -c 'echo -e "[client]\nuser=tango\nhost=localhost\npassword=rootpw" > /var/lib/tango/.my.cnf'
     docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON tango.* TO "tango"@"%" identified by "rootpw"'
@@ -39,18 +38,25 @@ if   [ "$1" = "ubuntu26.10" ]; then
 fi
 echo "install tango-db"
 docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FRONTEND=noninteractive; apt-get -qq install -y tango-db; sleep 10'
-if [ "$?" -ne "0" ]; then exit 255; fi
+# if [ "$?" -ne "0" ]; then exit 255; fi
 if  [ "$1" = "ubuntu24.04" ] || [ "$1" = "ubuntu26.10" ] || [ "$1" = "ubuntu26.04" ] || [ "$1" = "ubuntu26.04py" ]; then
     docker exec  --user tango ndts /usr/bin/mysql -e 'create database tango'
     docker exec  --user tango ndts /bin/bash -c '/usr/bin/mysql tango < /usr/share/dbconfig-common/data/tango-db/install/mysql'
 fi
 
 docker exec  --user root ndts service tango-db restart
+if   [ "$1" = "ubuntu26.10" ] ; then
+    docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/DataBaseds 2 -ORBendPoint giop:tcp::10000  &'
+fi
 
 
 echo "install tango servers"
 docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FRONTEND=noninteractive;  apt-get -qq install -y  tango-starter tango-test liblog4j1.2-java'
-if [ "$?" -ne "0" ]; then exit 255; fi
+if   [ "$1" = "ubuntu26.10" ] ; then
+    docker exec  --user tango ndts /bin/bash -c '/usr/bin/tango_admin --add-server Starter/$(hostname) Starter tango/admin/$(hostname)'
+fi
+
+# if [ "$?" -ne "0" ]; then exit 255; fi
 
 docker exec --user root ndts service tango-starter restart
 

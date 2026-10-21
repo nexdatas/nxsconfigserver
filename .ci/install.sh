@@ -13,6 +13,7 @@ else
     docker exec --user root ndts service mysql start
 fi
 
+docker exec  --user root ndts chown -R tango:tango .
 
 echo "install tango-common"
 docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FRONTEND=noninteractive; apt-get -qq install -y tango-common; sleep 10'

@@ -1,4 +1,8 @@
 2026-08-24 Jan Kotanski <jankotan@gmail.com>
+	* add pyproject and doc generator (#121)
+	* tagged as v2.26.0
+
+2026-08-24 Jan Kotanski <jankotan@gmail.com>
 	* move NXSConfigServer to entry points (#115)
 	* tagged as v2.25.0
 

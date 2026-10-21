@@ -151,5 +151,6 @@ if [ "$1" != "ubuntu26.04" ] && [ "$1" != "ubuntu26.04py" ] && [ "$?" != "0" ]; 
 
 if  [ "$1" = "debian13py" ] || [ "$1" = "ubuntu26.04py" ] || [ "$1" = "ubuntu26.10py" ] ; then
     echo "remove python3-mysqldb"
+    docker exec  --user root ndts /bin/bash -c 'apt-get  install -y   python3-pymysql'
     docker exec  --user root ndts /bin/bash -c 'apt-get  remove -y   python3-mysqldb'
 fi

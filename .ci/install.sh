@@ -34,7 +34,7 @@ if [ "$1" = "ubuntu20.04" ] || [ "$1" = "ubuntu20.10" ] || [ "$1" = "ubuntu21.04
     docker exec  --user root ndts /bin/bash -c 'echo -e "[client]\nuser=root\npassword=rootpw" > /root/.my.cnf'
     docker exec  --user root ndts /bin/bash -c 'echo -e "[client]\nuser=tango\nhost=127.0.0.1\npassword=rootpw" > /var/lib/tango/.my.cnf'
 fi
-if   [ "$1" = "ubuntu26.10" ]; then
+if   [ "$1" = "ubuntu26.10py" ]; then
     # docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/DataBaseds 2 -ORBendPoint giop:tcp::10000  &'
     docker exec  --user root ndts /bin/bash -c 'echo -e "[client]\nuser=root\npassword=rootpw" > /root/.my.cnf'
     docker exec  --user tango ndts /bin/bash -c 'echo -e "[client]\nuser=tango\nhost=localhost\npassword=rootpw" > /var/lib/tango/.my.cnf'
@@ -55,7 +55,7 @@ if  [ "$1" = "ubuntu24.04" ] || [ "$1" = "ubuntu24.10" ] || [ "$1" = "ubuntu26.0
     docker exec  --user tango ndts /bin/bash -c '/usr/bin/mysql tango < /usr/share/dbconfig-common/data/tango-db/install/mysql'
 fi
 
-if   [ "$1" = "ubuntu26.10" ] ; then
+if   [ "$1" = "ubuntu26.10py" ] ; then
     # docker exec --user root ndts systemctl restart tango-db.service
     # docker exec --user root ndts systemctl status tango-db.service
     # echo "restart tango-db"
@@ -80,7 +80,7 @@ docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; export DEBIAN_FR
 
 # if [ "$?" -ne "0" ]; then exit 255; fi
 
-if   [ "$1" = "ubuntu26.10" ] ; then
+if   [ "$1" = "ubuntu26.10py" ] ; then
     # echo "restart tango-starter"
     # docker exec --user root ndts service tango-starter restart
     # echo "start tango-starter"
@@ -103,7 +103,7 @@ if [ "$2" = "2" ]; then
     echo "install pytango and nxsconfigserver-db"
     docker exec  --user root ndts /bin/bash -c 'apt-get -qq update; apt-get install -y   python-pytango  nxsconfigserver-db ; sleep 10'
 else
-    if [ "$1" = "debian10" ] || [ "$1" = "ubuntu24.04" ] || [ "$1" = "ubuntu26.10" ] || [ "$1" = "ubuntu26.04py" ] || [ "$1" = "ubuntu26.04" ] || [ "$1" = "ubuntu22.04" ] || [ "$1" = "ubuntu20.04" ] || [ "$1" = "ubuntu20.10" ] || [ "$1" = "debian11" ] || [ "$1" = "debian12tg10" ]  || [ "$1" = "debian12" ]  || [ "$1" = "debian13" ] || [ "$1" = "debian13py" ] ; then
+    if [ "$1" = "debian10" ] || [ "$1" = "ubuntu24.04" ] || [ "$1" = "ubuntu26.10py" ] || [ "$1" = "ubuntu26.04py" ] || [ "$1" = "ubuntu26.04" ] || [ "$1" = "ubuntu22.04" ] || [ "$1" = "ubuntu20.04" ] || [ "$1" = "ubuntu20.10" ] || [ "$1" = "debian11" ] || [ "$1" = "debian12tg10" ]  || [ "$1" = "debian12" ]  || [ "$1" = "debian13" ] || [ "$1" = "debian13py" ] ; then
 	echo "install pytango"
 	docker exec --user root ndts /bin/bash -c 'apt-get -qq update; apt-get install -y   python3-tango'
 	echo "install nxsconfigserver-db"
@@ -115,7 +115,7 @@ else
 	    docker exec  --user tango ndts /usr/bin/mysql -e 'create database nxsconfig'
 	    docker exec  --user tango ndts /bin/bash -c '/usr/bin/mysql nxsconfig < /usr/share/dbconfig-common/data/nxsconfigserver-db/install/mysql'
 	fi
-	if [ "$1" = "ubuntu26.10" ]; then
+	if [ "$1" = "ubuntu26.10py" ]; then
 	    docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"%" identified by "rootpw"'
 	    docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"localhost" identified by "rootpw"'
 	    docker exec  --user root ndts /usr/bin/mysql -e 'FLUSH PRIVILEGES'

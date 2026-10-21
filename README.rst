@@ -58,7 +58,7 @@ Extract the sources and run
 
 .. code-block:: console
 
-	  $ python setup.py install
+	  $ python -m pip install . -vv --no-deps --no-build-isolation
 
 To set database execute
 
@@ -71,7 +71,7 @@ with proper privileges.
 Debian packages
 ^^^^^^^^^^^^^^^
 
-Debian Trixie, Bookworm, Bullseye and as well as Ubuntu Resolute, Noble, Jammy  packages can be found in the HDRI repository.
+Debian Trixie, Bookworm, Bullseye and as well as Ubuntu Stonking, Resolute, Noble  packages can be found in the HDRI repository.
 
 To install the debian packages, add the PGP repository key
 
@@ -114,7 +114,7 @@ and the NXSConfigServer tango server (from 2.10.0)
 From pip
 """"""""
 
-To install it from pip you need pymysqldb e.g.
+To install it from pip you need pymysqldb or pymysql  e.g.
 
 .. code-block:: console
 

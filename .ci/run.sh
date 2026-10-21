@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 if [ "$2" = "2" ]; then
     echo "run python-nxsconfigserver tests"
-    docker exec ndts python test
+    docker exec   --user tango  ndts python test
 else
     echo "run python3-nxsconfigserver tests"
-    docker exec ndts python3 -m pytest
+    docker exec   --user tango ndts python3 -m pytest
 fi
 ERR=$?
 

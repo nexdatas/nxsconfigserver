@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nxsconfigserver.XMLConfigurator &#8212; NXSConfigServer 2.23.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <title>nxsconfigserver.XMLConfigurator &#8212; nxsconfigserver 2.25.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=4468db6d" />
+    <script src="../../_static/documentation_options.js?v=3d292b64"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <meta charset='utf-8'>
@@ -36,8 +33,8 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../../index.html">
-          NXSConfigServer</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.23</b></span>
+          nxsconfigserver</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.25</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -107,7 +104,22 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><p>
+  <h3 class='versions'>Versions</h3>
+  <p>
+    <ul>
+      <li><a class="reference external" href="../../index/../../latest/index.html">v:latest</a></li>
+      <li><a class="reference external" href="../../index/../../stable/index.html">v:stable</a></li>
+      
+      <li><a class="reference external" href="../../index/../../v2.25.0/index.html">v2.25.0</a></li>
+      
+    </ul>
+  </p>
+</p>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <h1>Source code for nxsconfigserver.XMLConfigurator</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
@@ -183,7 +195,9 @@
     <span class="k">return</span> <span class="n">xml</span>
 
 
-<div class="viewcode-block" id="XMLConfigurator"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator">[docs]</a><span class="k">class</span> <span class="nc">XMLConfigurator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="XMLConfigurator">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator">[docs]</a>
+<span class="k">class</span> <span class="nc">XMLConfigurator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; XML Configurator</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -402,7 +416,9 @@
     <span class="n">version</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">__getVersion</span><span class="p">,</span>
                        <span class="n">doc</span><span class="o">=</span><span class="s1">&#39;configuration version&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="XMLConfigurator.open"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.open">[docs]</a>    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="XMLConfigurator.open">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.open">[docs]</a>
+    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; opens database connection</span>
 
 <span class="sd">        :brief: It opens connection to the give database by JSON string</span>
@@ -419,7 +435,10 @@
             <span class="n">args</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.close"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.close">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.close">[docs]</a>
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; closes database connection</span>
 
 <span class="sd">        :brief: It closes connection to the open database</span>
@@ -429,7 +448,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_streams</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;XMLConfigurator::close() - Close connection&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.components"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.components">[docs]</a>    <span class="k">def</span> <span class="nf">components</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.components">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.components">[docs]</a>
+    <span class="k">def</span> <span class="nf">components</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; fetches the required components</span>
 
 <span class="sd">        :param names: list of component names</span>
@@ -442,7 +464,10 @@
             <span class="n">argout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">components</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">argout</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.selections"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.selections">[docs]</a>    <span class="k">def</span> <span class="nf">selections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.selections">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.selections">[docs]</a>
+    <span class="k">def</span> <span class="nf">selections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; fetches the required selections</span>
 
 <span class="sd">        :param names: list of selection names</span>
@@ -455,7 +480,10 @@
             <span class="n">argout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">selections</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">argout</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.instantiatedComponents"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.instantiatedComponents">[docs]</a>    <span class="k">def</span> <span class="nf">instantiatedComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.instantiatedComponents">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.instantiatedComponents">[docs]</a>
+    <span class="k">def</span> <span class="nf">instantiatedComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; instantiates the required components</span>
 
 <span class="sd">        :param names: list of component names</span>
@@ -469,7 +497,10 @@
             <span class="n">comps</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__instantiate</span><span class="p">(</span><span class="n">cp</span><span class="p">)</span> <span class="k">for</span> <span class="n">cp</span> <span class="ow">in</span> <span class="n">comps</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">comps</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.instantiatedDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.instantiatedDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">instantiatedDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.instantiatedDataSources">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.instantiatedDataSources">[docs]</a>
+    <span class="k">def</span> <span class="nf">instantiatedDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; instantiates the required datasources</span>
 
 <span class="sd">        :param names: list of datasource names</span>
@@ -482,6 +513,7 @@
             <span class="n">comps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">dataSources</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
             <span class="n">comps</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__dsinstantiate</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span> <span class="k">for</span> <span class="n">ds</span> <span class="ow">in</span> <span class="n">comps</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">comps</span></div>
+
 
     <span class="k">def</span> <span class="nf">__instantiate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmlcp</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; instantiates the xml component</span>
@@ -510,7 +542,9 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__attachVariables</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__attachDataSources</span><span class="p">(</span><span class="n">xmlcp</span><span class="p">))</span>
 
-<div class="viewcode-block" id="XMLConfigurator.componentDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.componentDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">componentDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="XMLConfigurator.componentDataSources">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.componentDataSources">[docs]</a>
+    <span class="k">def</span> <span class="nf">componentDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; provides a list of datasources from the given component</span>
 
 <span class="sd">        :param name: given component</span>
@@ -532,7 +566,10 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="p">[]</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.componentsDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.componentsDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">componentsDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.componentsDataSources">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.componentsDataSources">[docs]</a>
+    <span class="k">def</span> <span class="nf">componentsDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; provides a list of datasources from the given components</span>
 
 <span class="sd">        :param names: given components</span>
@@ -551,6 +588,7 @@
             <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">handler</span><span class="o">.</span><span class="n">datasources</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[]</span></div>
+
 
     <span class="k">def</span> <span class="nf">__findElements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rechars</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; provides a list of elements from the given text</span>
@@ -588,7 +626,9 @@
 
         <span class="k">return</span> <span class="n">variables</span>
 
-<div class="viewcode-block" id="XMLConfigurator.componentVariables"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.componentVariables">[docs]</a>    <span class="k">def</span> <span class="nf">componentVariables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="XMLConfigurator.componentVariables">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.componentVariables">[docs]</a>
+    <span class="k">def</span> <span class="nf">componentVariables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; provides a list of variables from the given components</span>
 
 <span class="sd">        :param name: given component</span>
@@ -605,7 +645,10 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="p">[]</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.componentsVariables"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.componentsVariables">[docs]</a>    <span class="k">def</span> <span class="nf">componentsVariables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.componentsVariables">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.componentsVariables">[docs]</a>
+    <span class="k">def</span> <span class="nf">componentsVariables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; provides a tuple of variables from the given components</span>
 
 <span class="sd">        :param names: given components</span>
@@ -620,7 +663,10 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[]</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.dependentComponents"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.dependentComponents">[docs]</a>    <span class="k">def</span> <span class="nf">dependentComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">deps</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.dependentComponents">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.dependentComponents">[docs]</a>
+    <span class="k">def</span> <span class="nf">dependentComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">deps</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; provides dependent components</span>
 
 <span class="sd">        :param names: component names to check</span>
@@ -640,7 +686,10 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">dependentComponents</span><span class="p">(</span><span class="n">dps</span><span class="p">[</span><span class="n">nm</span><span class="p">],</span> <span class="n">dps</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">dps</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.dataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.dataSources">[docs]</a>    <span class="k">def</span> <span class="nf">dataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">_</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.dataSources">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.dataSources">[docs]</a>
+    <span class="k">def</span> <span class="nf">dataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">_</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; fetches the required datasources</span>
 
 <span class="sd">        :param names: list of datasource names</span>
@@ -653,7 +702,10 @@
             <span class="n">argout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">dataSources</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">argout</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.availableComponents"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.availableComponents">[docs]</a>    <span class="k">def</span> <span class="nf">availableComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.availableComponents">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.availableComponents">[docs]</a>
+    <span class="k">def</span> <span class="nf">availableComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; fetches the names of available components</span>
 
 <span class="sd">        :returns: list of available components</span>
@@ -664,7 +716,10 @@
             <span class="n">argout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">availableComponents</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">argout</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.availableSelections"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.availableSelections">[docs]</a>    <span class="k">def</span> <span class="nf">availableSelections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.availableSelections">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.availableSelections">[docs]</a>
+    <span class="k">def</span> <span class="nf">availableSelections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; fetches the names of available selections</span>
 
 <span class="sd">        :returns: list of available selections</span>
@@ -675,7 +730,10 @@
             <span class="n">argout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">availableSelections</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">argout</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.availableDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.availableDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">availableDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.availableDataSources">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.availableDataSources">[docs]</a>
+    <span class="k">def</span> <span class="nf">availableDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; fetches the names of available datasources</span>
 
 <span class="sd">        :returns: list of available datasources</span>
@@ -686,7 +744,10 @@
             <span class="n">argout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">availableDataSources</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">argout</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.storeComponent"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.storeComponent">[docs]</a>    <span class="k">def</span> <span class="nf">storeComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.storeComponent">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.storeComponent">[docs]</a>
+    <span class="k">def</span> <span class="nf">storeComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; stores the component from the xmlstring attribute</span>
 
 <span class="sd">        :param name: name of the component to store</span>
@@ -705,7 +766,10 @@
                 <span class="k">raise</span> <span class="n">WrongXMLError</span><span class="p">(</span><span class="s2">&quot;WrongXMLError: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">storeComponent</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xmlstring</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.storeSelection"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.storeSelection">[docs]</a>    <span class="k">def</span> <span class="nf">storeSelection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.storeSelection">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.storeSelection">[docs]</a>
+    <span class="k">def</span> <span class="nf">storeSelection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; stores the selection from the xmlstring attribute</span>
 
 <span class="sd">        :param name: name of the selection to store</span>
@@ -718,7 +782,10 @@
                 <span class="k">raise</span> <span class="n">WrongJSONError</span><span class="p">(</span><span class="s2">&quot;WrongJSONError: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">storeSelection</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">selection</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.storeDataSource"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.storeDataSource">[docs]</a>    <span class="k">def</span> <span class="nf">storeDataSource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.storeDataSource">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.storeDataSource">[docs]</a>
+    <span class="k">def</span> <span class="nf">storeDataSource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; stores the datasource from the xmlstring attribute</span>
 
 <span class="sd">        :param name: name of the datasource to store</span>
@@ -737,7 +804,10 @@
                 <span class="k">raise</span> <span class="n">WrongXMLError</span><span class="p">(</span><span class="s2">&quot;WrongXMLError: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">storeDataSource</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xmlstring</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.deleteComponent"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.deleteComponent">[docs]</a>    <span class="k">def</span> <span class="nf">deleteComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.deleteComponent">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.deleteComponent">[docs]</a>
+    <span class="k">def</span> <span class="nf">deleteComponent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; deletes the given component</span>
 
 <span class="sd">        :param name: name of the component to delete</span>
@@ -746,7 +816,10 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">deleteComponent</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.deleteSelection"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.deleteSelection">[docs]</a>    <span class="k">def</span> <span class="nf">deleteSelection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.deleteSelection">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.deleteSelection">[docs]</a>
+    <span class="k">def</span> <span class="nf">deleteSelection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; deletes the given selection</span>
 
 <span class="sd">        :param name: name of the selection to delete</span>
@@ -755,7 +828,10 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">deleteSelection</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.deleteDataSource"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.deleteDataSource">[docs]</a>    <span class="k">def</span> <span class="nf">deleteDataSource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.deleteDataSource">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.deleteDataSource">[docs]</a>
+    <span class="k">def</span> <span class="nf">deleteDataSource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; deletes the given datasource</span>
 
 <span class="sd">        :param name: name of the datasource to delete</span>
@@ -764,7 +840,10 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">deleteDataSource</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.setComponentDataSources"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.setComponentDataSources">[docs]</a>    <span class="k">def</span> <span class="nf">setComponentDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jdict</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.setComponentDataSources">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.setComponentDataSources">[docs]</a>
+    <span class="k">def</span> <span class="nf">setComponentDataSources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jdict</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; sets component datasources according to given dict</span>
 
 <span class="sd">        :param jdict: JSON dict of component datasources</span>
@@ -809,6 +888,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">__getParameter</span><span class="p">,</span> <span class="n">onlyexisting</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">storeComponent</span><span class="p">(</span><span class="n">cpname</span><span class="p">,</span> <span class="n">comp</span><span class="p">)</span></div>
 
+
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">__commentDataSources</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">comp</span><span class="p">,</span> <span class="n">disds</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; switch diable datasources into POSTRUN mode</span>
@@ -828,7 +908,9 @@
         <span class="n">mgr</span><span class="o">.</span><span class="n">merge</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">mgr</span><span class="o">.</span><span class="n">toString</span><span class="p">()</span>
 
-<div class="viewcode-block" id="XMLConfigurator.setMandatoryComponents"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.setMandatoryComponents">[docs]</a>    <span class="k">def</span> <span class="nf">setMandatoryComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+<div class="viewcode-block" id="XMLConfigurator.setMandatoryComponents">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.setMandatoryComponents">[docs]</a>
+    <span class="k">def</span> <span class="nf">setMandatoryComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; sets the mandtaory components</span>
 
 <span class="sd">        :param names: list of component names</span>
@@ -837,7 +919,10 @@
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">setMandatory</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.unsetMandatoryComponents"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.unsetMandatoryComponents">[docs]</a>    <span class="k">def</span> <span class="nf">unsetMandatoryComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.unsetMandatoryComponents">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.unsetMandatoryComponents">[docs]</a>
+    <span class="k">def</span> <span class="nf">unsetMandatoryComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; sets the mandatory components</span>
 
 <span class="sd">        :param names: list of component names</span>
@@ -846,7 +931,10 @@
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">unsetMandatory</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.mandatoryComponents"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.mandatoryComponents">[docs]</a>    <span class="k">def</span> <span class="nf">mandatoryComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.mandatoryComponents">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.mandatoryComponents">[docs]</a>
+    <span class="k">def</span> <span class="nf">mandatoryComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; provides names of the mandatory components</span>
 
 <span class="sd">        :returns: mandatory components</span>
@@ -856,6 +944,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="p">:</span>
             <span class="n">argout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mydb</span><span class="o">.</span><span class="n">mandatory</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">argout</span></div>
+
 
     <span class="k">def</span> <span class="nf">__getVariable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; provides variable value</span>
@@ -1058,7 +1147,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">availableDataSources</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataSources</span><span class="p">,</span>
             <span class="s2">&quot;datasource&quot;</span><span class="p">,</span> <span class="n">onlyexisting</span><span class="o">=</span><span class="n">onlyexisting</span><span class="p">)</span>
 
-<div class="viewcode-block" id="XMLConfigurator.merge"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.merge">[docs]</a>    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+<div class="viewcode-block" id="XMLConfigurator.merge">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.merge">[docs]</a>
+    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; merges the give components</span>
 
 <span class="sd">        :param names: list of component names</span>
@@ -1067,6 +1158,7 @@
 <span class="sd">        :rtype: :obj:`str`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mergeVars</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
+
 
     <span class="k">def</span> <span class="nf">__variableComponentValues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comps</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; finds variable values defined in components</span>
@@ -1169,7 +1261,9 @@
                     <span class="n">epath</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">nd</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;NX&quot;</span> <span class="o">+</span> <span class="n">nd</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
         <span class="k">return</span> <span class="n">epath</span>
 
-<div class="viewcode-block" id="XMLConfigurator.createCache"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.createCache">[docs]</a>    <span class="k">def</span> <span class="nf">createCache</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+<div class="viewcode-block" id="XMLConfigurator.createCache">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.createCache">[docs]</a>
+    <span class="k">def</span> <span class="nf">createCache</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; creates the final configuration string in the xmlstring attribute</span>
 
 <span class="sd">        :param names: list of component names</span>
@@ -1179,7 +1273,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_streams</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;XMLConfigurator::createConfiguration() &quot;</span>
                            <span class="s2">&quot;- Create configuration&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="XMLConfigurator.createConfiguration"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.createConfiguration">[docs]</a>    <span class="k">def</span> <span class="nf">createConfiguration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+
+<div class="viewcode-block" id="XMLConfigurator.createConfiguration">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.XMLConfigurator.XMLConfigurator.createConfiguration">[docs]</a>
+    <span class="k">def</span> <span class="nf">createConfiguration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; creates the final configuration string in the xmlstring attribute</span>
 
 <span class="sd">        :param names: list of component names</span>
@@ -1206,7 +1303,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">xmlstring</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_streams</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;XMLConfigurator::createConfiguration() &quot;</span>
-                           <span class="s2">&quot;- Create configuration&quot;</span><span class="p">)</span></div></div>
+                           <span class="s2">&quot;- Create configuration&quot;</span><span class="p">)</span></div>
+</div>
+
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
@@ -1240,7 +1339,7 @@
         &copy; Copyright 2012-2017 DESY, Jan Kotanski &lt;jkotan@mail.desy.de&gt;
 
 GNU GENERAL PUBLIC LICENSE, version 3.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.1.3.<br/>
     </p>
   </div>
 </footer>

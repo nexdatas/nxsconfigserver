@@ -1,14 +1,6 @@
 # Site settings
-title: NXSConfigServer
+title: nxsconfigserver
 email: jan.kotanski@desy.de
-description: "NXSConfigServer"
-# baseurl: ""
-# url: "http://yourdomain.com"
-# twitter_username: jekyllrb
-# github_username:  jekyll
+description: "nxsconfigserver"
 
-# Build settings
-# markdown: kramdown
-# permalink: pretty
-
-include: ['_sources', '_static', '_modules', 'doc_html']
+include: ['_sources', '_static', '_images', '_modules']

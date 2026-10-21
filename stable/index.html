@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Welcome to NeXuS Configuration Server’s documentation! &#8212; nxsconfigserver 2.25.0 documentation</title>
+    <title>Welcome to NeXuS Configuration Server’s documentation! &#8212; nxsconfigserver 2.26.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=4468db6d" />
-    <script src="_static/documentation_options.js?v=3d292b64"></script>
+    <script src="_static/documentation_options.js?v=af56f58f"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -36,7 +36,7 @@
         </button>
         <a class="navbar-brand" href="#">
           nxsconfigserver</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.25</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.26</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -156,6 +156,7 @@
       <li><a class="reference external" href="index/../../latest/index.html">v:latest</a></li>
       <li><a class="reference external" href="index/../../stable/index.html">v:stable</a></li>
       
+      <li><a class="reference external" href="index/../../v2.26.0/index.html">v2.26.0</a></li>
       <li><a class="reference external" href="index/../../v2.25.0/index.html">v2.25.0</a></li>
       
     </ul>
@@ -196,7 +197,7 @@ and perform the process of component merging.</p>
 <div class="line"><a class="reference external" href="https://github.com/nexdatas/nxsconfigserver-db/">https://github.com/nexdatas/nxsconfigserver-db/</a></div>
 </div>
 <p>Extract the sources and run</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>setup.py<span class="w"> </span>install
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.<span class="w"> </span>-vv<span class="w"> </span>--no-deps<span class="w"> </span>--no-build-isolation
 </pre></div>
 </div>
 <p>To set database execute</p>
@@ -207,7 +208,7 @@ and perform the process of component merging.</p>
 </section>
 <section id="debian-packages">
 <h3>Debian packages<a class="headerlink" href="#debian-packages" title="Link to this heading">¶</a></h3>
-<p>Debian Trixie, Bookworm, Bullseye and as well as Ubuntu Resolute, Noble, Jammy  packages can be found in the HDRI repository.</p>
+<p>Debian Trixie, Bookworm, Bullseye and as well as Ubuntu Stonking, Resolute, Noble  packages can be found in the HDRI repository.</p>
 <p>To install the debian packages, add the PGP repository key</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>su
 <span class="gp">$ </span>curl<span class="w"> </span>-s<span class="w"> </span>http://repos.pni-hdri.de/debian_repo.pub.gpg<span class="w"> </span><span class="p">|</span><span class="w"> </span>gpg<span class="w"> </span>--no-default-keyring<span class="w"> </span>--keyring<span class="w"> </span>gnupg-ring:/etc/apt/trusted.gpg.d/debian-hdri-repo.gpg<span class="w"> </span>--import
@@ -239,7 +240,7 @@ and perform the process of component merging.</p>
 </div></blockquote>
 <section id="from-pip">
 <h4>From pip<a class="headerlink" href="#from-pip" title="Link to this heading">¶</a></h4>
-<p>To install it from pip you need pymysqldb e.g.</p>
+<p>To install it from pip you need pymysqldb or pymysql  e.g.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>myvenv
 <span class="gp">$ </span>.<span class="w"> </span>myvenv/bin/activate
 

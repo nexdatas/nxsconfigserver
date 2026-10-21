@@ -58,18 +58,18 @@ fi
 if   [ "$1" = "ubuntu26.10" ] ; then
     # docker exec --user root ndts systemctl restart tango-db.service
     # docker exec --user root ndts systemctl status tango-db.service
-    echo "restart tango-db"
-    docker exec  --user root ndts service tango-db restart
-    echo "start tango-db"
-    docker exec  --user root ndts service tango-db start
-    echo "status tango-db"
-    docker exec  --user root ndts service tango-db status
-    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Databaseds'
-    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep tango'
-    # echo "start databaseds"
-    # docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/Databaseds 2  -v4 -ORBendPoint giop:tcp::10000  &'
+    # echo "restart tango-db"
+    # docker exec  --user root ndts service tango-db restart
+    # echo "start tango-db"
+    # docker exec  --user root ndts service tango-db start
+    # echo "status tango-db"
+    # docker exec  --user root ndts service tango-db status
     # docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Databaseds'
     # docker exec  --user root ndts /bin/bash -c 'ps -ef | grep tango'
+    # echo "start databaseds"
+    docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/Databaseds 2  -v4 -ORBendPoint giop:tcp::10000  &'
+    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Databaseds'
+    docker exec  --user root ndts /bin/bash -c 'ps -ef | grep tango'
 else
     docker exec  --user root ndts service tango-db restart
 fi
@@ -90,6 +90,7 @@ if   [ "$1" = "ubuntu26.10" ] ; then
     docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Starter'
     echo "start  STARTER"
     docker exec  --user tango ndts /bin/bash -c '/usr/bin/tango_admin --add-server Starter/$(hostname) Starter tango/admin/$(hostname)'
+    docker exec  --user tango ndts /bin/bash -c '/usr/lib/tango/Starter $(hostname) &'
     docker exec  --user root ndts /bin/bash -c 'ps -ef | grep Starter'
     # docker exec --user root ndts systemctl restart tango-starter.service
     # docker exec --user root ndts systemctl status tango-starter.service
@@ -97,8 +98,6 @@ if   [ "$1" = "ubuntu26.10" ] ; then
 else
     docker exec --user root ndts service tango-starter restart
 fi
-
-docker exec  --user root ndts chown -R tango:tango .
 
 if [ "$2" = "2" ]; then
     echo "install pytango and nxsconfigserver-db"

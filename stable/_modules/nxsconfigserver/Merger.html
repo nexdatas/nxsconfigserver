@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nxsconfigserver.Merger &#8212; NXSConfigServer 2.23.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <title>nxsconfigserver.Merger &#8212; nxsconfigserver 2.25.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=4468db6d" />
+    <script src="../../_static/documentation_options.js?v=3d292b64"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <meta charset='utf-8'>
@@ -36,8 +33,8 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../../index.html">
-          NXSConfigServer</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.23</b></span>
+          nxsconfigserver</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.25</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -107,7 +104,22 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><p>
+  <h3 class='versions'>Versions</h3>
+  <p>
+    <ul>
+      <li><a class="reference external" href="../../index/../../latest/index.html">v:latest</a></li>
+      <li><a class="reference external" href="../../index/../../stable/index.html">v:stable</a></li>
+      
+      <li><a class="reference external" href="../../index/../../v2.25.0/index.html">v2.25.0</a></li>
+      
+    </ul>
+  </p>
+</p>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <h1>Source code for nxsconfigserver.Merger</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
@@ -180,7 +192,9 @@
     <span class="k">return</span> <span class="n">xml</span>
 
 
-<div class="viewcode-block" id="Merger"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.Merger.Merger">[docs]</a><span class="k">class</span> <span class="nc">Merger</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Merger">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.Merger.Merger">[docs]</a>
+<span class="k">class</span> <span class="nc">Merger</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; merges the components</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -755,7 +769,9 @@
                     <span class="n">link</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dsname</span>
         <span class="k">return</span> <span class="n">linknode</span>
 
-<div class="viewcode-block" id="Merger.collect"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.Merger.Merger.collect">[docs]</a>    <span class="k">def</span> <span class="nf">collect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">):</span>
+<div class="viewcode-block" id="Merger.collect">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.Merger.Merger.collect">[docs]</a>
+    <span class="k">def</span> <span class="nf">collect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; collects the given components in one DOM tree</span>
 
 <span class="sd">        :param components: given components</span>
@@ -787,7 +803,10 @@
                     <span class="k">if</span> <span class="n">rootDef</span><span class="o">.</span><span class="n">text</span> <span class="o">!=</span> <span class="n">txt</span><span class="p">:</span>
                         <span class="n">rootDef</span><span class="o">.</span><span class="n">text</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">txt</span></div>
 
-<div class="viewcode-block" id="Merger.toString"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.Merger.Merger.toString">[docs]</a>    <span class="k">def</span> <span class="nf">toString</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Merger.toString">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.Merger.Merger.toString">[docs]</a>
+    <span class="k">def</span> <span class="nf">toString</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Converts DOM tree to string</span>
 
 <span class="sd">        :returns: DOM tree in XML string</span>
@@ -804,10 +823,15 @@
                     <span class="n">et</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">__root</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;xml&#39;</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Merger.merge"><a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.Merger.Merger.merge">[docs]</a>    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Merger.merge">
+<a class="viewcode-back" href="../../nxsconfigserver.html#nxsconfigserver.Merger.Merger.merge">[docs]</a>
+    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; performs the merging operation</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__mergeChildren</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__root</span><span class="p">,</span> <span class="p">())</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__mergeChildren</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__root</span><span class="p">,</span> <span class="p">())</span></div>
+</div>
+
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
@@ -828,7 +852,7 @@
         &copy; Copyright 2012-2017 DESY, Jan Kotanski &lt;jkotan@mail.desy.de&gt;
 
 GNU GENERAL PUBLIC LICENSE, version 3.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.1.3.<br/>
     </p>
   </div>
 </footer>

@@ -29,7 +29,7 @@ ENV PKG_CONFIG_PATH=/home/tango/lib/pkgconfig
 
 ENV MYSQL_HOST=localhost
 ENV MYSQL_USER=tango
-#ENV TANGO_HOST=localhost:10000
-ENV TANGO_HOST=127.0.0.1:10000
+ENV TANGO_HOST=localhost:10000
+# ENV TANGO_HOST=127.0.0.1:10000
 USER tango
 WORKDIR /home/tango

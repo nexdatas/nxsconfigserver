@@ -2,7 +2,7 @@
 
 
 echo "install pixi"
-docker exec  ndts /bin/bash -c 'curl -fsSL https://pixi.sh/install.sh | sh ; export PATH=/var/lib/tango/.pixi/bin:$PATH ; cp .github/workflows/pixi/pixi.toml . ; pixi shell-hook  > .sh.sh ; source .sh.sh ; pixi add   numpy "pytango=10.1.4" setuptools pip wheel argcomplete lxml pytz pyyaml  python-dateutil pninexus fabio h5py matplotlib-base blissdata pytest docutils pymysql'
+docker exec  ndts /bin/bash -c 'curl -fsSL https://pixi.sh/install.sh | sh ; export PATH=/var/lib/tango/.pixi/bin:$PATH ; cp .github/workflows/pixi/pixi.toml . ; pixi shell-hook  > .sh.sh ; source .sh.sh ; pixi add   numpy "pytango=10.1.4" setuptools pip wheel argcomplete lxml pytz pyyaml  python-dateutil pninexus fabio h5py matplotlib-base blissdata pytest docutils pymysql nxsconfigserver-db'
 
 docker exec  --user root ndts /bin/bash -c 'echo -e "[client]\nuser=root\npassword=rootpw" > /root/.my.cnf'
 docker exec  --user root ndts /bin/bash -c 'echo -e "[client]\nuser=tango\nhost=localhost\npassword=rootpw" > /var/lib/tango/.my.cnf'
@@ -11,11 +11,11 @@ docker exec  --user root ndts chown -R tango:tango /home/tango/.my.cnf
 docker exec  --user root ndts chown -R tango:tango /var/lib/tango/.my.cnf
 
 
+docker exec  --user root ndts /usr/bin/mysql -e 'create database nxsconfig'
+docker exec  --user root ndts /bin/bash -c 'source .sh.sh ; /usr/bin/mysql nxsconfig < "$CONDA_PREFIX"/share/nxsconfigserver/mysql_create.sql'
 docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"%" identified by "rootpw"'
 docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"localhost" identified by "rootpw"'
 docker exec  --user root ndts /usr/bin/mysql -e 'FLUSH PRIVILEGES'
-docker exec  --user tango ndts /usr/bin/mysql -e 'create database nxsconfig'
-docker exec  --user tango ndts /bin/bash -c 'source .sh.sh ; /usr/bin/mysql nxsconfig < "$CONDA_PREFIX"/share/nxsconfigserver/mysql_create.sql'
 
 # # create nxsconfig database
 # docker exec  --user root ndts /bin/bash -c 'source /home/tango/.sh.sh ; export MYSQL_PASSWORD="rootpw" ; create_nxsconfig_db -x -d=nxsonfig -u=tango -p="$CONDA_PREFIX"'

@@ -11,14 +11,14 @@ docker exec  --user root ndts chown -R tango:tango /home/tango/.my.cnf
 docker exec  --user root ndts chown -R tango:tango /var/lib/tango/.my.cnf
 
 
-docker exec  --user root ndts /usr/bin/mysql -e 'create database nxsconfig'
-docker exec  --user root ndts /bin/bash -c 'source .sh.sh ; /usr/bin/mysql nxsconfig < "$CONDA_PREFIX"/share/nxsconfigserver/mysql_create.sql'
-docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"%" identified by "rootpw"'
-docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"localhost" identified by "rootpw"'
-docker exec  --user root ndts /usr/bin/mysql -e 'FLUSH PRIVILEGES'
+# docker exec  --user root ndts /usr/bin/mysql -e 'create database nxsconfig'
+# docker exec  --user root ndts /bin/bash -c 'source .sh.sh ; /usr/bin/mysql nxsconfig < "$CONDA_PREFIX"/share/nxsconfigserver/mysql_create.sql'
+# docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"%" identified by "rootpw"'
+# docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"localhost" identified by "rootpw"'
+# docker exec  --user root ndts /usr/bin/mysql -e 'FLUSH PRIVILEGES'
 
 # # create nxsconfig database
-# docker exec  --user root ndts /bin/bash -c 'source /home/tango/.sh.sh ; export MYSQL_PASSWORD="rootpw" ; create_nxsconfig_db -x -d=nxsonfig -u=tango -p="$CONDA_PREFIX"'
+docker exec  --user root ndts /bin/bash -c 'source /home/tango/.sh.sh ; export MYSQL_PASSWORD="rootpw" ; create_nxsconfig_db -x -d=nxsonfig -u=tango -p="$CONDA_PREFIX"'
 
 echo "run nxsconfigserver tests"
 docker exec  ndts /bin/bash -c 'source .sh.sh ;  echo "export MYTANGO_PREFIX=$CONDA_PREFIX/bin" > /home/tango/.env ;   python -m pip install . -vv --no-deps --no-build-isolation ;   python -m pytest test'

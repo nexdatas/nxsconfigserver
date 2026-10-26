@@ -34,10 +34,10 @@ docker exec --user root ndts chown -R tango:tango .
 
 # docker exec --user root ndts /bin/bash -c 'apt-get -qq update; apt-get  install -y   nxsconfigserver-db'
 
-if  [ "$1" = "ubuntu26.04" ]; then
-    docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"%" identified by "rootpw"'
-    docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"localhost" identified by "rootpw"'
-    docker exec  --user root ndts /usr/bin/mysql -e 'FLUSH PRIVILEGES'
-    # docker exec  --user tango ndts /usr/bin/mysql -e 'create database nxsconfig'
-    # docker exec  --user tango ndts /bin/bash -c '/usr/bin/mysql nxsconfig < /usr/share/dbconfig-common/data/nxsconfigserver-db/install/mysql'
-fi
+# if  [ "$1" = "ubuntu26.04" ]; then
+#     docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"%" identified by "rootpw"'
+#     docker exec  --user root ndts /usr/bin/mysql -e 'GRANT ALL PRIVILEGES ON nxsconfig.* TO "tango"@"localhost" identified by "rootpw"'
+#     docker exec  --user root ndts /usr/bin/mysql -e 'FLUSH PRIVILEGES'
+#     # docker exec  --user tango ndts /usr/bin/mysql -e 'create database nxsconfig'
+#     # docker exec  --user tango ndts /bin/bash -c '/usr/bin/mysql nxsconfig < /usr/share/dbconfig-common/data/nxsconfigserver-db/install/mysql'
+# fi

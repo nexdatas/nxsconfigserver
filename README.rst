@@ -196,7 +196,7 @@ Client code
     cnfServer = tango.DeviceProxy("p00/xmlconfigserver/exp.01")
 
     cnfServer.JSONSettings = \
-	'{"db":"ndts_p02","read_default_file":"/etc/my.cnf","use_unicode":true}'
+	'{"database":"ndts_p02","read_default_file":"/etc/my.cnf","use_unicode":true}'
 
     # opens DB connection
     cnfServer.Open()

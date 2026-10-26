@@ -19,7 +19,7 @@ docker exec  ndts /bin/bash -c 'source .sh.sh ;  echo "export MY_PREFIX=$CONDA_P
 # docker exec  --user root ndts /usr/bin/mysql -e 'FLUSH PRIVILEGES'
 
 # # create nxsconfig database
-docker exec  --user root ndts /bin/bash -c 'source /home/tango/.menv ; export MYSQL_PASSWORD="rootpw" ; $MY_PREFIX"/bin/create_nxsconfig_db -x -d=nxsonfig -u=tango -p="$MY_PREFIX"'
+docker exec  --user root ndts /bin/bash -c 'source /home/tango/.menv ; export MYSQL_PASSWORD="rootpw" ; "$MY_PREFIX"/bin/create_nxsconfig_db -x -d=nxsonfig -u=tango -p="$MY_PREFIX"'
 
 echo "run nxsconfigserver tests"
 docker exec  ndts /bin/bash -c 'source .sh.sh ;  echo "export MYTANGO_PREFIX=$CONDA_PREFIX/bin" > /home/tango/.env ;   python -m pip install . -vv --no-deps --no-build-isolation ;   python -m pytest test'

@@ -32,7 +32,7 @@ on a MySQL database. It allows to store XML configuration datasources
 and components. It also gives possibility to select mandatory components
 and perform the process of component merging.
 
-Tango Server API: https://nexdatas.github.io/nxsconfigserver/doc_html
+Tango Server API: https://nexdatas.github.io/nxsconfigserver/stable/doc_html
 
 | Source code: https://github.com/nexdatas/nxsconfigserver/
 | Web page: https://nexdatas.github.io/nxsconfigserver/

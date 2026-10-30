@@ -1103,7 +1103,7 @@ if __name__ == "__main__":
         #: (:class:`nxsconfigserver.XMLConfigurator.XMLConfigurator`)  \
         #:     configurer object
         conf = XMLConfigurator()
-        conf.jsonsettings = '{"db":"nxsconfig", '\
+        conf.jsonsettings = '{"database":"nxsconfig", '\
             '"read_default_file":"/etc/my.cnf"}'
         conf.open()
         print(conf.availableComponents())

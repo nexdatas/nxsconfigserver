@@ -47,7 +47,6 @@ jobs:
           OSYS: ${{ matrix.os }}
         run: .ci/run.sh ${OSYS} 3
 
-
       - name: Append documentation for the latest release version
         if: (github.ref == 'refs/heads/develop' ||  github.ref == 'refs/heads/issue_121') &&  matrix.os == 'debian13'
         run: |

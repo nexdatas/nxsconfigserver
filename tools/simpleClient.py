@@ -32,7 +32,7 @@ def main():
     dpx = tango.DeviceProxy(device)
     dpx.set_timeout_millis(25000)
     dpx.Init()
-    dpx.JSONSettings = '{"db": "ndts",' \
+    dpx.JSONSettings = '{"database": "ndts",' \
                        + '"read_default_file":"/etc/my.cnf" }'
 
 

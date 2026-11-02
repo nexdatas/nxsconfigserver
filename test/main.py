@@ -51,7 +51,7 @@ try:
         MySQLdb.install_as_MySQLdb()
 
     # connection arguments to MYSQL DB
-    args = {'db': u'nxsconfig',
+    args = {'database': u'nxsconfig',
             'read_default_file': u'/etc/my.cnf', 'use_unicode': True}
     # inscance of MySQLdb
     mydb = MySQLdb.connect(**args)
@@ -63,7 +63,7 @@ except Exception:
         from os.path import expanduser
         home = expanduser("~")
         # connection arguments to MYSQL DB
-        args2 = {'db': u'nxsconfig',
+        args2 = {'database': u'nxsconfig',
                  'read_default_file': u'%s/.my.cnf' % home,
                  'use_unicode': True}
         # inscance of MySQLdb

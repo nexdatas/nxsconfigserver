@@ -1,3 +1,7 @@
+2026-09-26 Jan Kotanski <jankotan@gmail.com>
+	* run pixi tests without HDRI repository (#124)
+	* tagged as v2.26.1
+
 2026-08-24 Jan Kotanski <jankotan@gmail.com>
 	* add pyproject and doc generator (#121)
 	* tagged as v2.26.0

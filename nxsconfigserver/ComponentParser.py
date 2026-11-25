@@ -107,10 +107,7 @@ class ComponentHandler(sax.ContentHandler):
                         r"[\w]+",
                         text[(index + len(self.__dsLabel) + 2):]
                     )
-                    if sys.version_info > (3,):
-                        subc = finder.__next__().group(0)
-                    else:
-                        subc = finder.next().group(0)
+                    subc = finder.__next__().group(0)
                 except Exception:
                     subc = ""
                 aName = subc.strip() if subc else ""

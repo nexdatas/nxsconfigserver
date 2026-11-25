@@ -20,7 +20,6 @@
 """ Providesthe access to MYSQL database with NDTS configuration files """
 
 
-import sys
 import json
 
 
@@ -32,10 +31,6 @@ except ImportError:
 
 
 from .Errors import NonregisteredDBRecordError
-
-
-if sys.version_info > (3,):
-    long = int
 
 
 class MYSQLDataBase(object):
@@ -147,7 +142,7 @@ class MYSQLDataBase(object):
         cursor.execute(
             "select value from properties where name = 'revision';")
         data = cursor.fetchone()
-        new = str(long(data[0]) + 1)
+        new = str(int(data[0]) + 1)
         cursor.execute(
             "update properties set value = '%s' where name = 'revision';"
             % (cls.__escape(new)))

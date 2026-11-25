@@ -20,17 +20,11 @@
 """ Classes for merging DOM component trees """
 
 import re
-import sys
 
 import xml.etree.ElementTree as et
 from lxml.etree import XMLParser
 import lxml.etree as etree
 from .Errors import IncompatibleNodeError, UndefinedTagError
-
-
-if sys.version_info > (3,):
-    basestring = str
-    unicode = str
 
 
 def _tostr(text):
@@ -43,10 +37,8 @@ def _tostr(text):
     """
     if isinstance(text, str):
         return text
-    elif sys.version_info > (3,):
-        return str(text, encoding="utf-8")
     else:
-        return str(text)
+        return str(text, encoding="utf-8")
 
 
 def _toxml(node):
@@ -57,10 +49,7 @@ def _toxml(node):
     :returns: xml content string
     :rtype: :obj:`str`
     """
-    if sys.version_info > (3,):
-        xml = _tostr(et.tostring(node, encoding='unicode', method='xml'))
-    else:
-        xml = _tostr(et.tostring(node, encoding='utf8', method='xml'))
+    xml = _tostr(et.tostring(node, encoding='unicode', method='xml'))
     if xml.startswith("<?xml version='1.0' encoding='utf-8'?>"):
         xml = str(xml[39:])
     elif xml.startswith("<?xml version='1.0' encoding='utf8'?>"):
@@ -160,7 +149,7 @@ class Merger(object):
         if node is not None:
             tnodes = ([node.text] if node.text else []) \
                      + [child.tail for child in node if child.tail]
-            return unicode("\n".join(tnodes)).strip()
+            return str("\n".join(tnodes)).strip()
         return ""
 
     def __getAncestors(self, node, ancestors):
@@ -181,7 +170,7 @@ class Merger(object):
             res += "/" + an[0]
             if an[1]:
                 res += ":" + an[1]
-        res += "/" + unicode(node.tag)
+        res += "/" + str(node.tag)
         if name:
             res += ":" + name
         return res
@@ -201,7 +190,7 @@ class Merger(object):
 
         if elem1.tag != elem2.tag:
             return False
-        tagName = unicode(elem1.tag)
+        tagName = str(elem1.tag)
         status = True
 
         name1 = elem1.get("name")
@@ -237,8 +226,8 @@ class Merger(object):
                     status = False
 
         if tagName in self.uniqueText:
-            text1 = unicode(self.__getText(elem1)).strip()
-            text2 = unicode(self.__getText(elem2)).strip()
+            text1 = str(self.__getText(elem1)).strip()
+            text2 = str(self.__getText(elem2)).strip()
             if text1 != text2 and text1 and text2:
                 if not self.skip:
                     raise IncompatibleNodeError(
@@ -288,22 +277,22 @@ class Merger(object):
             elem1.attrib[i2] = at2
 
         if cls.__getText(elem1) != cls.__getText(elem2):
-            if elem1.text and unicode(elem1.text).strip():
-                texts.append(unicode(elem1.text).strip())
+            if elem1.text and str(elem1.text).strip():
+                texts.append(str(elem1.text).strip())
             for tchild in elem1:
-                if tchild.tail and unicode(tchild.tail).strip():
-                    texts.append(unicode(tchild.tail).strip())
+                if tchild.tail and str(tchild.tail).strip():
+                    texts.append(str(tchild.tail).strip())
 
-            if unicode(elem2.text).strip() not in texts:
-                if elem2.text and unicode(elem2.text).strip():
+            if str(elem2.text).strip() not in texts:
+                if elem2.text and str(elem2.text).strip():
                     toMove.append(elem2.text)
             for tchild in elem2:
-                if unicode(tchild.tail).strip() not in texts:
-                    if tchild.tail and unicode(tchild.tail).strip():
+                if str(tchild.tail).strip() not in texts:
+                    if tchild.tail and str(tchild.tail).strip():
                         toMove.append(tchild.tail)
         for tchild in elem2:
             elem1.append(tchild)
-        if elem2.tail and unicode(elem2.tail).strip() \
+        if elem2.tail and str(elem2.tail).strip() \
            and elem1.tail != elem2.tail and \
            elem2.tail != parent.text:
             if elem1.tail:
@@ -345,7 +334,7 @@ class Merger(object):
 
             children = list(node)
             c1 = 0
-            if unicode(node.tag) in self.switchable and self.switchdatasources:
+            if str(node.tag) in self.switchable and self.switchdatasources:
                 # print("NODE", node.tag, node.get("name"))
                 self.__switch(node)
             while c1 < len(children):
@@ -363,10 +352,10 @@ class Merger(object):
                     c2 += 1
                 c1 += 1
 
-            nName = unicode(node.tag)
+            nName = str(node.tag)
 
             for child in node:
-                cName = unicode(child.tag)
+                cName = str(child.tag)
                 if nName and nName in self.children.keys():
                     if cName and cName not in self.children[nName]:
                         raise IncompatibleNodeError(
@@ -421,17 +410,14 @@ class Merger(object):
         dsname = None
         dsnode = None
         dslist = dslist or self.switchdatasources
-        text = unicode(self.__getText(node)).strip()
+        text = str(self.__getText(node)).strip()
         index = text.find(self.__dsvars)
         while index >= 0:
             try:
                 finder = re.finditer(
                     r"[\w]+",
                     text[(index + len(self.__dsvars)):])
-                if sys.version_info > (3,):
-                    subc = finder.__next__().group(0)
-                else:
-                    subc = finder.next().group(0)
+                subc = finder.__next__().group(0)
             except Exception:
                 subc = ''
             name = subc.strip() if subc else ""
@@ -459,7 +445,7 @@ class Merger(object):
             dsname, dsnode = self.__getTextDataSource(node)
 
             for child in node:
-                cName = unicode(child.tag)
+                cName = str(child.tag)
                 if cName == 'datasource':
                     dsname = child.get("name")
                     if dsname in self.switchdatasources:
@@ -468,7 +454,7 @@ class Merger(object):
                         dsname, dsnode = self.__getTextDataSource(child)
                     if dsnode is None:
                         for gchild in child:
-                            gcName = unicode(gchild.tag)
+                            gcName = str(gchild.tag)
                             if gcName == 'datasource':
                                 gdsname = gchild.get("name")
                                 if gdsname in self.switchdatasources:
@@ -504,7 +490,7 @@ class Merger(object):
                 node, self.canfaildatasources)
 
             for child in node:
-                cName = unicode(child.tag)
+                cName = str(child.tag)
                 if cName == 'datasource':
                     dsname = child.get("name")
                     if dsname in self.canfaildatasources:
@@ -514,7 +500,7 @@ class Merger(object):
                             child, self.canfaildatasources)
                     if dsnode is None:
                         for gchild in child:
-                            gcName = unicode(gchild.tag)
+                            gcName = str(gchild.tag)
                             if gcName == 'datasource':
                                 gdsname = gchild.get("name")
                                 if gdsname in self.canfaildatasources:
@@ -551,7 +537,7 @@ class Merger(object):
             dsname, dsnode = self.__getTextDataSource(
                 node, linkdatasources)
             for child in node:
-                cName = unicode(child.tag)
+                cName = str(child.tag)
                 if cName == 'datasource':
                     dsname = child.get("name")
                     if dsname in linkdatasources:
@@ -654,8 +640,7 @@ class Merger(object):
         for cp in components:
             dcp = None
             if cp:
-                if sys.version_info > (3,):
-                    cp = bytes(cp, "UTF-8")
+                cp = bytes(cp, "UTF-8")
                 dcp = et.fromstring(cp, parser=XMLParser(collect_ids=False))
             if dcp is None:
                 continue
@@ -671,7 +656,7 @@ class Merger(object):
                 for cd in dcp:
                     rootDef.append(cd)
                 txt = self.__getText(dcp)
-                if txt and unicode(txt).strip():
+                if txt and str(txt).strip():
                     if rootDef.text != txt:
                         rootDef.text += "\n" + txt
 
@@ -682,15 +667,10 @@ class Merger(object):
         :rtype: :obj:`str`
         """
         if self.__root is not None:
-            if sys.version_info > (3,):
-                return "<?xml version='1.0' encoding='utf-8'?>" + \
-                    _tostr(
-                        et.tostring(
-                            self.__root, encoding='unicode', method='xml'))
-            else:
-                return _tostr(
+            return "<?xml version='1.0' encoding='utf-8'?>" + \
+                _tostr(
                     et.tostring(
-                        self.__root, encoding='utf8', method='xml'))
+                        self.__root, encoding='unicode', method='xml'))
 
     def merge(self):
         """ performs the merging operation

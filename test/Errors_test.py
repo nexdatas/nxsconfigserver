@@ -32,10 +32,6 @@ from nxsconfigserver.Errors import (
     IncompatibleNodeError, UndefinedTagError, NonregisteredDBRecordError)
 
 
-if sys.version_info > (3,):
-    long = int
-
-
 # test fixture
 class ErrorsTest(unittest.TestCase):
 

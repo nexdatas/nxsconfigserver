@@ -93,7 +93,6 @@ SETUPDATA = dict(
         'Intended Audience :: Science/Research',
         'Topic :: Scientific/Engineering :: Physics',
         'Topic :: Software Development :: Libraries :: Python Modules',
-        # 'Programming Language :: Python :: 2.7',
         # 'Programming Language :: Python :: 3',
         # 'Programming Language :: Python :: 3.4',
         # 'Programming Language :: Python :: 3.5',
@@ -108,6 +107,7 @@ SETUPDATA = dict(
         'Programming Language :: Python :: 3.14',
         'Programming Language :: Python :: 3.15',
     ],
+    python_requires='>=3',
     install_requires=install_requires,
     entry_points={
         'console_scripts':

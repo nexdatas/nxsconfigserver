@@ -88,18 +88,7 @@ and then download the corresponding source list, e.g. for trixie
 	  $ cd /etc/apt/sources.list.d
 	  $ wget https://repos.desy.de/pni-hdri/trixie-pni-hdri.sources
 
-Finally, for python2 packages
-
-.. code-block:: console
-
-	  $ apt-get update
-	  $ apt-get install python-nxsconfigserver nxsconfigserver-db
-
-and the NXSConfigServer tango server (from 2.10.0)
-
-	  $ apt-get install nxsconfigserver
-
-or for python3
+Finally, install the python3 packages
 
 .. code-block:: console
 
@@ -108,7 +97,9 @@ or for python3
 
 and the NXSConfigServer tango server (from 2.10.0)
 
-	  $ apt-get install nxsconfigserver3
+	  $ apt-get install nxsconfigserver
+
+i.e. ``nxsconfigserver3`` for older releases.
 
 
 From pip

@@ -21,7 +21,6 @@
 
 import json
 import re
-import sys
 import weakref
 from xml import sax
 import xml.etree.ElementTree as et
@@ -46,10 +45,8 @@ def _tostr(text):
     """
     if isinstance(text, str):
         return text
-    elif sys.version_info > (3,):
-        return str(text, encoding="utf-8")
     else:
-        return str(text)
+        return str(text, encoding="utf-8")
 
 
 def _toxml(node):
@@ -60,10 +57,7 @@ def _toxml(node):
     :returns: xml content string
     :rtype: :obj:`str`
     """
-    if sys.version_info > (3,):
-        xml = _tostr(et.tostring(node, encoding='unicode', method='xml'))
-    else:
-        xml = _tostr(et.tostring(node, encoding='utf8', method='xml'))
+    xml = _tostr(et.tostring(node, encoding='unicode', method='xml'))
     if xml.startswith("<?xml version='1.0' encoding='utf8'?>"):
         xml = str(xml[38:])
     elif xml.startswith("<?xml version='1.0' encoding='utf-8'?>"):
@@ -412,10 +406,7 @@ class XMLConfigurator(object):
             if len(cpl) > 0:
                 handler = ComponentHandler(self.__dsLabel)
                 text = str(cpl[0]).strip()
-                if sys.version_info > (3,):
-                    sax.parseString(bytes(text, "utf-8"), handler)
-                else:
-                    sax.parseString(text, handler)
+                sax.parseString(bytes(text, "utf-8"), handler)
                 return list(handler.datasources.keys())
             else:
                 return []
@@ -432,10 +423,7 @@ class XMLConfigurator(object):
         if mcnf:
             cnf = self.__instantiate(mcnf)
             handler = ComponentHandler(self.__dsLabel)
-            if sys.version_info > (3,):
-                sax.parseString(bytes(cnf, "UTF-8"), handler)
-            else:
-                sax.parseString(cnf, handler)
+            sax.parseString(bytes(cnf, "UTF-8"), handler)
             return list(handler.datasources.keys())
         else:
             return []
@@ -463,10 +451,7 @@ class XMLConfigurator(object):
                 finder = re.finditer(
                     rechars, text[(index + len(label) + 2):]
                 )
-                if sys.version_info > (3,):
-                    subc = finder.__next__().group(0)
-                else:
-                    subc = finder.next().group(0)
+                subc = finder.__next__().group(0)
             except Exception:
                 subc = ""
             name = subc.strip() if subc else ""
@@ -582,13 +567,9 @@ class XMLConfigurator(object):
         """
         if self.__mydb:
             try:
-                if sys.version_info > (3,):
-                    et.fromstring(
-                        bytes(self.xmlstring, "UTF-8"),
-                        parser=XMLParser(collect_ids=False))
-                else:
-                    et.fromstring(
-                        self.xmlstring, parser=XMLParser(collect_ids=False))
+                et.fromstring(
+                    bytes(self.xmlstring, "UTF-8"),
+                    parser=XMLParser(collect_ids=False))
             except Exception as e:
                 raise WrongXMLError("WrongXMLError: %s" % str(e))
             self.__mydb.storeComponent(name, self.xmlstring)
@@ -614,13 +595,9 @@ class XMLConfigurator(object):
         """
         if self.__mydb:
             try:
-                if sys.version_info > (3,):
-                    et.fromstring(
-                        bytes(self.xmlstring, "UTF-8"),
-                        parser=XMLParser(collect_ids=False))
-                else:
-                    et.fromstring(
-                        self.xmlstring, parser=XMLParser(collect_ids=False))
+                et.fromstring(
+                    bytes(self.xmlstring, "UTF-8"),
+                    parser=XMLParser(collect_ids=False))
             except Exception as e:
                 raise WrongXMLError("WrongXMLError: %s" % str(e))
             self.__mydb.storeDataSource(name, self.xmlstring)
@@ -797,10 +774,7 @@ class XMLConfigurator(object):
                 finder = re.finditer(
                     r"[\w.]+",
                     component[(index + len(label) + 2):])
-                if sys.version_info > (3,):
-                    subc = finder.__next__().group(0)
-                else:
-                    subc = finder.next().group(0)
+                subc = finder.__next__().group(0)
 
                 if not tag:
                     offset = index + len(subc) + len(label) + 2
@@ -819,10 +793,7 @@ class XMLConfigurator(object):
                             finder = re.finditer(
                                 r"([\"'])(?:\\\1|.)*?\1",
                                 component[(offset + 1):])
-                            if sys.version_info > (3,):
-                                dsubc = finder.__next__().group(0)
-                            else:
-                                dsubc = finder.next().group(0)
+                            dsubc = finder.__next__().group(0)
                             if dsubc:
                                 if dsubc[0] == "'":
                                     defsubc = dsubc[1:-1].replace("\\'", "'")
@@ -848,14 +819,9 @@ class XMLConfigurator(object):
                         "The %s %s of %s not registered" % (
                             tag if tag else "variable", name, component))
                 if tag and xmlds:
-                    if sys.version_info > (3,):
-                        root = et.fromstring(
-                            bytes(xmlds[0], "UTF-8"),
-                            parser=XMLParser(collect_ids=False))
-                    else:
-                        root = et.fromstring(
-                            xmlds[0], parser=XMLParser(collect_ids=False))
-                        # dom = parseString(xmlds[0])
+                    root = et.fromstring(
+                        bytes(xmlds[0], "UTF-8"),
+                        parser=XMLParser(collect_ids=False))
                     if root.tag == tag:
                         etds = [root]
                     else:
@@ -1077,13 +1043,9 @@ class XMLConfigurator(object):
         cnf = self.__instantiate(cnf)
         cnfMerged = self.__merge([cnf])
         if cnfMerged and hasattr(cnfMerged, "strip") and cnfMerged.strip():
-            if sys.version_info > (3,):
-                reparsed = et.fromstring(
-                    bytes(cnfMerged, "UTF-8"),
-                    parser=XMLParser(collect_ids=False))
-            else:
-                reparsed = et.fromstring(
-                    cnfMerged, parser=XMLParser(collect_ids=False))
+            reparsed = et.fromstring(
+                bytes(cnfMerged, "UTF-8"),
+                parser=XMLParser(collect_ids=False))
             xmls = _tostr(etree.tostring(reparsed, encoding='unicode',
                                          method='xml', pretty_print=True))
             if xmls.startswith("<?xml"):

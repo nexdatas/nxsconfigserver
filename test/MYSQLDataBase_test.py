@@ -28,9 +28,6 @@ from nxsconfigserver.Errors import NonregisteredDBRecordError
 
 # test fixture
 
-if sys.version_info > (3,):
-    long = int
-
 
 class MYSQLDataBaseTest(unittest.TestCase):
 
@@ -59,7 +56,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
         print("\nsetting up...")
         el = MYSQLDataBase()
         self.connect(el)
-        self.version = long(el.version())
+        self.version = int(el.version())
         el.close()
 
     def connect(self, el):
@@ -115,7 +112,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
         el = MYSQLDataBase()
         self.assertTrue(isinstance(el, object))
         self.connect(el)
-        self.assertEqual(long(el.version()), self.version)
+        self.assertEqual(int(el.version()), self.version)
         self.assertEqual(el.close(), None)
 
     # component test
@@ -156,7 +153,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
             self.assertTrue(cp in avc3)
         self.assertTrue(name not in avc3)
 
-        self.assertEqual(long(el.version()), self.version + 2)
+        self.assertEqual(int(el.version()), self.version + 2)
         self.assertEqual(el.close(), None)
 
     # component test
@@ -197,7 +194,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
             self.assertTrue(cp in avc3)
         self.assertTrue(name not in avc3)
 
-        self.assertEqual(long(el.version()), self.version + 2)
+        self.assertEqual(int(el.version()), self.version + 2)
         self.assertEqual(el.close(), None)
 
     # component test
@@ -246,7 +243,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
 
         self.assertTrue(name not in avc3)
 
-        self.assertEqual(long(el.version()), self.version + 2)
+        self.assertEqual(int(el.version()), self.version + 2)
         self.assertEqual(el.close(), None)
 
     # component test
@@ -265,7 +262,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
 #        print(avc
         self.myAssertRaise(NonregisteredDBRecordError, el.components, [name])
 
-        self.assertEqual(long(el.version()), self.version)
+        self.assertEqual(int(el.version()), self.version)
         self.assertEqual(el.close(), None)
 
     # component test
@@ -332,7 +329,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
 
         self.assertTrue(name not in avc3)
 
-        self.assertEqual(long(el.version()), self.version + 3)
+        self.assertEqual(int(el.version()), self.version + 3)
         self.assertEqual(el.close(), None)
 
     # component test
@@ -409,7 +406,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
 
         self.assertTrue(name not in avc3)
 
-        self.assertEqual(long(el.version()), self.version + 4)
+        self.assertEqual(int(el.version()), self.version + 4)
         self.assertEqual(el.close(), None)
 
     # selection test
@@ -450,7 +447,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
             self.assertTrue(cp in avc3)
         self.assertTrue(name not in avc3)
 
-        self.assertEqual(long(el.version()), self.version)
+        self.assertEqual(int(el.version()), self.version)
         self.assertEqual(el.close(), None)
 
     # selection test
@@ -491,7 +488,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
             self.assertTrue(cp in avc3)
         self.assertTrue(name not in avc3)
 
-        self.assertEqual(long(el.version()), self.version)
+        self.assertEqual(int(el.version()), self.version)
         self.assertEqual(el.close(), None)
 
     # selection test
@@ -540,7 +537,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
 
         self.assertTrue(name not in avc3)
 
-        self.assertEqual(long(el.version()), self.version)
+        self.assertEqual(int(el.version()), self.version)
         self.assertEqual(el.close(), None)
 
     # selection test
@@ -559,7 +556,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
 #        print(avc
         self.myAssertRaise(NonregisteredDBRecordError, el.selections, [name])
 
-        self.assertEqual(long(el.version()), self.version)
+        self.assertEqual(int(el.version()), self.version)
         self.assertEqual(el.close(), None)
 
     # selection test
@@ -626,7 +623,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
 
         self.assertTrue(name not in avc3)
 
-        self.assertEqual(long(el.version()), self.version)
+        self.assertEqual(int(el.version()), self.version)
         self.assertEqual(el.close(), None)
 
     # selection test
@@ -703,7 +700,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
 
         self.assertTrue(name not in avc3)
 
-        self.assertEqual(long(el.version()), self.version)
+        self.assertEqual(int(el.version()), self.version)
         self.assertEqual(el.close(), None)
 
     # datasource test
@@ -744,7 +741,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
             self.assertTrue(cp in avc3)
         self.assertTrue(name not in avc3)
 
-        self.assertEqual(long(el.version()), self.version + 2)
+        self.assertEqual(int(el.version()), self.version + 2)
         self.assertEqual(el.close(), None)
 
     # datasource test
@@ -785,7 +782,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
             self.assertTrue(cp in avc3)
         self.assertTrue(name not in avc3)
 
-        self.assertEqual(long(el.version()), self.version + 2)
+        self.assertEqual(int(el.version()), self.version + 2)
         self.assertEqual(el.close(), None)
 
     # datasource test
@@ -834,7 +831,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
 
         self.assertTrue(name not in avc3)
 
-        self.assertEqual(long(el.version()), self.version + 2)
+        self.assertEqual(int(el.version()), self.version + 2)
         self.assertEqual(el.close(), None)
 
     # datasource test
@@ -853,7 +850,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
 #        print(avc
         self.myAssertRaise(NonregisteredDBRecordError, el.dataSources, [name])
 
-        self.assertEqual(long(el.version()), self.version)
+        self.assertEqual(int(el.version()), self.version)
         self.assertEqual(el.close(), None)
 
     # datasource test
@@ -920,7 +917,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
 
         self.assertTrue(name not in avc3)
 
-        self.assertEqual(long(el.version()), self.version + 3)
+        self.assertEqual(int(el.version()), self.version + 3)
         self.assertEqual(el.close(), None)
 
     # datasource test
@@ -997,7 +994,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
 
         self.assertTrue(name not in avc3)
 
-        self.assertEqual(long(el.version()), self.version + 4)
+        self.assertEqual(int(el.version()), self.version + 4)
         self.assertEqual(el.close(), None)
 
     # component test
@@ -1028,7 +1025,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
         for cp in man:
             self.assertTrue(cp in man2)
 
-        self.assertEqual(long(el.version()), self.version)
+        self.assertEqual(int(el.version()), self.version)
         self.assertEqual(el.close(), None)
 
     # component test
@@ -1082,7 +1079,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
 
         self.assertTrue(name not in man2)
 
-        self.assertEqual(long(el.version()), self.version + 4)
+        self.assertEqual(int(el.version()), self.version + 4)
         self.assertEqual(el.close(), None)
 
     # component test
@@ -1165,7 +1162,7 @@ class MYSQLDataBaseTest(unittest.TestCase):
 
         self.assertTrue(name not in man2)
 
-        self.assertEqual(long(el.version()), self.version + 8)
+        self.assertEqual(int(el.version()), self.version + 8)
         self.assertEqual(el.close(), None)
 
 

@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nxsconfigserver.MYSQLDataBase &#8212; nxsconfigserver 2.26.1 documentation</title>
+    <title>nxsconfigserver.MYSQLDataBase &#8212; nxsconfigserver 2.27.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=4468db6d" />
-    <script src="../../_static/documentation_options.js?v=0b2e7196"></script>
+    <script src="../../_static/documentation_options.js?v=de83bfd6"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -34,7 +34,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           nxsconfigserver</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.26</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.27</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -112,6 +112,7 @@
       <li><a class="reference external" href="../../index/../../latest/index.html">v:latest</a></li>
       <li><a class="reference external" href="../../index/../../stable/index.html">v:stable</a></li>
       
+      <li><a class="reference external" href="../../index/../../v2.27.0/index.html">v2.27.0</a></li>
       <li><a class="reference external" href="../../index/../../v2.26.0/index.html">v2.26.0</a></li>
       <li><a class="reference external" href="../../index/../../v2.25.0/index.html">v2.25.0</a></li>
       
@@ -145,7 +146,6 @@
 <span class="sd">&quot;&quot;&quot; Providesthe access to MYSQL database with NDTS configuration files &quot;&quot;&quot;</span>
 
 
-<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">json</span>
 
 
@@ -157,10 +157,6 @@
 
 
 <span class="kn">from</span> <span class="nn">.Errors</span> <span class="kn">import</span> <span class="n">NonregisteredDBRecordError</span>
-
-
-<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,):</span>
-    <span class="n">long</span> <span class="o">=</span> <span class="nb">int</span>
 
 
 <div class="viewcode-block" id="MYSQLDataBase">
@@ -283,7 +279,7 @@
         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
             <span class="s2">&quot;select value from properties where name = &#39;revision&#39;;&quot;</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
-        <span class="n">new</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">long</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">new</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
             <span class="s2">&quot;update properties set value = &#39;</span><span class="si">%s</span><span class="s2">&#39; where name = &#39;revision&#39;;&quot;</span>
             <span class="o">%</span> <span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">__escape</span><span class="p">(</span><span class="n">new</span><span class="p">)))</span>

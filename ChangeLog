@@ -1,6 +1,7 @@
-2026-XX-YY Jan Kotanski <jankotan@gmail.com>
+2026-11-28 Jan Kotanski <jankotan@gmail.com>
 	* ping MySQL databases without the deprecated reconnect argument, reconnect with new connections
-	* tagged as v2.28.X
+	* use a Tango database client with longer timeouts and retries in the test server setups
+	* tagged as v2.27.1
 
 2026-11-25 Jan Kotanski <jankotan@gmail.com>
 	* update URL for the HDRI repository (#127)

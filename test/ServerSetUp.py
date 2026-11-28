@@ -23,6 +23,13 @@ import os
 import sys
 import subprocess
 
+try:
+    from TangoDbUtils import (
+        add_device, add_server, database, delete_server)
+except ImportError:
+    from .TangoDbUtils import (
+        add_device, add_server, database, delete_server)
+
 import time
 
 try:
@@ -50,10 +57,11 @@ class ServerSetUp(object):
     # \brief Common set up of Tango Server
     def setUp(self):
         print("tearing down ...")
-        db = tango.Database()
-        db.add_device(self.new_device_info_writer)
-        db.add_server(
-            self.new_device_info_writer.server, self.new_device_info_writer)
+        db = database()
+        add_device(self.new_device_info_writer, db)
+        add_server(
+            self.new_device_info_writer.server, self.new_device_info_writer,
+            db)
 
         if os.path.isfile("../NXSConfigServer"):
             self._psub = subprocess.call(
@@ -91,8 +99,7 @@ class ServerSetUp(object):
     # \brief Common tear down oif Tango Server
     def tearDown(self):
         print("tearing down ...")
-        db = tango.Database()
-        db.delete_server(self.new_device_info_writer.server)
+        delete_server(self.new_device_info_writer.server)
 
         with subprocess.Popen(
                 "ps -ef | grep 'NXSConfigServer MCSTEST' | grep -v grep",

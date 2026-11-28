@@ -1,3 +1,7 @@
+2026-XX-YY Jan Kotanski <jankotan@gmail.com>
+	* ping MySQL databases without the deprecated reconnect argument, reconnect with new connections
+	* tagged as v2.28.X
+
 2026-11-25 Jan Kotanski <jankotan@gmail.com>
 	* update URL for the HDRI repository (#127)
 	* remove python2 support

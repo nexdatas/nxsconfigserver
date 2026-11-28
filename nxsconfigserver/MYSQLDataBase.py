@@ -66,7 +66,7 @@ class MYSQLDataBase(object):
         argstr = json.dumps(args)
         if self.__argstr == argstr and self.__db.open:
             try:
-                self.__db.ping(True)
+                self.__db.ping()
             except Exception:
                 self.close()
                 self.__db = MySQLdb.connect(**args)
@@ -76,6 +76,23 @@ class MYSQLDataBase(object):
             self.__args = args
             self.__argstr = argstr
 
+    def __ping(self):
+        """ checks the database connection and reconnects if it is lost
+
+        The ``reconnect`` argument of ``ping`` is deprecated in pymysql,
+        so a new connection is created if the ping fails.
+        """
+        try:
+            self.__db.ping()
+        except Exception:
+            if self.__args is None:
+                raise
+            if self._streams:
+                self._streams.debug(
+                    "MYSQLDataBase::__ping() - reconnect")
+            self.close()
+            self.__db = MySQLdb.connect(**self.__args)
+
     def close(self):
         """ closes database connection
 
@@ -83,7 +100,6 @@ class MYSQLDataBase(object):
         """
         if self.__db:
             try:
-                self.__db.ping(True)
                 if self.__db.open:
                     self.__db.close()
             except Exception:
@@ -100,7 +116,7 @@ class MYSQLDataBase(object):
         if self.__db is not None:
             try:
                 try:
-                    self.__db.ping(True)
+                    self.__ping()
                 except Exception:
                     return argout
                 if not self.__db.open:
@@ -158,7 +174,7 @@ class MYSQLDataBase(object):
         argout = []
         if self.__db is not None:
             try:
-                self.__db.ping(True)
+                self.__ping()
                 if not self.__db.open:
                     self.connect(self.__args)
                 cursor = self.__db.cursor()
@@ -189,7 +205,7 @@ class MYSQLDataBase(object):
         argout = []
         if self.__db is not None:
             try:
-                self.__db.ping(True)
+                self.__ping()
                 if not self.__db.open:
                     self.connect(self.__args)
                 cursor = self.__db.cursor()
@@ -220,7 +236,7 @@ class MYSQLDataBase(object):
         argout = []
         if self.__db is not None:
             try:
-                self.__db.ping(True)
+                self.__ping()
                 if not self.__db.open:
                     self.connect(self.__args)
                 cursor = self.__db.cursor()
@@ -250,7 +266,7 @@ class MYSQLDataBase(object):
         argout = []
         if self.__db is not None:
             try:
-                self.__db.ping(True)
+                self.__ping()
                 cursor = self.__db.cursor()
                 cursor.execute("select name from components;")
                 data = cursor.fetchall()
@@ -272,7 +288,7 @@ class MYSQLDataBase(object):
         argout = []
         if self.__db is not None:
             try:
-                self.__db.ping(True)
+                self.__ping()
                 cursor = self.__db.cursor()
                 cursor.execute("select name from selections;")
                 data = cursor.fetchall()
@@ -294,7 +310,7 @@ class MYSQLDataBase(object):
         argout = []
         if self.__db is not None:
             try:
-                self.__db.ping(True)
+                self.__ping()
                 if not self.__db.open:
                     self.connect(self.__args)
                 cursor = self.__db.cursor()
@@ -318,7 +334,7 @@ class MYSQLDataBase(object):
         """
         if self.__db is not None:
             try:
-                self.__db.ping(True)
+                self.__ping()
                 if not self.__db.open:
                     self.connect(self.__args)
                 cursor = self.__db.cursor()
@@ -366,7 +382,7 @@ class MYSQLDataBase(object):
         """
         if self.__db is not None:
             try:
-                self.__db.ping(True)
+                self.__ping()
                 if not self.__db.open:
                     self.connect(self.__args)
                 cursor = self.__db.cursor()
@@ -414,7 +430,7 @@ class MYSQLDataBase(object):
         """
         if self.__db is not None:
             try:
-                self.__db.ping(True)
+                self.__ping()
                 if not self.__db.open:
                     self.connect(self.__args)
                 cursor = self.__db.cursor()
@@ -460,7 +476,7 @@ class MYSQLDataBase(object):
         """
         if self.__db is not None:
             try:
-                self.__db.ping(True)
+                self.__ping()
                 if not self.__db.open:
                     self.connect(self.__args)
                 cursor = self.__db.cursor()
@@ -494,7 +510,7 @@ class MYSQLDataBase(object):
         """
         if self.__db is not None:
             try:
-                self.__db.ping(True)
+                self.__ping()
                 if not self.__db.open:
                     self.connect(self.__args)
                 cursor = self.__db.cursor()
@@ -528,7 +544,7 @@ class MYSQLDataBase(object):
         """
         if self.__db is not None:
             try:
-                self.__db.ping(True)
+                self.__ping()
                 if not self.__db.open:
                     self.connect(self.__args)
                 cursor = self.__db.cursor()
@@ -562,7 +578,7 @@ class MYSQLDataBase(object):
         """
         if self.__db is not None:
             try:
-                self.__db.ping(True)
+                self.__ping()
                 if not self.__db.open:
                     self.connect(self.__args)
                 cursor = self.__db.cursor()
@@ -600,7 +616,7 @@ class MYSQLDataBase(object):
         argout = []
         if self.__db is not None:
             try:
-                self.__db.ping(True)
+                self.__ping()
                 if not self.__db.open:
                     self.connect(self.__args)
                 cursor = self.__db.cursor()
@@ -624,7 +640,7 @@ class MYSQLDataBase(object):
         """
         if self.__db is not None:
             try:
-                self.__db.ping(True)
+                self.__ping()
                 if not self.__db.open:
                     self.connect(self.__args)
                 cursor = self.__db.cursor()

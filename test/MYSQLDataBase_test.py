@@ -1166,5 +1166,74 @@ class MYSQLDataBaseTest(unittest.TestCase):
         self.assertEqual(el.close(), None)
 
 
+class FakeConnection(object):
+    """ database connection stand-in """
+
+    def __init__(self, alive=True):
+        self.alive = alive
+        self.open = True
+        self.pings = []
+
+    def ping(self, *args, **kwargs):
+        self.pings.append((args, kwargs))
+        if not self.alive:
+            raise Exception("MySQL server has gone away")
+
+    def close(self):
+        self.open = False
+
+    def cursor(self):
+        class Cursor(object):
+            def execute(self, query):
+                pass
+
+            def fetchall(self):
+                return [("comp1",), ("comp2",)]
+
+            def close(self):
+                pass
+        return Cursor()
+
+
+class MYSQLDataBasePingTest(unittest.TestCase):
+    """ pings without the deprecated reconnect argument """
+
+    def setUp(self):
+        import nxsconfigserver.MYSQLDataBase as module
+        self.module = module
+        self.orig_connect = module.MySQLdb.connect
+        self.connections = []
+
+        def connect(**args):
+            conn = FakeConnection()
+            conn.args = args
+            self.connections.append(conn)
+            return conn
+        module.MySQLdb.connect = connect
+
+    def tearDown(self):
+        self.module.MySQLdb.connect = self.orig_connect
+
+    def test_reconnect(self):
+        el = MYSQLDataBase()
+        el.connect({"database": "nxsconfig", "user": "tango"})
+        first = self.connections[0]
+        self.assertEqual(el.availableComponents(), ["comp1", "comp2"])
+        # ping without the reconnect argument
+        self.assertEqual(first.pings, [((), {})])
+        # a lost connection is replaced by a new one
+        first.alive = False
+        self.assertEqual(el.availableComponents(), ["comp1", "comp2"])
+        self.assertEqual(len(self.connections), 2)
+        self.assertFalse(first.open)
+        self.assertEqual(self.connections[1].args,
+                         {"database": "nxsconfig", "user": "tango"})
+        self.assertEqual(self.connections[1].pings, [])
+        # close does not reconnect
+        el.close()
+        self.assertFalse(self.connections[1].open)
+        self.assertEqual(len(self.connections), 2)
+
+
 if __name__ == '__main__':
     unittest.main()
